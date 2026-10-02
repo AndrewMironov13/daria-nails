@@ -12,7 +12,7 @@
 <meta property="og:locale" content="ru_RU">
 <!-- Когда будет домен: og:image и og:url — абсолютными адресами, плюс canonical. Мессенджеры относительный путь не открывают:
      <meta property="og:image" content="https://andrewmironov13.github.io/daria-nails/shared/img/og.jpg">
-     <meta property="og:url" content="https://[домен]/manikur/">  <link rel="canonical" href="https://[домен]/manikur/"> -->
+     <meta property="og:url" content="https://andrewmironov13.github.io/daria-nails/manikur/">  <link rel="canonical" href="https://[домен]/manikur/"> -->
 
 <meta name="view-transition" content="same-origin">
 <meta name="theme-color" content="#F2EFEA">
@@ -98,7 +98,7 @@
 }
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bone);color:var(--graphite);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:var(--bar)}
+body{margin:0;background:var(--bone);color:var(--graphite);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
 img,video{display:block;max-width:100%}
 a{color:inherit}
 h1,h2,h3,h4,p,figure,blockquote,ul,ol{margin:0}
@@ -107,12 +107,9 @@ button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--cherry);outline-offset:3px;border-radius:2px}
 .dark :focus-visible{outline-color:var(--milk)}
 .nw{white-space:nowrap}
-.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .wrap{max-width:1440px;margin:0 auto;padding:0 var(--pad)}
 .eyebrow{font:400 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
-.the{font:italic 300 26px/1.1 var(--serif);letter-spacing:.01em;color:var(--ink-2)}
-.h2{font:300 clamp(44px,6vw,88px)/1.02 var(--serif);letter-spacing:-.01em}
-.lead{font-size:18px;line-height:1.55;color:var(--ink-2);max-width:34em}
+.h2{font:300 clamp(38px,4.4vw,64px)/1.04 var(--serif);letter-spacing:-.01em}
 .ph{font-family:var(--mono);font-size:.86em;letter-spacing:.02em;color:var(--ink-2);border-bottom:1px dashed currentColor;white-space:nowrap}
 .dark .ph{color:var(--ink-3)}
 
@@ -131,7 +128,6 @@ button{font:inherit;color:inherit}
 
 /* ---------- глянец в буквах (приём Chesnais: заливка + дрейф блика) ---------- */
 .gl{color:var(--graphite)}
-.gl-light{color:#E4DDD3}
 @supports ((-webkit-background-clip:text) or (background-clip:text)){
   .gl{
     background-image:linear-gradient(100deg,#1E1C1A 0%,#1E1C1A 43%,#6E645D 47%,#D8CEC4 49.4%,#EFE8E0 50%,#D8CEC4 50.6%,#6E645D 53%,#1E1C1A 57%,#1E1C1A 100%);
@@ -139,10 +135,6 @@ button{font:inherit;color:inherit}
     -webkit-background-clip:text;background-clip:text;
     color:transparent;-webkit-text-fill-color:transparent;
     animation:sheen 8s cubic-bezier(.45,.05,.3,1) 1.2s infinite;
-  }
-  /* молочный блик на графите: основа чуть приглушена, по буквам бежит только светлая полоса — без тёмной кромки, чтобы не читалась как тень */
-  .gl-light{
-    background-image:linear-gradient(100deg,#E4DDD3 0%,#E4DDD3 44%,#F3EEE7 47.5%,#FFFFFF 50%,#F3EEE7 52.5%,#E4DDD3 56%,#E4DDD3 100%);
   }
 }
 @keyframes sheen{0%{background-position:100% 0}36%{background-position:0% 0}100%{background-position:0% 0}}
@@ -179,7 +171,8 @@ button{font:inherit;color:inherit}
 .hero{position:relative;min-height:max(640px,min(100svh,900px));background:var(--bone);overflow:clip}
 .hero-media{position:absolute;top:0;right:0;bottom:0;width:var(--heroW);margin:0;overflow:hidden;background:#E7D3C8;z-index:0;--pos:50% 50%}
 .hero-media img,.hero-media video{width:100%;height:100%;object-fit:cover;object-position:var(--pos)}
-.hero-media[data-media="video"]{width:auto;aspect-ratio:9/16;right:max(var(--pad),7vw)}
+.hero-media picture{display:block;width:100%;height:100%}
+.hero-video{display:none}
 .gloss{position:absolute;inset:0;pointer-events:none}
 .gloss-sheen{position:absolute;left:0;top:0;width:78%;aspect-ratio:1;border-radius:50%;
   background:radial-gradient(closest-side,rgba(255,247,240,.7),rgba(255,247,240,.22) 55%,rgba(255,247,240,0));
@@ -188,7 +181,6 @@ button{font:inherit;color:inherit}
   -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='1040' viewBox='0 0 1280 1040'%3E%3Cfilter id='b' x='-.05' y='-.05' width='1.1' height='1.1'%3E%3CfeGaussianBlur stdDeviation='7'/%3E%3C/filter%3E%3Cg fill='white' filter='url(%23b)'%3E%3Cpath d='M488 212L526 212L530 252Q662 318 798 252L803 212L843 212L841 470Q836 622 664 638Q502 624 491 470Z'/%3E%3Cpath d='M92 392Q104 334 128 330Q236 446 352 370Q370 376 364 424Q350 548 224 558Q98 548 88 452Z'/%3E%3Cpath d='M1082 300L1118 297Q1160 334 1280 326L1280 806Q1180 812 1124 744Q1090 684 1086 560Z'/%3E%3C/g%3E%3C/svg%3E");
   mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1280' height='1040' viewBox='0 0 1280 1040'%3E%3Cfilter id='b' x='-.05' y='-.05' width='1.1' height='1.1'%3E%3CfeGaussianBlur stdDeviation='7'/%3E%3C/filter%3E%3Cg fill='white' filter='url(%23b)'%3E%3Cpath d='M488 212L526 212L530 252Q662 318 798 252L803 212L843 212L841 470Q836 622 664 638Q502 624 491 470Z'/%3E%3Cpath d='M92 392Q104 334 128 330Q236 446 352 370Q370 376 364 424Q350 548 224 558Q98 548 88 452Z'/%3E%3Cpath d='M1082 300L1118 297Q1160 334 1280 326L1280 806Q1180 812 1124 744Q1090 684 1086 560Z'/%3E%3C/g%3E%3C/svg%3E");
   -webkit-mask-size:cover;mask-size:cover;-webkit-mask-position:var(--pos);mask-position:var(--pos);-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-.hero-media[data-media="video"] .gloss-nails{display:none}
 .gloss-streak{position:absolute;top:-20%;left:0;height:140%;width:11%;will-change:transform;
   background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.28) 28%,rgba(255,255,255,.82) 50%,rgba(255,255,255,.28) 72%,rgba(255,255,255,0))}
 .gloss-streak.s2{width:4%;opacity:.55}
@@ -197,7 +189,6 @@ button{font:inherit;color:inherit}
 .hero-inner{position:relative;z-index:2;max-width:1560px;margin:0 auto;min-height:inherit;display:flex;flex-direction:column;padding:124px var(--pad) calc(var(--bar) + 30px)}
 .hero-copy{width:clamp(220px,calc(100vw - var(--heroW) - var(--pad) - 36px),300px);display:flex;flex-direction:column}
 .kicker{margin-bottom:22px}
-.hero-lead{font-size:16px;line-height:1.55;color:var(--graphite)}
 .hero-price{margin-top:30px}
 .price-num{display:block;font:300 64px/1 var(--serif);letter-spacing:.01em;font-variant-numeric:lining-nums;white-space:nowrap}
 .price-meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin-top:10px;font:400 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase}
@@ -224,11 +215,7 @@ html.js-type .word-mani .ch{visibility:hidden}
 .bar:hover .go .arr{transform:translateX(4px)}
 .bar .m{display:none}
 .bar .m b{display:inline-block;white-space:nowrap}
-.bl{display:inline-grid;white-space:nowrap}
-.bl > span{grid-area:1/1;transition:opacity .35s var(--ease),transform .35s var(--ease)}
-.bl-b{opacity:0;transform:translateY(8px);color:var(--cherry)}
-.bar.is-flash .bl-a{opacity:0;transform:translateY(-8px)}
-.bar.is-flash .bl-b{opacity:1;transform:none}
+.bl{white-space:nowrap}
 .bar.is-hidden{transform:translateY(110%)}
 
 /* заглушка ссылок, пока Дария не прислала Dikidi / Telegram / WhatsApp */
@@ -238,229 +225,142 @@ html.js-type .word-mani .ch{visibility:hidden}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 .toast .ph{color:var(--ink-3);margin-left:6px}
 
-/* ================= ГЛАВЫ ================= */
-.chapter{position:relative;min-height:clamp(760px,105vh,1000px);background:var(--field);overflow:clip;padding:48px 0 72px;--photoW:min(720px,50vw)}
-.ch-media{position:absolute;top:0;right:0;bottom:0;width:var(--photoW);margin:0;overflow:hidden;background:#DCD5CD}
-.ch-media img{width:100%;height:100%;object-fit:cover;transform:scale(1.1)}
-.ch-sticky{position:sticky;top:clamp(96px,24vh,218px);z-index:2;display:flex;justify-content:flex-end;padding-right:calc(var(--photoW) - 130px);padding-left:var(--pad)}
-.ch-inner{width:max-content;max-width:100%}
-.ch-count{display:flex;align-items:center;gap:14px;margin-bottom:10px}
-.ticks{display:inline-flex;gap:5px}
-.ticks i{display:block;width:22px;height:1px;background:rgba(30,28,26,.28)}
-.ticks i.on{background:var(--graphite);height:2px}
-.ch-word{display:block;width:fit-content;font:300 clamp(80px,14vw,200px)/.86 var(--serif);letter-spacing:-.015em;padding:.06em .05em .22em;margin:-.06em -.05em -.06em -.08em}
-.ch-text{margin-top:22px;max-width:360px;font-size:20px;line-height:1.45;color:var(--graphite)}
+/* ================= КАКИЕ ПРОБЛЕМЫ Я РЕШАЮ ================= */
+/* один экран: слева четыре вкладки, справа фото «до → после» и строка выбранного пункта */
+.prob{background:var(--milk);padding:96px 0 100px}
+.prob-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:start}
+.ptabs{position:relative;display:flex;flex-direction:column;margin-top:40px;border-top:1px solid var(--line)}
+.ptab{appearance:none;-webkit-appearance:none;display:flex;align-items:baseline;gap:18px;width:100%;min-height:68px;padding:18px 0 17px;background:none;border:0;border-bottom:1px solid var(--line);
+  text-align:left;cursor:pointer;color:var(--ink-2);transition:color .3s var(--ease),border-color .3s var(--ease),background-color .3s var(--ease)}
+.ptab .n{flex:none;font:400 12px/1 var(--mono);letter-spacing:.14em;transition:color .3s var(--ease)}
+.ptab .t{font:300 clamp(26px,2.5vw,36px)/1.1 var(--serif)}
+.ptab .go{margin-left:auto;font:400 18px/1 var(--sans);opacity:0;transform:translateX(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.ptab:hover{color:var(--graphite)}
+.ptab[aria-selected="true"]{color:var(--graphite);border-bottom-color:var(--graphite)}
+.ptab[aria-selected="true"] .n{color:var(--cherry)}
+.ptab[aria-selected="true"] .go{opacity:1;transform:none}
+/* все четыре панели лежат в одной ячейке, смена пункта — кроссфейд.
+   У всех четырёх фото-блок одной высоты (--h = фото + подписи): ширина каждого выведена из его сетки,
+   поэтому строка под фото стоит на одном месте, какой пункт ни выбери */
+.pstage{display:grid;--Hm:clamp(368px,52vh,496px);--cap:23px;touch-action:pan-y}
+.pp{grid-area:1/1;min-width:0;--h:var(--Hm);opacity:0;visibility:hidden;transition:opacity .4s var(--ease),visibility 0s linear .4s}
+/* колонка уже, чем нужно самому широкому блоку (третьему), — уменьшаю высоту всех четырёх одинаково */
+@supports (width:1cqw){
+  .pstage{container-type:inline-size}
+  .pp{--h:min(var(--Hm), calc((100cqw - 12px) / 1.4 + var(--cap)))}
+}
+.pp.on{opacity:1;visibility:visible;transition:opacity .5s var(--ease) .08s,visibility 0s}
+.pp-media{display:grid;gap:10px 12px}
+.pf{display:flex;flex-direction:column;min-width:0;margin:0}
+.pf .im{position:relative;display:block;flex:none;overflow:hidden;background:#E9E3DB;aspect-ratio:var(--ar)}
+.pf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pf figcaption{flex:none;padding-top:8px;font:400 11px/15px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+/* 1: высокое фото слева на всю высоту, два кадра 602:498 стопкой справа */
+.pp-1 .pp-media{grid-template-columns:1.12fr 1fr;width:min(100%,calc((var(--h) - 10px - 2 * var(--cap)) * 1.2814 + 12px))}
+.pp-1 .pf-tall{grid-row:1/3}
+.pp-1 .pf-tall .im{flex:1 1 0;min-height:0;aspect-ratio:auto}
+/* 2: «до» и «снято» в ряд, «после» во всю ширину, все 960:424 */
+.pp-2 .pp-media{grid-template-columns:1fr 1fr;width:min(100%,calc((var(--h) - 2 * var(--cap) - 7.35px) * 1.5094))}
+.pp-2 .pf-wide{grid-column:1/3}
+/* 3: «до» 4:5 и «после» 3:5 одной высоты — без пустого угла над «до» */
+.pp-3 .pp-media{grid-template-columns:4fr 3fr;width:min(100%,calc((var(--h) - var(--cap)) * 1.4 + 12px))}
+.pp-3 .pf:first-child img{object-position:40% 50%}
+/* 4: «до» и «после» 12:5 стопкой */
+.pp-4 .pp-media{width:min(100%,calc((var(--h) - 2 * var(--cap) - 10px) * 1.2))}
+.pp-line{margin-top:20px;max-width:27em;text-wrap:pretty;font:400 clamp(21px,1.75vw,25px)/1.32 var(--serif)}
+.pp-acc{margin-top:6px;font:italic 400 19px/1.3 var(--serif);color:var(--cherry)}
 
-/* ================= КАЛЬКУЛЯТОР ================= */
-.calc{background:linear-gradient(100deg,#D9D3CB 20%,#E8E1D6 80%);padding:140px 0 150px;overflow-x:clip}   /* печать чека крутится и не должна давать горизонтальную прокрутку */
-.calc-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:72px;align-items:start}
-.calc-left{position:sticky;top:120px}
-.calc .h2{font-size:clamp(42px,5.2vw,78px);line-height:1.06;margin-top:18px}
-.plate{background:var(--graphite);color:var(--milk);padding:0 .14em .05em;margin:0 .02em;border-radius:2px;white-space:nowrap;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.calc .lead{margin-top:26px;color:var(--graphite)}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px;max-width:700px}
-.chip{appearance:none;-webkit-appearance:none;display:inline-flex;align-items:center;gap:11px;min-height:50px;padding:0 22px 0 16px;border-radius:999px;border:1px solid rgba(30,28,26,.34);background:rgba(251,250,247,.5);
-  font:500 15px/1.2 var(--sans);cursor:pointer;transition:background-color .25s,color .25s,border-color .25s,transform .2s var(--ease);text-align:left}
-.chip:hover{border-color:var(--graphite);background:rgba(251,250,247,.85)}
-.chip:active{transform:scale(.97)}
-.chip .box{position:relative;flex:none;width:18px;height:18px;border-radius:50%;border:1px solid currentColor;transition:background-color .25s,border-color .25s}
-.chip .box::after{content:"";position:absolute;left:5.5px;top:2.5px;width:5px;height:9px;border:solid var(--graphite);border-width:0 1.6px 1.6px 0;transform:rotate(45deg) scale(0);transition:transform .25s var(--ease)}
-.chip[aria-pressed="true"]{background:var(--graphite);border-color:var(--graphite);color:var(--milk)}
-.chip[aria-pressed="true"] .box{background:var(--milk);border-color:var(--milk)}
-.chip[aria-pressed="true"] .box::after{transform:rotate(45deg) scale(1)}
-.chip .plus{font:400 12px/1 var(--mono);letter-spacing:.06em;opacity:.8}
-
-.receipt-wrap{position:relative;max-width:470px;width:100%;justify-self:end;margin-top:8px}
+/* ================= ПРАЙС ================= */
+.price{background:linear-gradient(100deg,#D9D3CB 20%,#E8E1D6 80%);padding:104px 0;overflow-x:clip}   /* печать чека крутится и не должна давать горизонтальную прокрутку */
+.price-grid{display:grid;grid-template-columns:minmax(0,470px) minmax(0,500px);justify-content:space-between;gap:56px;align-items:center;max-width:1240px}
+.receipt-wrap{position:relative;width:100%;max-width:470px}
 .receipt-wrap::before{content:"";position:absolute;inset:40px 22px -14px;background:rgba(30,28,26,.28);filter:blur(30px);z-index:0;border-radius:20px}
-.receipt{position:relative;z-index:1;background:var(--milk);padding:46px 38px 44px;
+.receipt{position:relative;z-index:1;background:var(--milk);padding:44px 38px 42px;
   -webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat,conic-gradient(from -45deg at 50% 100%,#0000,#000 1deg 89deg,#0000 90deg) bottom/18px 9px repeat-x;
   mask:linear-gradient(#000 0 0) top/100% calc(100% - 9px) no-repeat,conic-gradient(from -45deg at 50% 100%,#0000,#000 1deg 89deg,#0000 90deg) bottom/18px 9px repeat-x}
 .seal--r{position:absolute;right:-34px;top:-42px;width:112px;height:112px;z-index:2;filter:drop-shadow(0 6px 14px rgba(30,28,26,.12))}
-.r-head{text-align:center}
+.r-head{text-align:center;font-weight:300}
 .r-head .t{display:block;font:300 44px/1 var(--serif);letter-spacing:.12em;text-transform:uppercase;padding-left:.12em}
 .r-head .s{display:block;margin-top:12px;font:400 13px/1.4 var(--mono);letter-spacing:.04em;color:var(--ink-2)}
-.r-list{margin-top:26px;border-top:1px dashed rgba(30,28,26,.3);padding-top:14px}
-.r-list li{display:flex;align-items:baseline;gap:10px;padding:7px 0;font-size:15px;line-height:1.35}
-.r-list li[hidden]{display:none}
-.r-list li .nm{flex:0 1 auto}
-.r-list li .ld{flex:1 1 20px;min-width:14px;border-bottom:1px dotted rgba(30,28,26,.4);transform:translateY(-4px)}
-.r-list li .vl{flex:none;font:400 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
-.r-list li.is-new .vl{color:var(--cherry)}
-.r-list li[data-k="french"] .vl{color:var(--graphite)}
-/* заметка всегда с текстом: главный довод виден до первого тапа, пустой дыры в чеке нет */
-.r-note{margin-top:12px;font:italic 400 21px/1.25 var(--serif);font-variant-numeric:lining-nums;color:var(--ink-2);transition:color .35s var(--ease)}
-.r-note.hot{color:var(--cherry)}
-.rub{font-style:normal}
-.r-total{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-top:1px dashed rgba(30,28,26,.3);padding-top:18px;margin-top:8px}
-.odo{font:300 60px/1 var(--serif);letter-spacing:.05em;text-transform:uppercase;font-variant-numeric:lining-nums;white-space:nowrap}
-.odo-d{display:inline-block;height:1em;overflow:hidden;vertical-align:top}
-.odo-col{display:block;will-change:transform}
-.odo-col b{display:block;height:1em;font-weight:inherit}
-.receipt .btn{width:100%;margin-top:30px}
-.r-note,.r-total,.receipt .btn{position:relative}
+.r-list{margin-top:24px;border-top:1px dashed rgba(30,28,26,.3)}
+.r-list li{padding:9px 0;font-size:15px;line-height:1.35;border-bottom:1px dotted rgba(30,28,26,.3)}
+.r-list li:last-child{border-bottom:0}
+.r-total{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;border-top:1px dashed rgba(30,28,26,.3);padding-top:18px}
+.r-sum{font:300 60px/1 var(--serif);letter-spacing:.03em;font-variant-numeric:lining-nums;white-space:nowrap}
+.r-fr{margin-top:8px;text-align:right;font:400 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.receipt .btn{width:100%;margin-top:26px}
+.fr-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fr-grid img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;background:#D2CBC2}
+.fr-line{margin-top:22px;text-wrap:balance;font:italic 300 clamp(26px,2.5vw,36px)/1.15 var(--serif)}
 
-/* ================= РАБОТЫ ================= */
-/* графит: руки в чёрных перчатках рифмуются с тизером обучения, середина страницы перестаёт быть белой простынёй */
-.works{position:relative;background:var(--graphite);color:var(--milk);padding:120px 0 110px;overflow:clip}
-.works .the{color:var(--ink-3)}
-/* «Работы» лежит нижней частью букв на ленте — приём «Маникюр» на фото */
-.works-word{position:relative;z-index:2;display:block;width:fit-content;pointer-events:none;font:300 clamp(92px,17vw,250px)/.86 var(--serif);letter-spacing:-.015em;
-  padding:.06em .05em .22em;margin:.02em -.05em -.5em -.08em}
-.round{width:56px;height:56px;border-radius:50%;border:1px solid rgba(30,28,26,.4);background:transparent;cursor:pointer;font:400 20px/1 var(--sans);display:grid;place-items:center;transition:background-color .25s,color .25s,border-color .25s,opacity .25s}
-.round:hover{background:var(--graphite);color:var(--milk);border-color:var(--graphite)}
-.round:disabled{opacity:.3;cursor:default;background:transparent;color:inherit;border-color:rgba(30,28,26,.4)}
-.strip{position:relative;z-index:1;display:flex;gap:16px;overflow-x:auto;overflow-y:hidden;margin-top:0;padding:0 max(var(--pad),calc((100% - 1360px)/2));scroll-padding-inline:max(var(--pad),calc((100% - 1360px)/2));
-  scroll-snap-type:x proximity;overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;-webkit-user-select:none;user-select:none}
+/* ================= РАБОТЫ И ОТЗЫВЫ ================= */
+.works{background:var(--bone);padding:96px 0 100px;overflow:clip}
+.strip{position:relative;display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;margin-top:36px;padding:0 max(var(--pad),calc((100% - 1360px)/2));scroll-padding-inline:max(var(--pad),calc((100% - 1360px)/2));
+  scroll-snap-type:x proximity;overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;-webkit-user-select:none;user-select:none;outline-offset:-3px}
 .strip::-webkit-scrollbar{display:none}
 .strip.is-drag{cursor:grabbing;scroll-snap-type:none}
-.shot{position:relative;flex:none;scroll-snap-align:start}
-.shot .fr{height:clamp(340px,60vh,560px);aspect-ratio:3/4;overflow:hidden;background:#EAE3DB}
-.shot.wide .fr{aspect-ratio:1280/1040}
-.shot img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease);-webkit-user-drag:none}
-.strip.is-drag .shot img{transform:scale(.965)}
-/* штамп-печать прямо на фото, как на её прайс-карточке */
-.stamp-on{position:absolute;right:20px;bottom:22px;width:118px;height:118px;color:var(--milk);transform:rotate(-12deg);pointer-events:none;filter:drop-shadow(0 1px 2px rgba(30,28,26,.25))}
-/* последняя карточка: печать и ссылка вместо повторов кадров со страницы */
-.shot-more{display:block;text-decoration:none;color:var(--milk)}
-.shot-more .fr{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;background:#292623;border:1px solid rgba(251,250,247,.16);transition:background-color .3s var(--ease)}
-.shot-more:hover .fr{background:#312D2A}
-.shot-more .seal{width:132px;height:132px;color:var(--milk);--seal-bg:transparent}
-.shot-more .t{font:italic 300 36px/1.1 var(--serif);border-bottom:1px solid rgba(251,250,247,.4);padding-bottom:4px}
-.works-foot{display:flex;align-items:center;gap:32px;margin-top:40px}
-.works-cap{flex:none;font-size:16px;line-height:1.4;color:var(--ink-3)}
-.progress{flex:1;max-width:520px;height:1px;background:rgba(251,250,247,.22);position:relative;overflow:hidden}
-.progress span{position:absolute;inset:0;background:var(--milk);transform-origin:0 50%;transform:scaleX(.15)}
-/* курсор-пилюля над лентой: только мышь, едет за указателем с запаздыванием */
-.drag-pill{position:fixed;left:0;top:0;z-index:45;width:108px;height:108px;margin:-54px 0 0 -54px;border-radius:50%;background:var(--milk);color:var(--graphite);
-  display:grid;place-items:center;font:400 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;pointer-events:none;opacity:0;transform:translate3d(-300px,-300px,0) scale(.4);transition:opacity .25s var(--ease);box-shadow:0 10px 30px rgba(0,0,0,.25)}
-.drag-pill.on{opacity:1}
-.strip.has-pill,.strip.has-pill *{cursor:none}
-
-/* ================= ОТЗЫВЫ ================= */
-.voices{background:var(--greige);padding:130px 0 120px;overflow:clip}
-.bq{font:300 clamp(40px,4.5vw,66px)/1.12 var(--serif);letter-spacing:-.005em;text-align:center;margin-top:40px}
-.bq-l1{display:block}
-.bq-row{display:flex;align-items:center;justify-content:center;gap:clamp(18px,2.2vw,34px);margin-top:.12em}
-.bq-pill{flex:none;width:clamp(220px,30vw,500px);aspect-ratio:600/338;position:relative}
-.bq-pill-in{position:absolute;inset:0;border-radius:30px;overflow:hidden;will-change:transform;background:#E4D6CC}
-.bq-pill-in img{width:100%;height:100%;object-fit:cover;object-position:50% 46%;will-change:transform}
-/* лента отзывов по одному: пузырь-сообщение, соседние выглядывают по краям */
-.revs{--slideW:min(800px,72vw);margin-top:96px}
-.revs-track{position:relative;display:flex;align-items:stretch;gap:28px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;
-  padding:6px calc((100% - var(--slideW)) / 2) 70px;scroll-padding-inline:calc((100% - var(--slideW)) / 2);cursor:grab;-webkit-user-select:none;user-select:none;outline-offset:-3px}
+.shot{flex:none;margin:0;scroll-snap-align:start}
+.shot .fr{display:block;height:clamp(300px,46vh,430px);aspect-ratio:3/4;overflow:hidden;background:#E4DDD4}
+.shot img{width:100%;height:100%;object-fit:cover;-webkit-user-drag:none}
+.works-foot{display:flex;align-items:center;justify-content:space-between;gap:32px;margin-top:20px}
+.progress{flex:1;max-width:420px;height:2px;background:rgba(30,28,26,.14);position:relative;overflow:hidden}
+.progress span{position:absolute;inset:0;background:var(--graphite);transform-origin:0 50%;transform:scaleX(.3)}
+.ig{display:inline-flex;align-items:center;min-height:44px;font:500 15px/1.2 var(--sans);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+.ig:hover{text-decoration-thickness:2px}
+.round{width:48px;height:48px;border-radius:50%;border:1px solid rgba(30,28,26,.4);background:transparent;cursor:pointer;font:400 18px/1 var(--sans);display:grid;place-items:center;transition:background-color .25s,color .25s,border-color .25s,opacity .25s}
+.round:hover{background:var(--graphite);color:var(--milk);border-color:var(--graphite)}
+.round:disabled{opacity:.3;cursor:default;background:transparent;color:inherit;border-color:rgba(30,28,26,.4)}
+/* отзывы — в той же секции: строка-цитата и лента по одному */
+.voices{margin-top:88px;scroll-margin-top:40px}
+.voices-k{margin-bottom:16px;text-align:center}
+.voices-q{margin:0 auto;padding:0 var(--pad);text-align:center;text-wrap:balance;font:300 clamp(28px,3vw,42px)/1.15 var(--serif);letter-spacing:-.005em}
+.revs{--slideW:min(660px,72vw);margin-top:34px}
+.revs-track{position:relative;display:flex;align-items:stretch;gap:24px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;
+  padding:6px calc((100% - var(--slideW)) / 2) 62px;scroll-padding-inline:calc((100% - var(--slideW)) / 2);cursor:grab;-webkit-user-select:none;user-select:none;outline-offset:-3px}
 .revs-track::-webkit-scrollbar{display:none}
 .revs-track.is-drag{cursor:grabbing;scroll-snap-type:none}
-.rslide{display:flex;flex:0 0 var(--slideW);min-width:0;scroll-snap-align:center;opacity:.3;transform:scale(.93);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.rslide{display:flex;flex:0 0 var(--slideW);min-width:0;scroll-snap-align:center;opacity:.35;transform:scale(.95);transition:opacity .5s var(--ease),transform .5s var(--ease)}
 .rslide.on{opacity:1;transform:none}
-.bubble{position:relative;flex:1;display:flex;flex-direction:column;transform-origin:0 100%;background:var(--milk);border-radius:36px 36px 36px 8px;padding:52px 56px 30px;box-shadow:0 1px 1px rgba(30,28,26,.04),0 26px 50px -32px rgba(30,28,26,.4)}
+.bubble{position:relative;flex:1;display:flex;flex-direction:column;background:var(--milk);border-radius:30px 30px 30px 8px;padding:38px 42px 22px;box-shadow:0 1px 1px rgba(30,28,26,.04),0 24px 46px -32px rgba(30,28,26,.4)}
 /* выдержка по центру свободного места, подпись прижата к низу: пузыри одной высоты, стрелки не прыгают */
-.bubble .ex{margin:auto 0;font:italic 300 clamp(32px,3.3vw,48px)/1.14 var(--serif);letter-spacing:-.003em}
+.bubble .ex{margin:auto 0;font:italic 300 clamp(26px,2.4vw,34px)/1.18 var(--serif);letter-spacing:-.003em}
 .bubble .ex .hl{font-style:inherit;color:var(--cherry)}
-.bubble .full{margin:auto 0;font-size:18px;line-height:1.62;color:var(--graphite);max-width:40em}
+.bubble .full{margin:auto 0;font-size:17px;line-height:1.6;color:var(--graphite);max-width:40em}
 .bubble .full mark{background:none;color:inherit;text-decoration:underline;text-decoration-color:var(--cherry);text-decoration-thickness:1.5px;text-underline-offset:5px}
-.bubble.short{padding-bottom:52px}
-.b-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 16px;margin-top:24px;border-top:1px solid var(--line);padding-top:8px}
+.bubble.short{padding-bottom:38px}
+.b-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 16px;margin-top:20px;border-top:1px solid var(--line);padding-top:6px}
 .b-foot .who{min-height:44px}
 .who{display:flex;align-items:center;gap:12px}
 .stars{color:var(--cherry);letter-spacing:.18em;font-size:14px}
 .more{appearance:none;-webkit-appearance:none;background:none;border:0;min-height:44px;padding:0;margin-left:auto;white-space:nowrap;cursor:pointer;font:500 15px/1.2 var(--sans);color:var(--graphite);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
 .more:hover{text-decoration-thickness:2px}
-.revs-ctrl{position:relative;display:flex;align-items:center;justify-content:center;gap:26px;margin-top:-30px}
+.revs-ctrl{position:relative;display:flex;align-items:center;justify-content:center;gap:22px;margin-top:-30px}
 .count{display:flex;align-items:baseline;gap:8px;min-width:3.4em;justify-content:center;font-variant-numeric:lining-nums}
-.count b{font:300 64px/1 var(--serif);font-variant-numeric:lining-nums}
+.count b{font:300 44px/1 var(--serif);font-variant-numeric:lining-nums}
 .count span{font:400 13px/1 var(--mono);letter-spacing:.12em;color:var(--ink-2)}
 
-/* ================= СТУДИЯ ================= */
-/* четвёртая глава: тот же каркас, что «Тонко / Прочно / Чётко» (.chapter) */
-.studio .ch-media img{object-position:50% 100%;filter:saturate(.8) sepia(.08)}
-/* край кадра под липким словом высветлен: «ия» не тонет в мониторе и кресле */
-.studio .ch-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(251,250,247,.62),rgba(251,250,247,.3) 12%,rgba(251,250,247,0) 26%)}
-.studio .the{display:block;margin-bottom:6px}
-/* стикер: плашка-наклейка */
-.tag{display:inline-block;font:400 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:14px 18px;border-radius:999px;white-space:nowrap;box-shadow:0 8px 22px -10px rgba(30,28,26,.45);transform:rotate(var(--r))}
-.tag-dark{background:var(--graphite);color:var(--milk)}
-.tag-milk{background:var(--milk);color:var(--graphite)}
-.tag-cherry{background:var(--cherry);color:var(--milk)}
-/* адрес — на большом фото внизу, далеко от полосы, где проезжает слово; окна и цветы не закрыты */
-.st-addr{position:absolute;left:38%;bottom:6%;z-index:2;--r:-3deg}
-/* ещё два кадра студии — карточки-полароиды: одна на белой стене, другая на полу. У каждой свой стикер */
-.polas{position:absolute;top:0;right:0;width:var(--photoW);height:100%;z-index:1;pointer-events:none}
-.pola{position:absolute;margin:0;padding:8px 8px 30px;background:var(--milk);box-shadow:0 18px 40px -18px rgba(30,28,26,.55);transform:rotate(var(--r))}
-.pola .pf{display:block;aspect-ratio:3/4;overflow:hidden;background:#E3DCD3}
-.pola img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) sepia(.06)}
-.pola .tag{position:absolute;left:0;right:0;bottom:-16px;width:max-content;margin:0 auto}
-.pola-a{--r:4deg;right:7%;top:7%;width:clamp(150px,15vw,210px)}
-.pola-a .tag{--r:-5deg}
-.pola-b{--r:-5deg;right:6%;bottom:9%;width:clamp(130px,12.5vw,176px)}
-.pola-b .tag{--r:4deg}
-
-/* ================= МАСТЕР ================= */
-.master{background:var(--greige);padding:130px 0;overflow:clip}
-.master-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:center}
-.portrait{position:relative;width:100%;max-width:400px;aspect-ratio:3/4;justify-self:end}
-.portrait .pf{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;background:linear-gradient(165deg,#FBFAF7 0%,#EEE9E2 100%)}
-.portrait .pf .seal{width:176px;height:176px;color:var(--graphite);--seal-bg:transparent;opacity:.5}
-.portrait .pf .ph{position:absolute;left:50%;top:calc(50% + 108px);transform:translateX(-50%);font-size:12px}
-.portrait figcaption{position:absolute;left:24px;bottom:20px;font-size:30px}
-.master-copy{position:relative;z-index:2;margin-left:-8%}
-.master-name{font:300 clamp(80px,11.5vw,180px)/.86 var(--serif);letter-spacing:-.015em}
-.master-name span{display:block;width:fit-content;padding:.04em .04em .1em;margin:-.04em -.04em -.1em}
-.master-name span + span{margin-left:.55em}
-.master .lead{margin:34px 0 0 calc(.55 * clamp(80px,11.5vw,180px));font-size:20px;color:var(--graphite)}
-
-/* ================= ТИЗЕР ОБУЧЕНИЯ (графит) ================= */
-/* одна ось: слово с фото-вставкой → цифра → кнопка */
-.teach{position:relative;background:var(--graphite);color:var(--milk);padding:120px 0 130px;overflow:clip}
-.teach-in{display:flex;flex-direction:column;align-items:flex-start}
-.sticker{background:var(--cherry);color:var(--milk);font:italic 300 clamp(28px,2.7vw,40px)/1 var(--serif);padding:.2em .5em .28em;border-radius:4px;transform:rotate(-4deg);transform-origin:0 100%;margin-bottom:12px}
-.teach-row{display:flex;align-items:center;font-size:clamp(84px,15.5vw,236px);max-width:100%}
-.teach-word{flex:none;width:fit-content;font:300 1em/.86 var(--serif);letter-spacing:-.015em;padding:.06em .05em .2em;margin:-.06em -.05em -.2em -.08em}
-.teach-pill{flex:none;width:1.42em;aspect-ratio:600/338;position:relative;margin:.1em 0 0 .14em}
-.teach-pill-in{position:absolute;inset:0;border-radius:999px;overflow:hidden;background:#2E2B28}
-.teach-pill-in img{width:100%;height:100%;object-fit:cover;object-position:50% 40%}
-.teach-stat{display:flex;align-items:baseline;gap:0;margin-top:44px}
-.teach-stat .num{font:300 clamp(96px,10vw,152px)/.8 var(--serif);letter-spacing:-.02em;font-variant-numeric:lining-nums tabular-nums;padding:.06em 0 .1em}
-.teach-stat .lbl{margin-left:.3em;font:italic 300 clamp(40px,3.6vw,54px)/1 var(--serif);color:var(--ink-3)}
-.t-odo{display:inline-flex}
-.t-d{display:inline-block;height:1em;line-height:1;overflow:hidden;vertical-align:top}
-.t-col{display:block}
-.t-col b{display:block;height:1em;font-weight:inherit}
-.t-col.h{transform:translateY(-75%)} .t-col.t{transform:translateY(-93.75%)} .t-col.o{transform:translateY(-95.238%)}
-.teach .btn{margin-top:40px}
-
-/* ================= ЗАПИСЬ ================= */
-/* в точке решения — главный крючок страницы: цена крупно и одна кнопка */
-.book{background:linear-gradient(100deg,#D9D3CB 20%,#E8E1D6 80%);padding:130px 0 140px;text-align:center;position:relative;overflow:clip}
-.book-price{display:block;width:fit-content;margin:0 auto;font:300 clamp(104px,14vw,210px)/.86 var(--serif);letter-spacing:-.01em;font-variant-numeric:lining-nums;white-space:nowrap;padding:.06em .06em .16em}
-.book-line{margin-top:18px;font:italic 300 clamp(24px,2.4vw,34px)/1.2 var(--serif)}
-.book .btn{margin-top:40px}
-.book-alt{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:4px 30px;margin-top:22px;font:500 16px/1.2 var(--sans)}
-.book-alt a{display:inline-flex;align-items:center;min-height:44px;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
-.book-alt a:hover{text-decoration-thickness:2px}
-.book-alt .ph{font-size:14px}
-
-/* ================= КОНТАКТЫ ================= */
-.marquee{display:block;overflow:hidden;background:var(--graphite);color:var(--milk);border-bottom:1px solid rgba(251,250,247,.14);text-decoration:none;padding:26px 0 30px}
-.marquee-track{display:flex;align-items:center;width:max-content;animation:marq 44s linear infinite}
-.mq{display:block;padding:0 34px;font:italic 300 clamp(56px,6.2vw,92px)/1.1 var(--serif);font-variant-numeric:lining-nums;white-space:nowrap}
-.mq .rub{font-weight:300}
-.mq-seal{flex:none;width:64px;height:64px;color:var(--milk);--seal-bg:transparent;opacity:.85}
-.marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes marq{to{transform:translateX(-50%)}}
-.contacts{background:var(--graphite);color:var(--milk);padding:110px 0 0}
+/* ================= СТУДИЯ И ЗАПИСЬ (графит) ================= */
+/* нижний отступ = высота плашки: подвал не прячется под ней, а под тёмной секцией не остаётся светлой полосы */
+.contacts{background:var(--graphite);color:var(--milk);padding:96px 0 var(--bar)}
 .contacts .eyebrow{color:var(--ink-3)}
-.ct-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;align-items:start}
-.ct-list{margin-top:44px;display:grid;gap:26px}
+.book-head{scroll-margin-top:64px}
+.book-btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.ct-grid{display:grid;grid-template-columns:minmax(0,270px) minmax(0,1fr) minmax(0,600px);gap:48px;align-items:start;margin-top:60px}
+.ct-photo{margin:0;aspect-ratio:3/4;overflow:hidden;background:#2A2725}
+.ct-photo img{width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.ct-list{display:grid;gap:20px;margin:0}
 .ct-list dt{font:400 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
-.ct-list dd{margin:6px 0 0;font:300 28px/1.2 var(--serif);font-variant-numeric:lining-nums}
+.ct-list dd{margin:6px 0 0;font:300 24px/1.2 var(--serif);font-variant-numeric:lining-nums}
 .ct-list dd a{text-decoration:none;border-bottom:1px solid rgba(251,250,247,.4)}
 .ct-list dd .ph{font-size:15px;letter-spacing:.04em}
 .ct-list .near{display:block;margin-top:6px;font:400 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.tags span{font:400 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;border:1px solid rgba(251,250,247,.32);border-radius:999px;white-space:nowrap}
 /* карта — снимок Яндекс Карт (Static API): живой виджет вешал рекламу в карту на любой ширине. Тёмная, своя метка-печать,
    вся карта — ссылка на маршрут до студии. Логотип и копирайт Яндекса остаются на снимке */
-.map{position:relative;width:100%;max-width:650px;justify-self:end;aspect-ratio:650/450;background:#2A2725;overflow:hidden;border-radius:2px}
+.map{position:relative;width:100%;aspect-ratio:650/450;background:#2A2725;overflow:hidden;border-radius:2px}
 .map-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) invert(.9) contrast(.9)}
-.map .fallback{position:absolute;inset:0;display:grid;place-items:center;color:var(--ink-3);font:400 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.map .fallback{position:absolute;inset:0;display:grid;place-items:center;padding:0 16px;text-align:center;color:var(--ink-3);font:400 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase}
 .map-link{position:absolute;inset:0;z-index:2;display:block;text-decoration:none}
 .map-link:focus-visible{outline-offset:-4px}
 .map-go{position:absolute;left:16px;bottom:16px;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px;border-radius:999px;background:var(--milk);color:var(--graphite);font:500 15px/1 var(--sans);box-shadow:0 8px 24px -10px rgba(0,0,0,.6);transition:background-color .25s}
@@ -472,18 +372,16 @@ html.js-type .word-mani .ch{visibility:hidden}
 .map-pin::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--cherry);box-shadow:0 0 0 3px var(--milk)}
 .map-pin::before{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--cherry);animation:ping 2.6s var(--ease) infinite}
 @keyframes ping{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.9);opacity:0}}
-.foot{display:grid;grid-template-columns:auto 1fr;gap:12px 40px;align-items:end;border-top:1px solid rgba(251,250,247,.14);margin-top:100px;padding:34px 0 38px;font:400 12px/1.6 var(--mono);letter-spacing:.06em;color:var(--ink-3)}
-.foot .fn{grid-column:1/-1;font-size:11px;opacity:.9}
-.foot nav{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:flex-end}
-.foot nav a{text-decoration:none}
-.foot nav a:hover{color:var(--milk)}
+.foot{display:grid;grid-template-columns:1fr auto;gap:6px 40px;align-items:center;border-top:1px solid rgba(251,250,247,.14);margin-top:72px;padding:22px 0 28px;font:400 12px/1.6 var(--mono);letter-spacing:.06em;color:var(--ink-3)}
+.foot .fn{grid-column:1/-1;font-size:11px}
+.foot a{display:inline-flex;align-items:center;min-height:44px;color:var(--milk);text-decoration:none}
+.foot a:hover{text-decoration:underline;text-underline-offset:5px}
 
 /* ================= ≤1100: hero стопкой ================= */
 @media (max-width:1100px){
   .hero{min-height:0;padding-top:var(--head)}
   .top{height:var(--head)}
   .hero-media{position:relative;inset:auto;width:100%;height:max(320px,min(64svh,720px));--pos:53% 50%}
-  .hero-media[data-media="video"]{width:100%;aspect-ratio:auto;height:clamp(420px,calc(100svh - var(--head) - 200px),760px);right:auto}
   .hero-inner{position:static;min-height:0;display:flex;flex-direction:column;padding:0 var(--pad) 56px}
   .hero-title{order:1;position:relative;z-index:2;margin-top:-.5em;padding-top:0;font-size:clamp(72px,19vw,200px)}
   .word-mani{font-size:1em}
@@ -492,37 +390,29 @@ html.js-type .word-mani .ch{visibility:hidden}
   .kicker{position:absolute;left:var(--pad);top:calc(var(--head) + 16px);z-index:3;margin:0;background:var(--milk);color:var(--graphite);padding:9px 14px;border-radius:999px}
   .hero-price{margin:0;grid-column:1;grid-row:1}
   .hero-copy .btn{grid-column:1;grid-row:2;margin:0}
-  .hero-lead{grid-column:2;grid-row:1/3;align-self:center;max-width:30em}
   .seal--hero{top:16px;bottom:auto;right:var(--pad);width:104px;height:104px}
-}
-/* ================= планшеты 761–1100: подпись главы ложится на фото — подложка цветом поля, как на телефоне ================= */
-@media (min-width:761px) and (max-width:1100px){
-  .ch-text .ch-t{background:var(--field);padding:.08em .4em .12em 0;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-  /* фото уже, слово и строка заходят на него дальше — карточки и адрес уходят к правому краю */
-  .st-addr{left:auto;right:24px;bottom:5%}
-  .pola-a{right:6%}
-  .pola-b{right:7%;bottom:17%}
+  /* фото студии и контакты в ряд, карта под ними во всю ширину */
+  .ct-grid{grid-template-columns:minmax(0,240px) minmax(0,1fr);gap:36px 40px}
+  .map{grid-column:1/-1}
 }
 /* тач-цели ≥ 44 px на планшетах и любых сенсорных экранах */
 @media (hover:none),(max-width:1100px){
   .brand{position:relative}
   .brand::after{content:"";position:absolute;inset:-4px}
-  .ct-list dd a{display:inline-block;padding:8px 0}
-  .foot nav a{display:inline-block;padding:13px 0}
+  .ct-list dd a{display:inline-block;padding:10px 0 9px}
 }
+/* ================= ≤900: вкладки — чипсы в горизонтальной прокрутке, фото и строка под ними ================= */
 @media (max-width:900px){
-  .calc-grid{grid-template-columns:minmax(0,1fr);gap:72px}
-  .receipt-wrap{justify-self:center}
-  .master-grid,.ct-grid{grid-template-columns:minmax(0,1fr)}
-  .calc-left{position:static}
-  .map{justify-self:start}
-  .portrait{justify-self:start;width:min(56%,360px)}
-  /* печать и заглушка поднимаются, подпись уходит наверх — имя больше ничего не перечёркивает */
-  .portrait .pf{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:10px;padding-top:18%}
-  .portrait .pf .ph{position:static;transform:none}
-  .portrait figcaption{left:16px;top:12px;bottom:auto}
-  .master-copy{margin:-96px 0 0}
-  .teach-row{font-size:13vw}
+  .prob-grid{grid-template-columns:minmax(0,1fr);gap:22px}
+  .ptabs{flex-direction:row;gap:8px;margin:22px calc(var(--pad) * -1) 0;padding:6px var(--pad);border:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
+  .ptabs::-webkit-scrollbar{display:none}
+  .ptab{flex:none;width:auto;min-height:44px;align-items:center;padding:0 17px;border:1px solid rgba(30,28,26,.32);border-radius:999px;white-space:nowrap;color:var(--graphite)}
+  .ptab .n,.ptab .go{display:none}
+  .ptab .t{font:500 14px/1 var(--sans)}
+  .ptab[aria-selected="true"]{background:var(--graphite);border-color:var(--graphite);color:var(--milk)}
+  .pstage{--Hm:clamp(368px,52vh,470px)}
+  .price-grid{grid-template-columns:minmax(0,1fr);gap:56px;justify-items:center}
+  .french{width:100%;max-width:470px}
 }
 
 /* ================= ТЕЛЕФОН ≤760 ================= */
@@ -535,7 +425,10 @@ html.js-type .word-mani .ch{visibility:hidden}
   .brand .seal{width:36px;height:36px}
   .top-cta{display:none}
   .switch a{height:36px;padding:0 13px;font-size:11px;letter-spacing:.08em}
-  .hero-media{height:clamp(300px,calc(100svh - var(--head) - 250px),640px)}
+  /* на телефоне первый экран — её видео: красный квадрат с кольцом. Блик по ногтям рисовался под макро-фото и здесь выключен */
+  .hero-media{height:clamp(300px,calc(100svh - var(--head) - 250px),640px);--pos:50% 58%;background:#9498A0}
+  .hero-video{display:block;position:absolute;inset:0}
+  .gloss{display:none}
   .hero-title{font-size:22.5vw;margin-top:-.52em}
   .word-mani{font-weight:400;letter-spacing:-.02em}
   .manifest{font-size:clamp(24px,7.9vw,34px)}
@@ -544,8 +437,6 @@ html.js-type .word-mani .ch{visibility:hidden}
   .price-num{font-size:46px}
   .price-meta{flex-direction:column;gap:4px;margin:0}
   .hero-copy .btn{order:2;margin-top:16px;align-self:stretch}
-  /* абзац под кнопкой повторял «Прочно» и чек и уходил под сгиб */
-  .hero-lead{display:none}
   .kicker{font-size:11px;padding:8px 12px;letter-spacing:.12em}
   .seal--hero{width:78px;height:78px;top:14px}
   .seal--hero text{font-size:11.5px}
@@ -556,108 +447,70 @@ html.js-type .word-mani .ch{visibility:hidden}
   .bar .m b{font:300 26px/1 var(--serif);letter-spacing:0;text-transform:none;font-variant-numeric:lining-nums}
   .bar .go{display:inline-flex;align-items:center;height:44px;padding:0 20px;border-radius:999px;background:var(--graphite);color:var(--milk);font:500 15px/1 var(--sans);letter-spacing:0;text-transform:none}
 
-  .chapter{min-height:0;padding:0 0 36px;display:block}
-  .ch-media{position:relative;inset:auto;width:100%;height:min(80svh,693px)}
-  .ch-sticky{top:auto;bottom:calc(var(--bar) + 6px);margin-top:-110px;padding:64px var(--pad) 16px;justify-content:flex-start;
-    background:linear-gradient(to bottom,rgba(var(--field-rgb),0),rgba(var(--field-rgb),.86) 36%,rgb(var(--field-rgb)) 62%)}
-  .ch-inner{width:100%}
-  .ch-word{font-size:22vw;font-weight:400}
-  .ch-text{font-size:17px;margin-top:14px}
-  /* студия: подпись не липнет (иначе стикер проезжает под словом), потолок кадра срезан, два кадра парой под строкой */
-  .studio .ch-sticky{position:relative;bottom:auto}
-  .studio .ch-media img{position:absolute;left:0;bottom:0;height:120%}
-  .studio .ch-media::after{display:none}
-  .tag{font-size:11px;padding:12px 15px}
-  .st-addr{left:16px;top:16px;right:auto;bottom:auto}
-  .polas{position:relative;top:auto;right:auto;width:auto;height:auto;display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:26px var(--pad) 30px}
-  .pola{position:relative;inset:auto;width:auto;padding:6px 6px 24px}
-  .pola-a{margin-top:14px}
+  .h2{font-size:clamp(34px,10.4vw,44px)}
+  .prob{padding:64px 0 68px;overflow:clip}
+  .ptabs{margin-top:18px}
+  /* телефон: фото во всю ширину, высота блока — по выбранному пункту, без пустого места под коротким.
+     Уходящая панель снята с потока и гаснет поверх, секция её обрезает */
+  .pstage{position:relative}
+  .pp:not(.on){position:absolute;top:0;left:0;right:0}
+  .pp .pp-media{width:100%;gap:8px 10px}
+  .pf figcaption{padding-top:6px;font-size:10.5px;letter-spacing:.08em}
+  .pp-line{margin-top:14px;font-size:20px}
+  .pp-acc{font-size:18px}
 
-  .calc{padding:90px 0 100px}
-  .calc-grid{gap:44px}
-  .chips{gap:8px}
-  .chip{min-height:46px;font-size:14px;padding:0 16px 0 12px;gap:9px}
-  .receipt{padding:40px 22px 38px}
+  .price{padding:76px 0 72px}
+  .price-grid{gap:44px}
+  .receipt{padding:40px 22px 36px}
   .seal--r{right:-8px;top:-46px;width:92px;height:92px}
   .r-head .t{font-size:36px}
-  .r-list{margin-top:20px;padding-top:10px}
-  .r-list li{font-size:14px;padding:5px 0}
-  .r-note{font-size:19px}
-  .odo{font-size:50px}
+  .r-list{margin-top:20px}
+  .r-list li{font-size:14.5px;padding:8px 0}
+  .r-sum{font-size:50px}
+  .fr-grid{gap:8px}
+  .fr-line{margin-top:16px;font-size:26px}
 
-  .voices{padding:90px 0 90px}
-  .bq{font-size:clamp(30px,9.6vw,38px);line-height:1.14}
-  /* фото над цитатой, фраза течёт обычным текстом и не рвётся: место под фото — отступ сверху */
-  .bq{position:relative;padding-top:calc(min(100%,340px) * 338 / 600 + 22px)}
-  .bq-l1,.bq-row,.bq-w{display:inline}
-  .bq-pill{position:absolute;top:0;left:0;right:0;width:100%;max-width:340px;margin:0 auto}
-  .bq-pill-in{border-radius:22px;transform-origin:50% 100%}
-  /* лента отзывов: соседи выглядывают заметнее — видно, что ленту листают */
-  .revs{--slideW:76vw;margin-top:56px}
-  .rslide{opacity:.45}
-  .revs-track{gap:12px;padding-bottom:60px}
-  .revs-ctrl{margin-top:-34px}
-  .who{gap:8px}
-  .stars{font-size:12px;letter-spacing:.12em}
-  .bubble{padding:30px 22px 10px;border-radius:26px 26px 26px 7px}
-  .bubble.short{padding-bottom:30px}
-  .bubble .ex{font-size:clamp(26px,7.6vw,32px);line-height:1.16}
-  .bubble .full{font-size:16px}
-  .b-foot{margin-top:18px}
-  .revs-ctrl{gap:18px}
-  .count b{font-size:52px}
-
-  .works{padding:90px 0 84px}
-  .works-word{font-size:26vw}
-  .strip{gap:10px}
-  .shot .fr{height:min(92vw,470px)}
-  .stamp-on{width:92px;height:92px;right:14px;bottom:16px}
-  .shot-more .seal{width:104px;height:104px}
-  .shot-more .t{font-size:30px}
-  .works-foot{flex-direction:column;align-items:stretch;gap:16px;margin-top:28px}
-  .works-cap{font-size:15px}
+  .works{padding:68px 0 72px}
+  .strip{gap:10px;margin-top:22px}
+  .shot .fr{height:min(80vw,400px)}
+  .works-foot{flex-direction:column;align-items:stretch;gap:6px;margin-top:16px}
   .progress{flex:none;width:100%;max-width:none}
+  .voices{margin-top:56px}
+  .voices-q{font-size:clamp(25px,7.4vw,30px)}
+  /* лента отзывов: соседи выглядывают заметнее — видно, что ленту листают */
+  .revs{--slideW:78vw;margin-top:24px}
+  .rslide{opacity:.45}
+  .revs-track{gap:12px;padding-bottom:58px}
+  .revs-ctrl{gap:16px}
+  /* имя со звёздами и «читать целиком» — в одну строку: иначе все пузыри ленты на строку выше */
+  .who{gap:8px}
+  .stars{font-size:12px;letter-spacing:.08em}
+  .b-foot{column-gap:10px}
+  .bubble{padding:26px 18px 8px;border-radius:24px 24px 24px 7px}
+  .bubble.short{padding-bottom:26px}
+  .bubble .ex{font-size:clamp(23px,6.6vw,28px)}
+  .bubble .full{font-size:16px}
+  .b-foot{margin-top:16px}
+  .count b{font-size:40px}
 
-  .master{padding:90px 0 96px}
-  .portrait{width:min(64%,300px)}
-  .portrait .pf .seal{width:120px;height:120px}
-  .portrait .pf .ph{font-size:11px}
-  .portrait figcaption{font-size:24px}
-  .master-copy{margin:-64px 0 0}
-  .master-name{font-size:19.5vw}
-  .master .lead{margin-left:0;margin-top:26px;font-size:18px}
-
-  .teach{padding:90px 0 96px}
-  .teach-in{align-items:stretch}
-  .sticker{align-self:flex-start}
-  .teach-row{flex-direction:column;align-items:flex-start;font-size:21vw}
-  .teach-pill{width:100%;margin:14px 0 0;font-size:16px}
-  .teach-stat{margin-top:28px}
-  .teach-stat .num{font-size:100px}
-  .teach-stat .lbl{font-size:38px}
-  .teach .btn{margin-top:26px}
-
-  .book{padding:96px 0 100px}
-  .book-price{font-size:27vw}
-  .book-line{font-size:24px;max-width:16em;margin-left:auto;margin-right:auto}
-  .book .btn{display:flex;width:100%;margin-top:32px}
-  .book-alt{gap:0 28px;margin-top:14px}
-  .marquee{padding:16px 0 20px}
-  .mq{font-size:46px;padding:0 20px}
-  .mq-seal{width:44px;height:44px}
-  .ct-list dd{font-size:24px}
-  .foot{grid-template-columns:1fr;margin-top:64px}
-  .foot nav{justify-content:flex-start;gap:0 22px}
+  .contacts{padding-top:72px}
+  .book-head{scroll-margin-top:40px}
+  .book-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+  .book-btns .btn{padding:0 12px}
+  .book-btns .btn:first-child{grid-column:1/-1}
+  .ct-grid{grid-template-columns:minmax(0,1fr);gap:28px;margin-top:44px}
+  .ct-photo{aspect-ratio:4/3}
+  .ct-photo img{object-position:50% 62%}
+  .ct-list dd{font-size:22px}
+  .foot{grid-template-columns:1fr;gap:0;margin-top:44px;padding:14px 0 22px}
 }
 /* узкие телефоны: слова знака в две строки, чтобы влез переключатель */
 @media (max-width:380px){
-  .works-cap{font-size:13.5px}
   .brand{gap:8px;font-size:10px;letter-spacing:.1em}
   .brand span{width:min-content;white-space:normal;line-height:1.25}
 }
 @media (max-width:360px){
   .switch a{padding:0 11px}
-  .chip{font-size:13.5px}
   .seal--hero{width:60px;height:60px;top:64px}
   .bar .bl{display:none}
   .bar .m b{font-size:24px}
@@ -665,10 +518,9 @@ html.js-type .word-mani .ch{visibility:hidden}
 
 @media (prefers-reduced-motion:reduce){
   .gl{animation:none;background-position:0 0}
-  .marquee-track{animation:none}
   .map-pin::before{animation:none;opacity:0}
   .caret{display:none}
-  *{transition-duration:.01ms!important}
+  *{transition-duration:.01ms!important;transition-delay:0s!important}
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
 }
 </style>
@@ -681,13 +533,6 @@ html.js-type .word-mani .ch{visibility:hidden}
     <circle cx="60" cy="60" r="50" fill="none" stroke="currentColor" stroke-opacity=".18" stroke-width=".6"/>
     <path id="sealPath" d="M60 60 m-40 0 a40 40 0 1 1 80 0 a40 40 0 1 1 -80 0" fill="none"/>
     <text fill="currentColor"><textPath href="#sealPath" textLength="248" lengthAdjust="spacing">NAILS DARIAMIR  |  NAILS DARIAMIR  |</textPath></text>
-  </symbol>
-  <symbol id="stamp" viewBox="0 0 120 120">
-    <circle cx="60" cy="60" r="58" fill="none" stroke="currentColor" stroke-width="1.4"/>
-    <circle cx="60" cy="60" r="32" fill="none" stroke="currentColor" stroke-width=".9"/>
-    <path id="stampPath" d="M60 60 m-45 0 a45 45 0 1 1 90 0 a45 45 0 1 1 -90 0" fill="none"/>
-    <text fill="currentColor" style="font:500 10.6px Manrope,system-ui,sans-serif;letter-spacing:1.4px"><textPath href="#stampPath" textLength="280" lengthAdjust="spacing">NAILS DARIAMIR  ·  NAILS DARIAMIR  ·</textPath></text>
-    <path d="M60 46 l3.2 10.8 10.8 3.2 -10.8 3.2 -3.2 10.8 -3.2 -10.8 -10.8 -3.2 10.8 -3.2z" fill="currentColor"/>
   </symbol>
 </svg>
 
@@ -702,14 +547,22 @@ html.js-type .word-mani .ch{visibility:hidden}
 <main>
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
-  <!-- Место под вертикальное видео Дарии: поставить на figure data-media="video" и заменить img на
-       <video class="hero-video" playsinline muted loop autoplay preload="metadata" poster="../shared/img/w09-macro-french.webp"><source src="…" type="video/mp4"></video> -->
-  <figure class="hero-media" data-media="image">
-    <img class="hero-img" src="../shared/img/w09-macro-french.webp"
-         srcset="../shared/img/w09-macro-french-sm.webp 640w, ../shared/img/w09-macro-french.webp 1280w"
-         sizes="(max-width:1100px) 100vw, min(1100px, 76vw)"
-         width="1280" height="1040" fetchpriority="high" decoding="async"
-         alt="Френч крупным планом: тонкое глянцевое покрытие на квадратных ногтях">
+  <!-- ≤760 px: поверх постера играет её видео (красный квадрат с кольцом); шире — макро-фото: вертикальное видео 720 px там было бы мылом.
+       Источник видео выбирается по media: на широком экране и при reduced-motion файл не грузится, остаётся постер.
+       Постер — резкий кадр ролика на 4,5 с (кадр 0 размыт: камера ещё ловит фокус); его же видят без автоплея — iPhone в энергосбережении -->
+  <figure class="hero-media">
+    <picture>
+      <source media="(max-width:760px)" srcset="../shared/img/hero-cherry-poster.webp" width="720" height="1280">
+      <img class="hero-img" src="../shared/img/w09-macro-french.webp"
+           srcset="../shared/img/w09-macro-french-sm.webp 640w, ../shared/img/w09-macro-french.webp 1280w"
+           sizes="(max-width:1100px) 100vw, min(1100px, 76vw)"
+           width="1280" height="1040" fetchpriority="high" decoding="async"
+           alt="Квадратные ногти с глянцевым покрытием крупным планом">
+    </picture>
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="../shared/img/hero-cherry-poster.webp" width="720" height="1280" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback>
+      <!-- первые секунды ролика не в фокусе: начинаю с резкого кадра 4,5 с — постер и есть этот кадр, стык не виден; повтор идёт с начала -->
+      <source src="../shared/video/hero-cherry.mp4#t=4.5" type="video/mp4" media="(max-width:760px) and (prefers-reduced-motion:no-preference)">
+    </video>
     <div class="gloss" aria-hidden="true">
       <div class="gloss-sheen"></div>
       <div class="gloss-nails"><div class="gloss-streak"></div><div class="gloss-streak s2"></div></div>
@@ -720,7 +573,6 @@ html.js-type .word-mani .ch{visibility:hidden}
   <div class="hero-inner">
     <div class="hero-copy">
       <p class="eyebrow kicker">Студия маникюра · Ивантеевка</p>
-      <p class="hero-lead">Укрепление гелем, ремонт трещин, углы у&nbsp;квадрата и&nbsp;поднятие клюющих&nbsp;— в&nbsp;одной цене, без&nbsp;доплат</p>
       <div class="hero-price">
         <span class="price-num">3&nbsp;700&nbsp;₽</span>
         <p class="price-meta"><span class="inc">всё включено</span><span class="fr">френч + 500&nbsp;₽</span></p>
@@ -785,6 +637,16 @@ html.js-type .word-mani .ch{visibility:hidden}
   var fig = hero.querySelector('.hero-media');
   var sheen = fig.querySelector('.gloss-sheen');
   var streaks = fig.querySelectorAll('.gloss-streak');
+  /* видео первого экрана — только телефон и только без reduced-motion. Браузеры, не читающие media у <source>, останавливаю руками */
+  var phone = matchMedia('(max-width:760px)');
+  var video = fig.querySelector('.hero-video');
+  if (video && (reduce || !phone.matches)) { video.removeAttribute('autoplay'); video.preload = 'none'; try { video.pause(); } catch (_) {} }
+  /* старт с кадра постера (4,5 с) — дублирую фрагмент #t для браузеров, что его не читают. Перемотка работает,
+     только если сервер отдаёт Range: локальный python http.server не умеет, там ролик идёт с 0 */
+  else if (video) {
+    var seek = function () { if (video.currentTime < 4.4) { try { video.currentTime = 4.5; } catch (_) {} } };
+    if (video.readyState >= 1) seek(); else video.addEventListener('loadedmetadata', seek, { once: true });
+  }
   var W = 0, H = 0, SW = 0, TW = 0, TW2 = 0;
   function measure() {
     W = fig.clientWidth; H = fig.clientHeight;
@@ -828,279 +690,210 @@ html.js-type .word-mani .ch{visibility:hidden}
     var k = hover ? .085 : .05;
     x += (tx - x) * k; y += (ty - y) * k;
     apply();
-    if (visible && !document.hidden) raf = requestAnimationFrame(tick);
+    if (live()) raf = requestAnimationFrame(tick);
   }
-  function run() { if (!raf && visible && !document.hidden) raf = requestAnimationFrame(tick); }
+  /* на телефоне вместо фото видео, блик по ногтям скрыт — цикл не крутится впустую */
+  function live() { return visible && !document.hidden && !phone.matches; }
+  function run() { if (!raf && live()) raf = requestAnimationFrame(tick); }
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(function (en) { visible = en[0].isIntersecting; run(); }).observe(fig);
   }
   document.addEventListener('visibilitychange', run);
+  phone.addEventListener && phone.addEventListener('change', function () { measure(); apply(); run(); });
   run();
 })();
 </script>
 
-<!-- ================= ГЛАВЫ: ТОНКО / ПРОЧНО / ЧЁТКО ================= -->
-<section class="chapters" aria-labelledby="manifest-h">
-  <h2 id="manifest-h" class="sr-only">Тонко. Прочно. Чётко.</h2>
-
-  <article class="chapter" id="tonko" style="--field:#FBFAF7;--field-rgb:251,250,247">
-    <figure class="ch-media">
-      <img src="../shared/img/w01-nude-french.webp" srcset="../shared/img/w01-nude-french-sm.webp 480w, ../shared/img/w01-nude-french.webp 960w" sizes="(max-width:760px) 100vw, min(720px, 50vw)"
-           width="960" height="1280" loading="lazy" decoding="async" alt="Нюдовый френч: тонкое покрытие, ногти выглядят как свои">
-    </figure>
-    <div class="ch-sticky">
-      <div class="ch-inner">
-        <p class="ch-count eyebrow"><span>01 / 03</span><span class="ticks" aria-hidden="true"><i class="on"></i><i></i><i></i></span></p>
-        <h3 class="ch-word gl">Тонко</h3>
-        <p class="ch-text"><span class="ch-t">Покрытие тонкое&nbsp;— ногти&nbsp;выглядят&nbsp;как&nbsp;свои</span></p>
+<!-- ================= КАКИЕ ПРОБЛЕМЫ Я РЕШАЮ ================= -->
+<section class="prob" id="problemy" aria-labelledby="prob-h">
+  <div class="wrap prob-grid">
+    <div class="prob-left rv">
+      <h2 class="h2" id="prob-h">Какие проблемы я&nbsp;решаю</h2>
+      <div class="ptabs" id="ptabs" role="tablist" aria-labelledby="prob-h" aria-orientation="vertical">
+        <button class="ptab" type="button" role="tab" id="pt1" aria-controls="pp1" aria-selected="true"><span class="n" aria-hidden="true">01</span><span class="t">Ровный квадрат</span><span class="go" aria-hidden="true">→</span></button>
+        <button class="ptab" type="button" role="tab" id="pt2" aria-controls="pp2" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">02</span><span class="t">Без отслоек от&nbsp;торца</span><span class="go" aria-hidden="true">→</span></button>
+        <button class="ptab" type="button" role="tab" id="pt3" aria-controls="pp3" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">03</span><span class="t">Без отслоек у&nbsp;кутикулы</span><span class="go" aria-hidden="true">→</span></button>
+        <button class="ptab" type="button" role="tab" id="pt4" aria-controls="pp4" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">04</span><span class="t">Поднятие клюющих</span><span class="go" aria-hidden="true">→</span></button>
       </div>
     </div>
-  </article>
 
-  <article class="chapter" id="prochno" style="--field:#D9D3CB;--field-rgb:217,211,203">
-    <figure class="ch-media">
-      <img src="../shared/img/w06-black-gloss.webp" srcset="../shared/img/w06-black-gloss-sm.webp 480w, ../shared/img/w06-black-gloss.webp 960w" sizes="(max-width:760px) 100vw, min(720px, 50vw)"
-           width="960" height="1280" loading="lazy" decoding="async" alt="Чёрный глянец на коротком квадрате">
-    </figure>
-    <div class="ch-sticky">
-      <div class="ch-inner">
-        <p class="ch-count eyebrow"><span>02 / 03</span><span class="ticks" aria-hidden="true"><i></i><i class="on"></i><i></i></span></p>
-        <h3 class="ch-word gl">Прочно</h3>
-        <p class="ch-text"><span class="ch-t">Укрепляю гелем, ремонтирую трещины, поднимаю клюющие</span></p>
+    <div class="pstage rv" id="pstage">
+      <div class="pp pp-1 on" id="pp1" role="tabpanel" aria-labelledby="pt1">
+        <div class="pp-media">
+          <figure class="pf pf-tall"><span class="im"><img src="../shared/img/pr1-other.webp" width="601" height="946" loading="lazy" decoding="async" alt="Чужая работа: квадрат расходится к свободному краю"></span><figcaption>работа не&nbsp;моя</figcaption></figure>
+          <figure class="pf"><span class="im" style="--ar:602/498"><img src="../shared/img/pr1-before.webp" width="602" height="510" loading="lazy" decoding="async" alt="Френч на квадрате с ровными боковыми параллелями"></span><figcaption>моя работа «до»</figcaption></figure>
+          <figure class="pf"><span class="im" style="--ar:602/498"><img src="../shared/img/pr1-after.webp" width="602" height="486" loading="lazy" decoding="async" alt="Тот же квадрат: боковые линии остались параллельными"></span><figcaption>моя работа «после»</figcaption></figure>
+        </div>
+        <p class="pp-line">Боковые параллели идеально ровные&nbsp;— квадрат не&nbsp;уходит в&nbsp;трапецию и&nbsp;не&nbsp;выглядит расклешённым</p>
+      </div>
+
+      <div class="pp pp-2" id="pp2" role="tabpanel" aria-labelledby="pt2" aria-hidden="true" inert>
+        <div class="pp-media">
+          <figure class="pf"><span class="im" style="--ar:960/424"><img src="../shared/img/pr2-before.webp" width="960" height="424" loading="lazy" decoding="async" alt="Ногти со старым покрытием"></span><figcaption>до</figcaption></figure>
+          <figure class="pf"><span class="im" style="--ar:960/424"><img src="../shared/img/pr2-mid.webp" width="960" height="423" loading="lazy" decoding="async" alt="Покрытие снято, натуральные ногти"></span><figcaption>снято</figcaption></figure>
+          <figure class="pf pf-wide"><span class="im" style="--ar:960/424"><img src="../shared/img/pr2-after.webp" width="960" height="425" loading="lazy" decoding="async" alt="Новое покрытие: ровный квадрат с чистым торцом"></span><figcaption>после</figcaption></figure>
+        </div>
+        <p class="pp-line">Выпиливаю кончик натурального ногтя изнутри&nbsp;— покрытию не&nbsp;от&nbsp;чего отслаиваться</p>
+        <p class="pp-acc">Нет ногтя&nbsp;— нет проблем!</p>
+      </div>
+
+      <div class="pp pp-3" id="pp3" role="tabpanel" aria-labelledby="pt3" aria-hidden="true" inert>
+        <div class="pp-media">
+          <figure class="pf"><span class="im" style="--ar:4/5"><img src="../shared/img/pr3-before.webp" width="601" height="555" loading="lazy" decoding="async" alt="Чужая работа: отслойка покрытия у кутикулы"></span><figcaption>«до»&nbsp;— работа не&nbsp;моя</figcaption></figure>
+          <figure class="pf"><span class="im" style="--ar:3/5"><img src="../shared/img/pr3-after.webp" width="602" height="1135" loading="lazy" decoding="async" alt="Красное покрытие вплотную к кутикуле, без ступеньки"></span><figcaption>после</figcaption></figure>
+        </div>
+        <p class="pp-line">Покрытие отрастает плавно, без&nbsp;ступеньки</p>
+      </div>
+
+      <div class="pp pp-4" id="pp4" role="tabpanel" aria-labelledby="pt4" aria-hidden="true" inert>
+        <div class="pp-media">
+          <figure class="pf"><span class="im" style="--ar:12/5"><img src="../shared/img/pr4-before.webp" width="1280" height="638" loading="lazy" decoding="async" alt="Ноготь сбоку: растёт вниз, клюёт"></span><figcaption>до</figcaption></figure>
+          <figure class="pf"><span class="im" style="--ar:12/5"><img src="../shared/img/pr4-after.webp" width="1280" height="639" loading="lazy" decoding="async" alt="Тот же ноготь сбоку: ровная линия, ноготь поднят"></span><figcaption>после</figcaption></figure>
+        </div>
+        <p class="pp-line">Поднимаю ноготь, который растёт вниз,&nbsp;— покрытие его не&nbsp;перетягивает, нет трещин и&nbsp;отслоек</p>
       </div>
     </div>
-  </article>
-
-  <article class="chapter" id="chetko" style="--field:#F2EFEA;--field-rgb:242,239,234">
-    <figure class="ch-media">
-      <img src="../shared/img/w02-milky-french.webp" srcset="../shared/img/w02-milky-french-sm.webp 480w, ../shared/img/w02-milky-french.webp 960w" sizes="(max-width:760px) 100vw, min(720px, 50vw)"
-           width="960" height="1280" loading="lazy" decoding="async" alt="Молочный френч на ровном квадрате с чёткими углами">
-    </figure>
-    <div class="ch-sticky">
-      <div class="ch-inner">
-        <p class="ch-count eyebrow"><span>03 / 03</span><span class="ticks" aria-hidden="true"><i></i><i></i><i class="on"></i></span></p>
-        <h3 class="ch-word gl">Чётко</h3>
-        <p class="ch-text"><span class="ch-t">Тот самый ровный квадрат с&nbsp;чёткими&nbsp;углами</span></p>
-      </div>
-    </div>
-  </article>
+  </div>
 </section>
 
-<!-- ================= КАЛЬКУЛЯТОР ================= -->
-<section class="calc" id="cena" aria-labelledby="calc-h">
-  <div class="wrap calc-grid">
-    <div class="calc-left">
-      <h2 class="h2" id="calc-h">Что бы ни&nbsp;было с&nbsp;ногтями&nbsp;— <span class="plate">цена одна</span></h2>
-      <p class="lead">Отметьте, что беспокоит, и&nbsp;смотрите на&nbsp;итог</p>
-      <div class="chips" role="group" aria-label="Что беспокоит">
-        <button class="chip" type="button" aria-pressed="false" data-k="gel"><span class="box" aria-hidden="true"></span>Ломаются и&nbsp;слоятся</button>
-        <button class="chip" type="button" aria-pressed="false" data-k="lift"><span class="box" aria-hidden="true"></span>Клюют, растут вниз</button>
-        <button class="chip" type="button" aria-pressed="false" data-k="cracks"><span class="box" aria-hidden="true"></span>Есть трещина</button>
-        <button class="chip" type="button" aria-pressed="false" data-k="corners"><span class="box" aria-hidden="true"></span>Сломался уголок</button>
-        <button class="chip" type="button" aria-pressed="false" data-k="off"><span class="box" aria-hidden="true"></span>Старое покрытие не&nbsp;моё</button>
-        <button class="chip" type="button" aria-pressed="false" data-k="french"><span class="box" aria-hidden="true"></span>Хочу френч <span class="plus">+500&nbsp;₽</span></button>
-      </div>
-    </div>
-
-    <div class="receipt-wrap">
+<!-- ================= ПРАЙС ================= -->
+<section class="price" id="cena" aria-labelledby="price-h">
+  <div class="wrap price-grid">
+    <div class="receipt-wrap rv">
       <svg class="seal seal--r" aria-hidden="true"><use href="#seal"/></svg>
       <div class="receipt">
-        <p class="r-head"><span class="t">Price</span><span class="s">маникюр «всё включено»</span></p>
-        <ul class="r-list" id="r-list">
-          <li data-k="off"><span class="nm">Снятие</span><span class="ld"></span><span class="vl">входит</span></li>
-          <li data-k="hyg" data-always><span class="nm">Гигиенический маникюр</span><span class="ld"></span><span class="vl">входит</span></li>
-          <li data-k="gel"><span class="nm">Восстановление формы и&nbsp;укрепление гелем</span><span class="ld"></span><span class="vl">входит</span></li>
-          <li data-k="corners"><span class="nm">Донаращивание углов у&nbsp;квадрата</span><span class="ld"></span><span class="vl">входит</span></li>
-          <li data-k="cracks"><span class="nm">Ремонт трещин</span><span class="ld"></span><span class="vl">входит</span></li>
-          <li data-k="lift"><span class="nm">Поднятие клюющих</span><span class="ld"></span><span class="vl">входит</span></li>
-          <li data-k="coat" data-always><span class="nm">Покрытие</span><span class="ld"></span><span class="vl">входит</span></li>
-          <li data-k="moist" data-always><span class="nm">Увлажнение рук</span><span class="ld"></span><span class="vl">входит</span></li>
-          <li data-k="french"><span class="nm">Френч</span><span class="ld"></span><span class="vl">+500&nbsp;₽</span></li>
+        <h2 class="r-head" id="price-h"><span class="t">Price</span> <span class="s">маникюр «всё включено»</span></h2>
+        <ul class="r-list">
+          <li>Снятие</li>
+          <li>Гигиенический маникюр</li>
+          <li>Восстановление формы и&nbsp;укрепление гелем</li>
+          <li>Донаращивание углов у&nbsp;квадрата</li>
+          <li>Ремонт трещин</li>
+          <li>Поднятие клюющих</li>
+          <li>Покрытие</li>
+          <li>Увлажнение рук</li>
         </ul>
-        <p class="r-note" id="r-note" aria-live="polite">Цена не&nbsp;зависит от&nbsp;сложности</p>
-        <div class="r-total">
-          <span class="eyebrow">Итог</span>
-          <span class="odo" aria-live="polite" aria-atomic="true">
-            <span class="sr-only" id="sum-sr">3&nbsp;700&nbsp;₽</span>
-            <span aria-hidden="true"><span class="odo-d"><span class="odo-col" id="odo-a"><b>3</b><b>4</b></span></span>&nbsp;<span class="odo-d"><span class="odo-col" id="odo-b"><b>7</b><b>2</b></span></span>00&nbsp;₽</span>
-          </span>
-        </div>
-        <a class="btn btn-dark" href="#zapis" id="calc-cta">Записаться <span class="arr" aria-hidden="true">→</span></a>
+        <p class="r-total"><span class="eyebrow">Итог</span><span class="r-sum">3&nbsp;700&nbsp;₽</span></p>
+        <p class="r-fr">френч + 500&nbsp;₽</p>
+        <a class="btn btn-dark" href="#zapis" data-act="book">Записаться <span class="arr" aria-hidden="true">→</span></a>
       </div>
+    </div>
+    <div class="french rv">
+      <div class="fr-grid">
+        <img src="../shared/img/fr1.webp" width="638" height="638" loading="lazy" decoding="async" alt="Красный френч на молочной базе">
+        <img src="../shared/img/fr2.webp" width="639" height="638" loading="lazy" decoding="async" alt="Белый френч на розовой базе">
+        <img src="../shared/img/fr3.webp" width="638" height="639" loading="lazy" decoding="async" alt="Белый френч на персиковой базе">
+        <img src="../shared/img/fr4.webp" width="639" height="639" loading="lazy" decoding="async" alt="Белый френч на нюдовой базе">
+      </div>
+      <p class="fr-line">Красивый и&nbsp;ровный френч&nbsp;— моя отдельная любовь</p>
     </div>
   </div>
 </section>
 
-<!-- ================= РАБОТЫ ================= -->
-<section class="works dark" id="raboty" aria-labelledby="works-h">
+<!-- ================= РАБОТЫ И ОТЗЫВЫ ================= -->
+<section class="works" id="raboty" aria-labelledby="works-h">
   <div class="wrap">
-    <p class="the">the) art</p>
-    <h2 class="works-word gl gl-light" id="works-h">Работы</h2>
+    <h2 class="h2 rv" id="works-h">Работы</h2>
   </div>
-  <div class="strip" id="strip" tabindex="0" role="region" aria-label="Лента работ, листается вбок">
-    <figure class="shot"><div class="fr"><img src="../shared/img/w03-pink-french-glove.webp" srcset="../shared/img/w03-pink-french-glove-sm.webp 480w, ../shared/img/w03-pink-french-glove.webp 960w" sizes="(max-width:760px) 70vw, 420px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Розовый френч на квадратных ногтях"></div><svg class="stamp-on" aria-hidden="true"><use href="#stamp"/></svg></figure>
-    <figure class="shot"><div class="fr"><img src="../shared/img/w10-lilac-milky.webp" srcset="../shared/img/w10-lilac-milky-sm.webp 507w, ../shared/img/w10-lilac-milky.webp 960w" sizes="(max-width:760px) 70vw, 420px" width="960" height="1212" loading="lazy" decoding="async" draggable="false" alt="Молочный и сиреневый маникюр"></div></figure>
-    <figure class="shot"><div class="fr"><img src="../shared/img/w04-red-french-white.webp" srcset="../shared/img/w04-red-french-white-sm.webp 480w, ../shared/img/w04-red-french-white.webp 960w" sizes="(max-width:760px) 70vw, 420px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Красный френч"></div></figure>
-    <figure class="shot"><div class="fr"><img src="../shared/img/w05-butter-cream.webp" srcset="../shared/img/w05-butter-cream-sm.webp 480w, ../shared/img/w05-butter-cream.webp 960w" sizes="(max-width:760px) 70vw, 420px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Сливочный цвет"></div></figure>
-    <figure class="shot"><div class="fr"><img src="../shared/img/w07-red-french-knit.webp" srcset="../shared/img/w07-red-french-knit-sm.webp 480w, ../shared/img/w07-red-french-knit.webp 960w" sizes="(max-width:760px) 70vw, 420px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Красный френч на фоне трикотажа"></div></figure>
-    <a class="shot shot-more" href="https://instagram.com/nails_dariamir" target="_blank" rel="noopener" draggable="false"><span class="fr"><svg class="seal" aria-hidden="true"><use href="#seal"/></svg><span class="t">ещё в&nbsp;Instagram*</span></span></a>
+  <div class="strip rv" id="strip" tabindex="0" role="region" aria-label="Лента работ, листается вбок">
+    <figure class="shot"><span class="fr"><img src="../shared/img/w03-pink-french-glove.webp" srcset="../shared/img/w03-pink-french-glove-sm.webp 480w, ../shared/img/w03-pink-french-glove.webp 960w" sizes="(max-width:760px) 60vw, 323px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Розовый френч на квадратных ногтях"></span></figure>
+    <figure class="shot"><span class="fr"><img src="../shared/img/w10-lilac-milky.webp" srcset="../shared/img/w10-lilac-milky-sm.webp 507w, ../shared/img/w10-lilac-milky.webp 1014w" sizes="(max-width:760px) 60vw, 323px" width="1014" height="1280" loading="lazy" decoding="async" draggable="false" alt="Молочный и сиреневый маникюр"></span></figure>
+    <figure class="shot"><span class="fr"><img src="../shared/img/w04-red-french-white.webp" srcset="../shared/img/w04-red-french-white-sm.webp 480w, ../shared/img/w04-red-french-white.webp 960w" sizes="(max-width:760px) 60vw, 323px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Красный френч"></span></figure>
+    <figure class="shot"><span class="fr"><img src="../shared/img/w05-butter-cream.webp" srcset="../shared/img/w05-butter-cream-sm.webp 480w, ../shared/img/w05-butter-cream.webp 960w" sizes="(max-width:760px) 60vw, 323px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Сливочный цвет"></span></figure>
+    <figure class="shot"><span class="fr"><img src="../shared/img/w11-cherry.webp" srcset="../shared/img/w11-cherry-sm.webp 480w, ../shared/img/w11-cherry.webp 960w" sizes="(max-width:760px) 60vw, 323px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Вишнёвый цвет на квадратных ногтях"></span></figure>
+    <figure class="shot"><span class="fr"><img src="../shared/img/w08-nude-glove.webp" srcset="../shared/img/w08-nude-glove-sm.webp 480w, ../shared/img/w08-nude-glove.webp 960w" sizes="(max-width:760px) 60vw, 323px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Нюдовое покрытие"></span></figure>
+    <figure class="shot"><span class="fr"><img src="../shared/img/w07-red-french-knit.webp" srcset="../shared/img/w07-red-french-knit-sm.webp 480w, ../shared/img/w07-red-french-knit.webp 960w" sizes="(max-width:760px) 60vw, 323px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Красный френч на фоне трикотажа"></span></figure>
+    <figure class="shot"><span class="fr"><img src="../shared/img/w02-milky-french.webp" srcset="../shared/img/w02-milky-french-sm.webp 480w, ../shared/img/w02-milky-french.webp 959w" sizes="(max-width:760px) 60vw, 323px" width="959" height="1280" loading="lazy" decoding="async" draggable="false" alt="Молочный френч на ровном квадрате"></span></figure>
+    <figure class="shot"><span class="fr"><img src="../shared/img/w12-nude-macro.webp" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Нюдовый квадрат крупным планом"></span></figure>
   </div>
   <div class="wrap works-foot">
-    <p class="works-cap">Френч, молочный, нюд и&nbsp;насыщенный&nbsp;цвет</p>
     <div class="progress" aria-hidden="true"><span id="strip-bar"></span></div>
-  </div>
-  <div class="drag-pill" id="drag-pill" aria-hidden="true">← тяни →</div>
-</section>
-
-<!-- ================= ОТЗЫВЫ ================= -->
-<section class="voices" id="otzyvy" aria-labelledby="otz-h">
-  <div class="wrap">
-    <h2 class="eyebrow" id="otz-h" style="text-align:center">Отзывы</h2>
-    <figure class="bigq" id="bigq">
-      <blockquote class="bq">
-        <p>
-          <span class="bq-l1">«Будто искусственный интеллект,</span>
-          <span class="bq-row"><span class="bq-w">а&nbsp;не</span><span class="bq-pill" aria-hidden="true"><span class="bq-pill-in"><img src="../shared/img/w11-cherry.webp" srcset="../shared/img/w11-cherry-sm.webp 480w, ../shared/img/w11-cherry.webp 960w" sizes="(max-width:760px) 340px, 500px" width="960" height="1280" loading="lazy" decoding="async" alt=""></span></span> <span class="bq-w">реально мои&nbsp;руки»</span></span>
-        </p>
-      </blockquote>
-    </figure>
+    <a class="ig" href="https://instagram.com/nails_dariamir" target="_blank" rel="noopener">Больше работ в&nbsp;Instagram*</a>
   </div>
 
-  <div class="revs">
-    <div class="revs-track" id="revs-track" tabindex="0" role="region" aria-roledescription="карусель" aria-label="Отзывы по одному, листаются вбок">
-      <article class="rslide" aria-roledescription="отзыв" aria-label="1 из 7">
-        <div class="bubble">
-          <p class="ex">…покрытие очень <em class="hl">тонкое</em> и&nbsp;<em class="hl">прочное</em>, маникюр выполнен чисто и&nbsp;аккуратно…</p>
-          <p class="full" id="rf1" hidden>Дария&nbsp;— профессионал своего дела и&nbsp;приятная в&nbsp;общении девушка. Результат просто идеальный, <mark>покрытие очень тонкое и&nbsp;прочное, маникюр выполнен чисто и&nbsp;аккуратно</mark>. Студия уютная, чистая, стильная, удобная зона ожидания и&nbsp;прекрасный сервис. Большое спасибо</p>
-          <p class="b-foot"><span class="who"><span class="eyebrow">Эльвира</span><span class="stars" role="img" aria-label="5 из 5">★★★★★</span></span><button class="more" type="button" aria-expanded="false" aria-controls="rf1">читать целиком</button></p>
-        </div>
-      </article>
-      <article class="rslide" aria-roledescription="отзыв" aria-label="2 из 7">
-        <div class="bubble">
-          <p class="ex">Ручки никогда не&nbsp;были такими красивыми…</p>
-          <p class="full" id="rf2" hidden>Уже неделю хожу и&nbsp;не&nbsp;могу налюбоваться. <mark>Ручки никогда не&nbsp;были такими красивыми</mark>. Уже думаю, что будем делать в&nbsp;следующий раз. Опять френч или молочный?</p>
-          <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf2">читать целиком</button></p>
-        </div>
-      </article>
-      <article class="rslide" aria-roledescription="отзыв" aria-label="3 из 7">
-        <div class="bubble">
-          <p class="ex">…таких ноготков у&nbsp;меня ещё не&nbsp;было…</p>
-          <p class="full" id="rf3" hidden>Это восторг, слов подобрать не&nbsp;могу, <mark>таких ноготков у&nbsp;меня ещё не&nbsp;было</mark>. Прошло уже двое суток, а&nbsp;кутикулы как будто только что от&nbsp;тебя вышла. Обычно у&nbsp;меня на&nbsp;следующий день всё плохо становится, а&nbsp;тут просто идеально. Спасибо большое</p>
-          <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf3">читать целиком</button></p>
-        </div>
-      </article>
-      <article class="rslide" aria-roledescription="отзыв" aria-label="4 из 7">
-        <div class="bubble">
-          <p class="ex">Просто невозможно красиво!…</p>
-          <p class="full" id="rf4" hidden><mark>Просто невозможно красиво!</mark> Будто искусственный интеллект, а&nbsp;не&nbsp;реально мои руки</p>
-          <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf4">читать целиком</button></p>
-        </div>
-      </article>
-      <article class="rslide" aria-roledescription="отзыв" aria-label="5 из 7">
-        <div class="bubble">
-          <p class="ex">…сколько взглядов и&nbsp;восторженных отзывов я&nbsp;услышала…</p>
-          <p class="full" id="rf5" hidden>Подписываюсь под каждым словом! Мои тоже безупречные. А&nbsp;<mark>сколько взглядов и&nbsp;восторженных отзывов я&nbsp;услышала</mark>. Уже боюсь давать рекомендацию, а&nbsp;то потом не&nbsp;запишешься</p>
-          <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf5">читать целиком</button></p>
-        </div>
-      </article>
-      <article class="rslide" aria-roledescription="отзыв" aria-label="6 из 7">
-        <div class="bubble short">
-          <p class="ex">Я&nbsp;в&nbsp;полном восторге, не&nbsp;могу налюбоваться целый день. Ещё раз благодарю</p>
-        </div>
-      </article>
-      <article class="rslide" aria-roledescription="отзыв" aria-label="7 из 7">
-        <div class="bubble">
-          <p class="ex">…«Вау! У&nbsp;тебя классный маникюр! Сейчас редко такой встретишь…»</p>
-          <p class="full" id="rf7" hidden>Я&nbsp;в&nbsp;субботу была на&nbsp;встрече, вышла представляться на&nbsp;аудиторию из&nbsp;30 человек, и&nbsp;одна из&nbsp;девочек: «<mark>Вау! У&nbsp;тебя классный маникюр! Сейчас редко такой встретишь</mark>, я&nbsp;всегда увижу хороший!» Она, как оказалось, мастер с&nbsp;<span class="nw">10&#8209;летним</span> стажем, сейчас у&nbsp;неё уже своя школа. Подошла, ещё рассмотрела, ещё раз похвалила. Мне прям очень приятно было</p>
-          <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf7">читать целиком</button></p>
-        </div>
-      </article>
-    </div>
-    <div class="revs-ctrl">
-      <button class="round" type="button" id="rev-prev" aria-label="Предыдущий отзыв"><span aria-hidden="true">←</span></button>
-      <p class="count" aria-live="polite"><b id="rev-n">1</b><span>/&nbsp;7</span></p>
-      <button class="round" type="button" id="rev-next" aria-label="Следующий отзыв"><span aria-hidden="true">→</span></button>
-    </div>
-  </div>
-</section>
-
-<!-- ================= СТУДИЯ: четвёртая глава ================= -->
-<section class="chapter studio" id="studiya" aria-labelledby="studio-h" style="--field:#FBFAF7;--field-rgb:251,250,247">
-  <figure class="ch-media">
-    <img src="../shared/img/s03-studio.webp" srcset="../shared/img/s03-studio-sm.webp 480w, ../shared/img/s03-studio.webp 960w" sizes="(max-width:760px) 100vw, min(720px, 50vw)"
-         width="960" height="1280" loading="lazy" decoding="async" alt="Светлый зал студии с окнами и цветами">
-    <span class="tag tag-dark st-addr">Фабричный проезд, 1к1</span>
-  </figure>
-  <div class="ch-sticky">
-    <div class="ch-inner">
-      <p class="the">the) studio</p>
-      <h2 class="ch-word gl" id="studio-h">Студия</h2>
-      <p class="ch-text"><span class="ch-t">Светлая, с&nbsp;окнами в&nbsp;Ивантеевке</span></p>
-    </div>
-  </div>
-  <div class="polas">
-    <figure class="pola pola-a"><span class="pf"><img src="../shared/img/s02-flowers-sm.webp" srcset="../shared/img/s02-flowers-sm.webp 480w, ../shared/img/s02-flowers.webp 960w" sizes="(max-width:760px) 45vw, 210px" width="480" height="640" loading="lazy" decoding="async" alt="Зона ожидания: диван, зеркало и цветы"></span><span class="tag tag-milk">Зона ожидания</span></figure>
-    <figure class="pola pola-b"><span class="pf"><img src="../shared/img/s01-shelf-sm.webp" srcset="../shared/img/s01-shelf-sm.webp 480w, ../shared/img/s01-shelf.webp 960w" sizes="(max-width:760px) 45vw, 176px" width="480" height="640" loading="lazy" decoding="async" alt="Стеллаж с кофемашиной"></span><span class="tag tag-cherry">Кофе</span></figure>
-  </div>
-</section>
-
-<!-- ================= МАСТЕР ================= -->
-<section class="master" aria-labelledby="master-h">
-  <div class="wrap master-grid">
-    <figure class="portrait">
-      <span class="pf"><svg class="seal" aria-hidden="true"><use href="#seal"/></svg><span class="ph">[портрет Дарии]</span></span>
-      <figcaption class="the">the) master</figcaption>
-    </figure>
-    <div class="master-copy">
-      <h2 class="master-name" id="master-h"><span>Дария</span> <span>Миронова</span></h2>
-      <p class="lead rv">Мой почерк&nbsp;— ровный квадрат и&nbsp;френч</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ТИЗЕР ОБУЧЕНИЯ ================= -->
-<section class="teach dark" id="obuchenie" aria-labelledby="teach-h">
-  <div class="wrap teach-in">
-    <p class="sticker">Вы&nbsp;мастер?</p>
-    <div class="teach-row">
-      <h2 class="teach-word gl gl-light" id="teach-h">Обучение</h2>
-      <figure class="teach-pill" aria-hidden="true"><span class="teach-pill-in"><img src="../shared/img/w08-nude-glove.webp" srcset="../shared/img/w08-nude-glove-sm.webp 480w, ../shared/img/w08-nude-glove.webp 960w" sizes="(max-width:760px) 100vw, 340px" width="960" height="1280" loading="lazy" decoding="async" alt=""></span></figure>
-    </div>
-    <p class="teach-stat"><span class="num"><span class="sr-only">350+</span><span class="t-odo" id="teach-n" aria-hidden="true"><span class="t-d"><span class="t-col h"><b>0</b><b>1</b><b>2</b><b>3</b></span></span><span class="t-d"><span class="t-col t"><b>0</b><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b><b>6</b><b>7</b><b>8</b><b>9</b><b>0</b><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b></span></span><span class="t-d"><span class="t-col o"><b>0</b><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b><b>6</b><b>7</b><b>8</b><b>9</b><b>0</b><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b><b>6</b><b>7</b><b>8</b><b>9</b><b>0</b></span></span>+</span></span><span class="lbl">учениц</span></p>
-    <a class="btn btn-milk" href="../obuchenie/">Узнать о&nbsp;курсах <span class="arr" aria-hidden="true">→</span></a>
-  </div>
-</section>
-
-<!-- ================= ЗАПИСЬ ================= -->
-<section class="book" id="zapis" aria-labelledby="book-h">
-  <div class="wrap">
-    <h2 class="book-price gl" id="book-h"><span class="sr-only">Запись на&nbsp;маникюр «всё включено»&nbsp;— </span>3&nbsp;700&nbsp;₽</h2>
-    <p class="book-line">всё&nbsp;включено&nbsp;— окна&nbsp;видно&nbsp;сразу</p>
-    <a class="btn btn-dark" href="#zapis" data-act="book" data-stub>Записаться онлайн <span class="arr" aria-hidden="true">→</span></a>
-    <p class="book-alt rv">
-      <a href="#zapis" data-act="tg" data-text="Здравствуйте! Хочу записаться на маникюр «всё включено»">Telegram</a>
-      <a href="#zapis" data-act="wa" data-text="Здравствуйте! Хочу записаться на маникюр «всё включено»">WhatsApp</a>
-      <span class="ph">[+7 XXX XXX-XX-XX]</span>
-    </p>
-  </div>
-</section>
-
-<!-- ================= КОНТАКТЫ ================= -->
-<a class="marquee" href="https://yandex.ru/maps/?rtext=~55.974776%2C37.917089&amp;rtt=auto" target="_blank" rel="noopener" aria-label="Построить маршрут: Ивантеевка, Фабричный проезд, 1к1">
-  <span class="marquee-track" aria-hidden="true"><span class="mq">Ивантеевка · Фабричный проезд, 1к1</span><svg class="seal mq-seal"><use href="#seal"/></svg><span class="mq">Ивантеевка · Фабричный проезд, 1к1</span><svg class="seal mq-seal"><use href="#seal"/></svg><span class="mq">Ивантеевка · Фабричный проезд, 1к1</span><svg class="seal mq-seal"><use href="#seal"/></svg><span class="mq">Ивантеевка · Фабричный проезд, 1к1</span><svg class="seal mq-seal"><use href="#seal"/></svg></span>
-</a>
-<section class="contacts dark" id="kontakty" aria-labelledby="ct-h">
-  <div class="wrap">
-    <div class="ct-grid">
-      <div class="ct-copy">
-        <h2 class="h2" id="ct-h">Как добраться</h2>
-        <dl class="ct-list">
-          <div><dt>Адрес</dt><dd>Ивантеевка, Фабричный проезд, 1к1<span class="near">рядом Пушкино и&nbsp;Щёлково</span></dd></div>
-          <div><dt>Часы</dt><dd><span class="ph">[часы работы]</span></dd></div>
-          <div><dt>Телефон</dt><dd><span class="ph">[+7 XXX XXX-XX-XX]</span></dd></div>
-          <div><dt>Instagram</dt><dd><a href="https://instagram.com/nails_dariamir" target="_blank" rel="noopener">@nails_dariamir*</a></dd></div>
-        </dl>
+  <div class="voices" id="otzyvy">
+    <p class="eyebrow voices-k rv">Отзывы</p>
+    <h3 class="voices-q rv">«Будто искусственный интеллект, а&nbsp;не&nbsp;реально мои&nbsp;руки»</h3>
+    <div class="revs rv">
+      <div class="revs-track" id="revs-track" tabindex="0" role="region" aria-roledescription="карусель" aria-label="Отзывы по одному, листаются вбок">
+        <article class="rslide" aria-roledescription="отзыв" aria-label="1 из 7">
+          <div class="bubble">
+            <p class="ex">…покрытие очень <em class="hl">тонкое</em> и&nbsp;<em class="hl">прочное</em>, маникюр выполнен чисто и&nbsp;аккуратно…</p>
+            <p class="full" id="rf1" hidden>Дария&nbsp;— профессионал своего дела и&nbsp;приятная в&nbsp;общении девушка. Результат просто идеальный, <mark>покрытие очень тонкое и&nbsp;прочное, маникюр выполнен чисто и&nbsp;аккуратно</mark>. Студия уютная, чистая, стильная, удобная зона ожидания и&nbsp;прекрасный сервис. Большое спасибо</p>
+            <p class="b-foot"><span class="who"><span class="eyebrow">Эльвира</span><span class="stars" role="img" aria-label="5 из 5">★★★★★</span></span><button class="more" type="button" aria-expanded="false" aria-controls="rf1">читать целиком</button></p>
+          </div>
+        </article>
+        <article class="rslide" aria-roledescription="отзыв" aria-label="2 из 7">
+          <div class="bubble">
+            <p class="ex">Ручки никогда не&nbsp;были такими красивыми…</p>
+            <p class="full" id="rf2" hidden>Уже неделю хожу и&nbsp;не&nbsp;могу налюбоваться. <mark>Ручки никогда не&nbsp;были такими красивыми</mark>. Уже думаю, что будем делать в&nbsp;следующий раз. Опять френч или молочный?</p>
+            <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf2">читать целиком</button></p>
+          </div>
+        </article>
+        <article class="rslide" aria-roledescription="отзыв" aria-label="3 из 7">
+          <div class="bubble">
+            <p class="ex">…таких ноготков у&nbsp;меня ещё не&nbsp;было…</p>
+            <p class="full" id="rf3" hidden>Это восторг, слов подобрать не&nbsp;могу, <mark>таких ноготков у&nbsp;меня ещё не&nbsp;было</mark>. Прошло уже двое суток, а&nbsp;кутикулы как будто только что от&nbsp;тебя вышла. Обычно у&nbsp;меня на&nbsp;следующий день всё плохо становится, а&nbsp;тут просто идеально. Спасибо большое</p>
+            <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf3">читать целиком</button></p>
+          </div>
+        </article>
+        <article class="rslide" aria-roledescription="отзыв" aria-label="4 из 7">
+          <div class="bubble">
+            <p class="ex">Просто невозможно красиво!…</p>
+            <p class="full" id="rf4" hidden><mark>Просто невозможно красиво!</mark> Будто искусственный интеллект, а&nbsp;не&nbsp;реально мои руки</p>
+            <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf4">читать целиком</button></p>
+          </div>
+        </article>
+        <article class="rslide" aria-roledescription="отзыв" aria-label="5 из 7">
+          <div class="bubble">
+            <p class="ex">…сколько взглядов и&nbsp;восторженных отзывов я&nbsp;услышала…</p>
+            <p class="full" id="rf5" hidden>Подписываюсь под каждым словом! Мои тоже безупречные. А&nbsp;<mark>сколько взглядов и&nbsp;восторженных отзывов я&nbsp;услышала</mark>. Уже боюсь давать рекомендацию, а&nbsp;то потом не&nbsp;запишешься</p>
+            <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf5">читать целиком</button></p>
+          </div>
+        </article>
+        <article class="rslide" aria-roledescription="отзыв" aria-label="6 из 7">
+          <div class="bubble short">
+            <p class="ex">Я&nbsp;в&nbsp;полном восторге, не&nbsp;могу налюбоваться целый день. Ещё раз благодарю</p>
+          </div>
+        </article>
+        <article class="rslide" aria-roledescription="отзыв" aria-label="7 из 7">
+          <div class="bubble">
+            <p class="ex">…«Вау! У&nbsp;тебя классный маникюр! Сейчас редко такой встретишь…»</p>
+            <p class="full" id="rf7" hidden>Я&nbsp;в&nbsp;субботу была на&nbsp;встрече, вышла представляться на&nbsp;аудиторию из&nbsp;30 человек, и&nbsp;одна из&nbsp;девочек: «<mark>Вау! У&nbsp;тебя классный маникюр! Сейчас редко такой встретишь</mark>, я&nbsp;всегда увижу хороший!» Она, как оказалось, мастер с&nbsp;<span class="nw">10&#8209;летним</span> стажем, сейчас у&nbsp;неё уже своя школа. Подошла, ещё рассмотрела, ещё раз похвалила. Мне прям очень приятно было</p>
+            <p class="b-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf7">читать целиком</button></p>
+          </div>
+        </article>
       </div>
+      <div class="revs-ctrl">
+        <button class="round" type="button" id="rev-prev" aria-label="Предыдущий отзыв"><span aria-hidden="true">←</span></button>
+        <p class="count" aria-live="polite"><b id="rev-n">1</b><span>/&nbsp;7</span></p>
+        <button class="round" type="button" id="rev-next" aria-label="Следующий отзыв"><span aria-hidden="true">→</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= СТУДИЯ И ЗАПИСЬ ================= -->
+<section class="contacts dark" id="kontakty" aria-labelledby="book-h">
+  <div class="wrap">
+    <div class="book-head" id="zapis">
+      <h2 class="h2" id="book-h">Запишитесь на&nbsp;удобное время</h2>
+      <div class="book-btns">
+        <a class="btn btn-milk" href="#zapis" data-act="book" data-stub>Записаться онлайн <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn-line" href="#zapis" data-act="tg" data-text="Здравствуйте! Хочу записаться на маникюр «всё включено»">Telegram</a>
+        <a class="btn btn-line" href="#zapis" data-act="wa" data-text="Здравствуйте! Хочу записаться на маникюр «всё включено»">WhatsApp</a>
+      </div>
+    </div>
+    <div class="ct-grid">
+      <figure class="ct-photo rv">
+        <img src="../shared/img/s03-studio.webp" srcset="../shared/img/s03-studio-sm.webp 480w, ../shared/img/s03-studio.webp 960w" sizes="(max-width:760px) 100vw, 270px" width="960" height="1280" loading="lazy" decoding="async" alt="Светлый зал студии с окнами и цветами">
+      </figure>
+      <dl class="ct-list rv">
+        <div><dt>Адрес</dt><dd>Ивантеевка, Фабричный проезд, 1к1<span class="near">рядом Пушкино и&nbsp;Щёлково</span><span class="tags"><span>Зона ожидания</span><span>Кофе</span></span></dd></div>
+        <div><dt>Часы</dt><dd><span class="ph">[часы работы]</span></dd></div>
+        <div><dt>Телефон</dt><dd><span class="ph">[+7 XXX XXX-XX-XX]</span></dd></div>
+        <div><dt>Instagram</dt><dd><a href="https://instagram.com/nails_dariamir" target="_blank" rel="noopener">@nails_dariamir*</a></dd></div>
+      </dl>
       <div class="map rv">
         <span class="fallback">Ивантеевка, Фабричный проезд, 1к1</span>
         <img class="map-img" src="https://static-maps.yandex.ru/1.x/?ll=37.917089,55.974776&amp;z=16&amp;size=650,450&amp;l=map&amp;lang=ru_RU" width="650" height="450" loading="lazy" decoding="async" alt="" onerror="this.remove()">
@@ -1110,7 +903,7 @@ html.js-type .word-mani .ch{visibility:hidden}
     </div>
     <footer class="foot">
       <span>© 2026 Студия маникюра DARIA MIRONOVA</span>
-      <nav aria-label="Направления"><a href="../manikur/" aria-current="page">Маникюр</a><a href="../obuchenie/">Обучение</a></nav>
+      <a href="../obuchenie/">Обучение для мастеров →</a>
       <span class="fn">* Instagram принадлежит компании Meta, признанной экстремистской и&nbsp;запрещённой в&nbsp;РФ</span>
     </footer>
   </div>
@@ -1119,7 +912,7 @@ html.js-type .word-mani .ch{visibility:hidden}
 
 <a class="bar" id="bar" href="#zapis" data-act="book">
   <span class="d">Маникюр «всё включено»&nbsp;— 3&nbsp;700&nbsp;₽</span><span class="d" aria-hidden="true">·</span>
-  <span class="m"><b id="bar-sum">3&nbsp;700&nbsp;₽</b><span class="bl"><span class="bl-a" id="bar-lbl">· всё включено</span><span class="bl-b" aria-hidden="true">· входит</span></span></span>
+  <span class="m"><b>3&nbsp;700&nbsp;₽</b><span class="bl">· всё включено</span></span>
   <span class="go">Записаться <span class="arr" aria-hidden="true">→</span></span>
 </a>
 
@@ -1127,17 +920,16 @@ html.js-type .word-mani .ch{visibility:hidden}
 
 <script>
 /* Основная логика — обычный скрипт в конце body: не ждёт Motion с CDN и не ждёт DOMContentLoaded.
-   Motion подключается ниже как улучшение (async) и включает только параллакс и появления */
+   Motion подключается ниже как улучшение (async) и включает только мягкие появления блоков */
 (function () {
   /* ---------- ссылки: Дария пришлёт — вписать сюда, и все кнопки поведут куда надо ---------- */
   var TG_NICK = '[ник]';   /* ник Telegram без @ */
   var BOOK_URL = '';       /* онлайн-запись Dikidi, полный адрес */
   var WA_NUM = '';         /* номер WhatsApp цифрами, 79XXXXXXXXX */
 
-  var root = document.documentElement;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var mqMobile = matchMedia('(max-width:760px)');
   var mqStack = matchMedia('(max-width:1100px)');
+  var mqChips = matchMedia('(max-width:900px)');
   var EASE = 'cubic-bezier(.22,.61,.36,1)';
   var canAnim = !reduce && !!Element.prototype.animate;
 
@@ -1169,147 +961,57 @@ html.js-type .word-mani .ch{visibility:hidden}
     }
   });
 
-  /* ---------- нижняя плашка: до 1100 px прячется, пока видна кнопка первого экрана ---------- */
+  /* ---------- нижняя плашка: до 1100 px прячется, пока видна кнопка первого экрана; и всегда — у кнопок записи ---------- */
   var bar = document.getElementById('bar');
-  var heroBtn = document.getElementById('hero-cta');
   var heroSeen = true, bookSeen = false;
   function updBar() { bar.classList.toggle('is-hidden', (mqStack.matches && heroSeen) || bookSeen); }
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (e) { heroSeen = e[0].isIntersecting; updBar(); }).observe(heroBtn);
+    new IntersectionObserver(function (e) { heroSeen = e[0].isIntersecting; updBar(); }).observe(document.getElementById('hero-cta'));
     new IntersectionObserver(function (e) { bookSeen = e[0].isIntersecting; updBar(); }, { threshold: .3 }).observe(document.getElementById('zapis'));
   } else heroSeen = false;
   mqStack.addEventListener && mqStack.addEventListener('change', updBar);
   updBar();
 
-  /* ---------- калькулятор, который не растёт ---------- */
-  var chips = [].slice.call(document.querySelectorAll('.chip'));
-  var list = document.getElementById('r-list');
-  var lis = [].slice.call(list.children);
-  var note = document.getElementById('r-note');
-  var total = document.querySelector('.r-total');
-  var odoA = document.getElementById('odo-a'), odoB = document.getElementById('odo-b');
-  var sumSr = document.getElementById('sum-sr');
-  var cta = document.getElementById('calc-cta');
-  var barSum = document.getElementById('bar-sum'), barLbl = document.getElementById('bar-lbl');
-  var tail = [note, total, cta];
-  var state = {}, touched = false, lastFrench = false, demoKeys = [], msg = '', flashT = 0;
-  /* тексты заметки: неразрывные пробелы, ₽ прямым начертанием (у курсива Cormorant знака нет) */
-  var NOTE_BASE = 'Цена не\u00a0зависит от\u00a0сложности';
-  var NOTE_FR = NOTE_BASE + '\u00a0— только френч\u00a0+500\u00a0<span class="rub">₽</span>';
-  var NOTE_ALL = 'Итог не\u00a0изменился\u00a0— всё это уже в\u00a0цене';
-  var lastNote = NOTE_BASE;
-  external(cta, tg('Здравствуйте! Хочу записаться на маникюр «всё включено»'));
-
-  function slide(el, to, delay) {           /* одометр: transform, без заливки кадров */
-    var from = el.style.transform || 'translateY(0%)';
-    el.style.transform = to;
-    if (canAnim && from !== to) el.animate([{ transform: from }, { transform: to }], { duration: 550, delay: delay || 0, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'backwards' });
-  }
-  function render(instant) {
-    var anim = canAnim && !instant, before = new Map(), wasOn = new Set();
-    lis.forEach(function (li) { if (!li.hidden) { wasOn.add(li); if (anim) before.set(li, li.getBoundingClientRect().top); } });
-    if (anim) tail.forEach(function (el) { before.set(el, el.getBoundingClientRect().top); });
-
-    lis.forEach(function (li) { li.hidden = !(li.hasAttribute('data-always') || !!state[li.dataset.k]); });
-
-    var problems = chips.filter(function (c) { return c.dataset.k !== 'french' && state[c.dataset.k]; });
-    var french = !!state.french;
-    var noteHTML = french ? NOTE_FR : problems.length >= 2 ? NOTE_ALL : NOTE_BASE;
-    if (noteHTML !== lastNote) {
-      note.innerHTML = noteHTML; lastNote = noteHTML;
-      if (anim) note.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 420, delay: 60, easing: EASE, fill: 'backwards' });
+  /* ---------- «Какие проблемы я решаю»: вкладки. Клик, стрелки, Home/End; на телефоне ещё и свайп по фото ---------- */
+  var tablist = document.getElementById('ptabs');
+  var tabs = [].slice.call(tablist.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+  var pCur = 0;
+  function selectTab(i, focus) {
+    i = Math.max(0, Math.min(tabs.length - 1, i));
+    pCur = i;
+    for (var k = 0; k < tabs.length; k++) {
+      var on = k === i;
+      tabs[k].setAttribute('aria-selected', on ? 'true' : 'false');
+      tabs[k].tabIndex = on ? 0 : -1;
+      panels[k].classList.toggle('on', on);
+      if (on) { panels[k].removeAttribute('inert'); panels[k].removeAttribute('aria-hidden'); }
+      else { panels[k].setAttribute('inert', ''); panels[k].setAttribute('aria-hidden', 'true'); }
     }
-    note.classList.toggle('hot', noteHTML !== NOTE_BASE);
-
-    lis.forEach(function (li) {
-      if (li.hidden) { li.classList.remove('is-new'); return; }
-      if (!wasOn.has(li) && !instant) li.classList.add('is-new');
-      if (!anim) return;
-      if (before.has(li)) {
-        var dy = before.get(li) - li.getBoundingClientRect().top;
-        if (Math.abs(dy) > .5) li.animate([{ transform: 'translateY(' + dy + 'px)' }, { transform: 'none' }], { duration: 420, easing: EASE });
-      } else {
-        li.animate([{ opacity: 0, transform: 'translateX(-10px)' }, { opacity: 1, transform: 'none' }], { duration: 450, delay: 80, easing: EASE, fill: 'backwards' });
-      }
-    });
-    if (anim) tail.forEach(function (el) {     /* чек удлиняется, итог плавно съезжает, но не меняется */
-      var dy = before.get(el) - el.getBoundingClientRect().top;
-      if (Math.abs(dy) > .5) el.animate([{ transform: 'translateY(' + dy + 'px)' }, { transform: 'none' }], { duration: 420, easing: EASE });
-    });
-
-    var sum = french ? '4 200 ₽' : '3 700 ₽';
-    sumSr.textContent = sum.replace(/ /g, ' ');
-    if (french !== lastFrench || instant) {
-      var y = french ? 'translateY(-50%)' : 'translateY(0%)';   /* в колонке две цифры: сдвиг на одну — это −50% */
-      if (instant) odoA.style.transform = odoB.style.transform = y;
-      else { slide(odoA, y, 0); slide(odoB, y, 70); }
-      lastFrench = french;
-    }
-    barSum.textContent = sum;
-    barLbl.textContent = french ? '· с френчем' : '· всё включено';
-
-    /* сообщение в Telegram — из того, что выбрала клиентка. Демо-отметки сюда не попадают */
-    var own = touched ? problems : [];
-    msg = 'Здравствуйте! Хочу записаться на маникюр «всё включено»' + (french && touched ? ' с френчем' : '') + '.' +
-      (own.length ? ' Что беспокоит: ' + own.map(function (c) { return c.textContent.replace(/\s+/g, ' ').trim().toLowerCase(); }).join('; ') : '');
-    cta.href = tg(msg);
+    if (focus) tabs[i].focus({ preventScroll: true });
+    /* чипсы: выбранный подъезжает к середине ленты (один вызов, прокручивается только сама лента) */
+    if (mqChips.matches) tablist.scrollTo({ left: tabs[i].offsetLeft - (tablist.clientWidth - tabs[i].offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
   }
-  function tgStub(e) {
-    if (tgReady) return;
+  tabs.forEach(function (t, i) { t.addEventListener('click', function () { selectTab(i); }); });
+  tablist.addEventListener('keydown', function (e) {
+    var k = e.key, n = -1;
+    if (k === 'ArrowDown' || k === 'ArrowRight') n = (pCur + 1) % tabs.length;
+    else if (k === 'ArrowUp' || k === 'ArrowLeft') n = (pCur - 1 + tabs.length) % tabs.length;
+    else if (k === 'Home') n = 0;
+    else if (k === 'End') n = tabs.length - 1;
+    if (n < 0) return;
     e.preventDefault();
-    toast('Откроется Telegram с сообщением «' + msg + '»', '[ник Telegram]');
-  }
-  cta.addEventListener('click', tgStub);
-
-  /* телефон: чипсы и итог не помещаются на один экран — итог живёт в нижней плашке */
-  function barPulse(isProblem) {
-    if (!mqMobile.matches) return;
-    if (canAnim) barSum.animate([{ transform: 'none' }, { transform: 'translateY(-30%)', offset: .35 }, { transform: 'none' }], { duration: 560, easing: EASE });
-    if (isProblem) {
-      bar.classList.add('is-flash');
-      clearTimeout(flashT);
-      flashT = setTimeout(function () { bar.classList.remove('is-flash'); }, 1400);
-    }
-  }
-
-  function press(c, on) { c.setAttribute('aria-pressed', on ? 'true' : 'false'); state[c.dataset.k] = on; }
-  chips.forEach(function (c) {
-    c.addEventListener('click', function () {
-      var on = c.getAttribute('aria-pressed') !== 'true';
-      if (!touched) {                            /* первое касание: демо не выдаём за выбор клиентки */
-        touched = true;
-        if (demoKeys.length) { chips.forEach(function (x) { if (demoKeys.indexOf(x.dataset.k) > -1) press(x, false); }); on = true; }
-      }
-      press(c, on);
-      render(false);
-      barPulse(on && c.dataset.k !== 'french');
-    });
+    selectTab(n, true);
   });
-  render(true);
-
-  /* авто-демо один раз, когда чек в кадре: две проблемы — итог тот же */
-  function demo() {
-    if (touched || reduce) return;
-    ['cracks', 'corners'].forEach(function (k, i) {
-      setTimeout(function () {
-        if (touched) return;
-        var c = chips.filter(function (x) { return x.dataset.k === k; })[0];
-        if (c.getAttribute('aria-pressed') === 'true') return;
-        press(c, true); demoKeys.push(k); render(false);
-      }, 700 + i * 900);
-    });
-    /* через 2,8 с после «Итог не изменился» отметки показа снимаются сами: первое касание клиентки ничего чужого не гасит */
-    setTimeout(function () {
-      if (touched || !demoKeys.length) return;
-      chips.forEach(function (x) { if (demoKeys.indexOf(x.dataset.k) > -1) press(x, false); });
-      demoKeys = [];
-      render(false);
-    }, 700 + 900 + 2800);
-  }
-  if (!reduce && 'IntersectionObserver' in window) {
-    var demoIO = new IntersectionObserver(function (e) { if (e[0].isIntersecting) { demoIO.disconnect(); demo(); } }, { threshold: .6 });
-    demoIO.observe(document.querySelector('.receipt'));
-  }
+  function orient() { tablist.setAttribute('aria-orientation', mqChips.matches ? 'horizontal' : 'vertical'); }
+  mqChips.addEventListener && mqChips.addEventListener('change', orient);
+  orient();
+  var stage = document.getElementById('pstage'), sx = 0, sy = 0;
+  stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.6) selectTab(pCur + (dx < 0 ? 1 : -1));
+  }, { passive: true });
 
   /* ---------- перетаскивание мышью (лента работ и отзывы) ---------- */
   function draggable(el, onEnd) {
@@ -1336,10 +1038,9 @@ html.js-type .word-mani .ch{visibility:hidden}
     el.addEventListener('click', function (e) { if (Math.abs(moved) > 6) { e.preventDefault(); e.stopImmediatePropagation(); } moved = 0; }, true);
   }
 
-  /* ---------- лента работ: тянуть мышью, кнопки, прогресс ---------- */
+  /* ---------- лента работ: тянуть мышью, линия прогресса ---------- */
   var strip = document.getElementById('strip');
   var stripBar = document.getElementById('strip-bar');
-  stripBar.style.width = '100%';
   function stripProgress() {
     var max = strip.scrollWidth - strip.clientWidth;
     var vis = Math.min(1, strip.clientWidth / strip.scrollWidth);
@@ -1350,38 +1051,6 @@ html.js-type .word-mani .ch{visibility:hidden}
   window.addEventListener('resize', stripProgress);
   stripProgress();
   draggable(strip);
-
-  /* курсор-пилюля «тяни»: только мышь; едет за указателем с запаздыванием (lerp), цикл спит, когда догнал */
-  var dPill = document.getElementById('drag-pill');
-  if (matchMedia('(hover:hover) and (pointer:fine)').matches) {
-    var px = 0, py = 0, pxT = 0, pyT = 0, ps = .4, psT = .4, pOn = false, pRaf = 0;
-    var pTick = function () {
-      pRaf = 0;
-      var k = reduce ? 1 : .2;
-      px += (pxT - px) * k; py += (pyT - py) * k; ps += (psT - ps) * k;
-      dPill.style.transform = 'translate3d(' + px.toFixed(1) + 'px,' + py.toFixed(1) + 'px,0) scale(' + ps.toFixed(3) + ')';
-      if (Math.abs(pxT - px) > .3 || Math.abs(pyT - py) > .3 || Math.abs(psT - ps) > .004) pRaf = requestAnimationFrame(pTick);
-    };
-    var pRun = function () { if (!pRaf) pRaf = requestAnimationFrame(pTick); };
-    var pOff = function () { if (!pOn) return; pOn = false; psT = .4; dPill.classList.remove('on'); strip.classList.remove('has-pill'); pRun(); };
-    strip.addEventListener('pointerenter', function (e) {
-      if (e.pointerType !== 'mouse') return;
-      if (!pOn) { px = pxT = e.clientX; py = pyT = e.clientY; }
-      pOn = true; psT = 1; dPill.classList.add('on'); strip.classList.add('has-pill'); pRun();
-    });
-    strip.addEventListener('pointermove', function (e) {
-      if (e.pointerType !== 'mouse' || !pOn) return;
-      pxT = e.clientX; pyT = e.clientY; psT = strip.classList.contains('is-drag') ? .78 : 1; pRun();
-    }, { passive: true });
-    strip.addEventListener('pointerup', function () { if (pOn) { psT = 1; pRun(); } });
-    strip.addEventListener('pointerleave', pOff);
-    /* прокрутили страницу, а мышь не двигалась: лента уехала из-под курсора */
-    window.addEventListener('scroll', function () {
-      if (!pOn) return;
-      var r = strip.getBoundingClientRect();
-      if (pyT < r.top || pyT > r.bottom) pOff();
-    }, { passive: true });
-  }
 
   /* ---------- отзывы по одному: свайп, стрелки, счётчик 1 / 7, «читать целиком» ---------- */
   var track = document.getElementById('revs-track');
@@ -1450,8 +1119,8 @@ html.js-type .word-mani .ch{visibility:hidden}
   });
   setCur(0);
 
-  /* ---------- печати крутятся от прокрутки ---------- */
-  var seals = [].slice.call(document.querySelectorAll('.seal--hero, .seal--r, .portrait .seal'));
+  /* ---------- печати крутятся от прокрутки: кадр — чистая функция от scrollY ---------- */
+  var seals = [].slice.call(document.querySelectorAll('.seal--hero, .seal--r'));
   var ticking = false;
   function frame() {
     ticking = false;
@@ -1462,179 +1131,32 @@ html.js-type .word-mani .ch{visibility:hidden}
   window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
   frame();
 
-  /* ---------- уход на «Обучение»: в переход летит то, что сейчас на экране ---------- */
+  /* ---------- уход на развилку или «Обучение»: в переход летит только то, что сейчас на экране ---------- */
   window.addEventListener('pageswap', function (e) {
     if (!e.viewTransition) return;
     var heroM = document.querySelector('.hero-media'), heroW = document.getElementById('word-mani');
     var vis = function (el) { var b = el.getBoundingClientRect(); return b.bottom > 0 && b.top < window.innerHeight; };
-    var to = e.activation && e.activation.entry && e.activation.entry.url || '';
-    var tWord = document.querySelector('.teach-word'), tPill = document.querySelector('.teach-pill');
-    [heroM, heroW, tWord, tPill].forEach(function (el) { el.setAttribute('data-vt', ''); });
     var over = [document.querySelector('.hero .manifest'), document.querySelector('.hero .kicker'), document.querySelector('.top')];
-    over.forEach(function (el) { if (el) el.setAttribute('data-vt', ''); });
+    [heroM, heroW].concat(over).forEach(function (el) { if (el) el.setAttribute('data-vt', ''); });
     if (!vis(heroM)) {
       heroM.style.viewTransitionName = 'none'; heroW.style.viewTransitionName = 'none';
       over.forEach(function (el) { if (el) el.style.viewTransitionName = 'none'; });
     }
-    if (!vis(heroM) && /\/obuchenie\//.test(to) && vis(tWord)) { tWord.style.viewTransitionName = 'hero-word'; tPill.style.viewTransitionName = 'hero-photo'; }
   });
 
-  /* ---------- Motion: то, что красиво только в движении. Вызывается, когда библиотека дошла ---------- */
+  /* ---------- Motion: блоки ниже первого экрана мягко поднимаются, когда доходит прокрутка.
+     Скрытое состояние ставится только здесь — без библиотеки и при reduced-motion всё видно сразу ---------- */
   window.__initMotion = function () {
     var M = window.Motion;
     if (!M || reduce || window.__motionOn) return;
     window.__motionOn = true;
-    var animate = M.animate, scroll = M.scroll, inView = M.inView;
     var vh = window.innerHeight;
-    var OUT = [.22, .61, .36, 1], CURTAIN = [.65, 0, .35, 1], SLAP = [.3, 1.45, .55, 1];
-    function below(el) { return el.getBoundingClientRect().top >= vh * .95; }
-    function $(sel, ctx) { return (ctx || document).querySelector(sel); }
-    /* кадр прокрутки — чистая функция от положения: scroll() + animate без пружин */
-    function scrub(el, kf, target, offset) { scroll(animate(el, { transform: kf }, { ease: 'linear' }), { target: target, offset: offset }); }
-
-    /* шторка: крупное слово открывается слева направо. Слежу за обёрткой — IntersectionObserver учитывает clip-path самой цели */
-    function curtain(el, watch, delay) {
-      if (!el || !below(el)) return;
-      el.style.clipPath = 'inset(0 100% 0 0)';
-      inView(watch, function () {
-        animate(el, { clipPath: ['inset(0 100% 0 0)', 'inset(0 0% 0 0)'] }, { duration: 1.1, delay: delay || 0, ease: CURTAIN });
-      }, { amount: .3 });
-    }
-    /* мелочи (чипсы, строки контактов, подписи) — спокойный подъём с лесенкой */
-    function rise(els, watch, delay, step) {
-      els = [].slice.call(els).filter(below);
-      if (!els.length) return;
-      els.forEach(function (el) { el.style.opacity = '0'; el.style.transform = 'translateY(18px)'; });
-      inView(watch, function () {
-        els.forEach(function (el, i) { animate(el, { opacity: 1, transform: 'translateY(0px)' }, { duration: .7, delay: (delay || 0) + i * (step || .06), ease: OUT }); });
-      }, { amount: .2 });
-    }
-    /* наклейка шлёпается на место */
-    function slap(el, delay) {
-      var r = parseFloat(getComputedStyle(el).getPropertyValue('--r')) || 0;
-      el.style.opacity = '0';
-      return function () {
-        animate(el, { opacity: [0, 1], transform: ['rotate(' + (r - 14) + 'deg) scale(1.4)', 'rotate(' + r + 'deg) scale(1)'] }, { duration: .5, delay: delay || 0, ease: SLAP });
-      };
-    }
-
-    /* фото глав (и студии) — медленный параллакс внутри рамки */
-    document.querySelectorAll('.chapter').forEach(function (ch) {
-      scrub($('.ch-media img', ch), ['translateY(-4%) scale(1.1)', 'translateY(4%) scale(1.1)'], ch, ['start end', 'end start']);
-    });
-
-    /* калькулятор: плашка «цена одна» протягивается, чек печатается сверху вниз */
-    var calcL = $('.calc-left');
-    curtain($('.plate', calcL), calcL, .25);
-    rise(calcL.querySelectorAll('.chip'), calcL, .35, .05);
-    var rWrap = $('.receipt-wrap');
-    if (below(rWrap)) {
-      rWrap.style.clipPath = 'inset(-90px -90px 100% -90px)';
-      inView(rWrap.parentElement, function () {
-        animate(rWrap, { clipPath: ['inset(-90px -90px 100% -90px)', 'inset(-90px -90px -90px -90px)'], transform: ['translateY(-28px)', 'translateY(0px)'] }, { duration: 1.2, delay: .15, ease: [.45, 0, .2, 1] });
-      }, { amount: .25 });
-    }
-
-    /* работы: слово медленно дрейфует над лентой */
-    var works = $('.works');
-    scrub($('.works-word', works), ['translateX(5vw)', 'translateX(-1vw)'], works, ['start end', 'end start']);
-
-    /* цитата: фото-пилюля раскрывается */
-    var bigq = document.getElementById('bigq');
-    var pill = $('.bq-pill-in', bigq), pillImg = $('img', pill);
-    scroll(animate(pill, { transform: ['scale(.55)', 'scale(1)'] }, { ease: 'linear' }), { target: bigq, offset: ['start end', 'center 55%'] });
-    scroll(animate(pillImg, { transform: ['scale(1.4)', 'scale(1)'] }, { ease: 'linear' }), { target: bigq, offset: ['start end', 'center 55%'] });
-
-    /* отзыв всплывает, как сообщение: из «хвостика» пузыря */
-    var firstBubble = $('.rslide.on .bubble');
-    if (firstBubble && below(firstBubble)) {
-      firstBubble.style.opacity = '0';
-      inView($('.revs'), function () {
-        animate(firstBubble, { opacity: [0, 1], transform: ['translateY(36px) scale(.9)', 'translateY(0px) scale(1)'] }, { duration: .7, ease: [.3, 1.25, .5, 1] });
-      }, { amount: .3 });
-    }
-
-    /* студия: шторка на слове, карточки-полароиды ложатся на фото, стикеры шлёпаются следом */
-    var studio = $('.studio');
-    curtain($('.ch-word', studio), $('.ch-inner', studio));
-    var addr = $('.st-addr', studio);
-    if (below(addr)) { var hitA = slap(addr, .2); inView(addr, hitA, { amount: .8 }); }
-    [].slice.call(studio.querySelectorAll('.pola')).forEach(function (pl, i) {
-      if (!below(pl)) return;
-      var r = parseFloat(getComputedStyle(pl).getPropertyValue('--r')) || 0;
-      var tagHit = slap($('.tag', pl), .55);
-      pl.style.opacity = '0';
-      inView(pl, function () {
-        animate(pl, { opacity: [0, 1], transform: ['translateY(44px) rotate(' + (r + (r > 0 ? 9 : -9)) + 'deg) scale(.94)', 'translateY(0px) rotate(' + r + 'deg) scale(1)'] }, { duration: .8, delay: i * .12, ease: OUT });
-        tagHit();
-      }, { amount: .5 });
-    });
-    /* на широком экране карточки чуть отстают от фото — глубина */
-    if (!mqMobile.matches) scrub($('.polas', studio), ['translateY(48px)', 'translateY(-48px)'], studio, ['start end', 'end start']);
-
-    /* мастер: портрет открывается снизу, «Дария» и «Миронова» съезжаются навстречу от прокрутки */
-    var master = $('.master');
-    var portrait = $('.portrait', master);
-    if (below(portrait)) {
-      portrait.style.clipPath = 'inset(100% 0 0 0)';
-      inView(master, function () { animate(portrait, { clipPath: ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'] }, { duration: 1.1, ease: CURTAIN }); }, { amount: .2 });
-    }
-    var names = master.querySelectorAll('.master-name span');
-    scrub(names[0], ['translateX(-6vw)', 'translateX(0vw)'], master, ['start end', 'center center']);
-    scrub(names[1], ['translateX(6vw)', 'translateX(0vw)'], master, ['start end', 'center center']);
-
-    /* обучение: пилюля раскрывается от прокрутки, слово шторкой, 350 набегает, стикер шлёпается */
-    var teach = $('.teach');
-    var tPill = $('.teach-pill-in', teach), tImg = $('img', tPill);
-    scroll(animate(tPill, { transform: ['scale(.5)', 'scale(1)'] }, { ease: 'linear' }), { target: teach, offset: ['start end', 'start 30%'] });
-    scroll(animate(tImg, { transform: ['scale(1.35)', 'scale(1)'] }, { ease: 'linear' }), { target: teach, offset: ['start end', 'start 30%'] });
-    curtain($('.teach-word', teach), $('.teach-in', teach));
-    /* 350 крутится колонками цифр — тот же одометр, что у итога в чеке */
-    var tN = document.getElementById('teach-n');
-    if (below(tN)) {
-      var cols = [].slice.call(tN.querySelectorAll('.t-col'));
-      cols.forEach(function (c) { c.style.transform = 'translateY(0%)'; });
-      inView(tN, function () {
-        cols.forEach(function (c, i) {
-          var to = ['translateY(-75%)', 'translateY(-93.75%)', 'translateY(-95.238%)'][i];
-          animate(c, { transform: ['translateY(0%)', to] }, { duration: 1.1 + i * .35, delay: .1, ease: [.2, .7, .15, 1] });
-        });
-      }, { amount: .6 });
-    }
-    var stk = $('.sticker', teach);
-    if (below(stk)) {
-      stk.style.opacity = '0';
-      inView(stk, function () {
-        animate(stk, { opacity: [0, 1], transform: ['rotate(-16deg) scale(1.35)', 'rotate(-4deg) scale(1)'] }, { duration: .5, ease: SLAP });
-      }, { amount: .8 });
-    }
-
-    /* штамп ставится на фото: удар и лёгкий отскок */
-    var stamp = $('.stamp-on');
-    if (stamp && below(stamp)) {
-      stamp.style.opacity = '0';
-      inView(stamp, function () {
-        animate(stamp, { opacity: [0, 1], transform: ['rotate(-38deg) scale(1.9)', 'rotate(-12deg) scale(1)'] }, { duration: .5, delay: .25, ease: SLAP });
-      }, { amount: .8 });
-    }
-
-    /* запись: цена шторкой, строка и кнопка следом */
-    var bookW = $('.book .wrap');
-    curtain($('.book-price', bookW), bookW);
-    rise(bookW.querySelectorAll('.book-line, .book > .wrap > .btn'), bookW, .55, .12);
-
-    /* контакты: заголовок шторкой, строки лесенкой */
-    var ctCopy = $('.ct-copy');
-    curtain($('.h2', ctCopy), ctCopy);
-    rise(ctCopy.querySelectorAll('.ct-list > div'), ctCopy, .3, .08);
-
-    /* остальные мелочи — подъём */
-    [].slice.call(document.querySelectorAll('.rv')).forEach(function (el) {
-      if (!below(el)) return;
-      el.style.opacity = '0'; el.style.transform = 'translateY(24px)';
-      inView(el, function () {
-        animate(el, { opacity: 1, transform: 'translateY(0px)' }, { duration: .9, ease: OUT });
-      }, { amount: .15 });
+    [].forEach.call(document.querySelectorAll('.rv'), function (el) {
+      if (el.getBoundingClientRect().top < vh * .95) return;
+      el.style.opacity = '0'; el.style.transform = 'translateY(20px)';
+      M.inView(el, function () {
+        M.animate(el, { opacity: 1, transform: 'translateY(0px)' }, { duration: .7, ease: [.22, .61, .36, 1] });
+      }, { amount: .12 });
     });
   };
 })();

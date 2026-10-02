@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <!-- Когда будет домен: og:image и og:url — абсолютными адресами, плюс canonical:
-     <meta property="og:url" content="https://[домен]/">  <link rel="canonical" href="https://[домен]/"> -->
+     <meta property="og:url" content="https://andrewmironov13.github.io/daria-nails/">  <link rel="canonical" href="https://[домен]/"> -->
 <meta property="og:image" content="https://andrewmironov13.github.io/daria-nails/shared/img/og.jpg">
 <meta name="view-transition" content="same-origin">
 <meta name="theme-color" content="#1E1C1A">
@@ -166,6 +166,7 @@ html[data-open="manikur"] .half-m .bar-ghost,html[data-open="obuchenie"] .half-o
 .half-o .stage,.half-o .hero{background:var(--graphite)}
 .half-o .line{color:var(--milk)}
 .hero-media{margin:0;overflow:hidden}
+.hero-media picture{display:block;width:100%;height:100%}
 .hero-media img{width:100%;height:100%;object-fit:cover}
 /* подложка поверх фото (на странице — ::after): край и низ растворяются в графите */
 .shade{display:none;position:absolute;inset:0;z-index:1;pointer-events:none}
@@ -351,11 +352,15 @@ html.js-type .word .ch{visibility:hidden}
     <div class="stage">
       <div class="hero">
         <div class="hero-media">
-          <img src="shared/img/w09-macro-french.webp"
-               srcset="shared/img/w09-macro-french-sm.webp 640w, shared/img/w09-macro-french.webp 1280w"
-               sizes="(max-width:1100px) 100vw, min(1100px, 76vw)"
-               width="1280" height="1040" fetchpriority="high" decoding="async"
-               alt="Френч крупным планом: тонкое глянцевое покрытие на квадратных ногтях">
+          <!-- ≤760 px страница «Маникюр» открывается её видео (красный квадрат с кольцом): половина показывает тот же кадр-постер, чтобы стык был без подмены -->
+          <picture>
+            <source media="(max-width:760px)" srcset="shared/img/hero-cherry-poster.webp" width="720" height="1280">
+            <img src="shared/img/w09-macro-french.webp"
+                 srcset="shared/img/w09-macro-french-sm.webp 640w, shared/img/w09-macro-french.webp 1280w"
+                 sizes="(max-width:1100px) 100vw, min(1100px, 76vw)"
+                 width="1280" height="1040" fetchpriority="high" decoding="async"
+                 alt="Квадратные ногти с глянцевым покрытием крупным планом">
+          </picture>
           <div class="gloss" aria-hidden="true">
             <div class="gloss-sheen"></div>
             <div class="gloss-nails"><div class="gloss-streak"></div><div class="gloss-streak s2"></div></div>
