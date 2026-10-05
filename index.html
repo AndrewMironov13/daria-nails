@@ -33,12 +33,9 @@
 @font-face{font-family:"DM L";font-style:italic;font-weight:300 700;font-display:swap;src:url(shared/fonts/cormorant-i-cyr.woff2) format("woff2");unicode-range:U+041B,U+043B}
 @font-face{font-family:"Manrope";font-style:normal;font-weight:200 800;font-display:swap;src:url(shared/fonts/manrope-cyr.woff2) format("woff2");unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
 @font-face{font-family:"Manrope";font-style:normal;font-weight:200 800;font-display:swap;src:url(shared/fonts/manrope-lat.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+/* PT Mono — только метки. Лежит рядом, как и остальные шрифты: развилка не ходит на чужие серверы */
+@font-face{font-family:"PT Mono";font-style:normal;font-weight:400;font-display:swap;src:url(shared/fonts/ptmono-regular.woff2) format("woff2")}
 </style>
-<!-- PT Mono — только метки, грузится без блокировки отрисовки -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Mono&display=swap"></noscript>
 <!-- страница ветки подтягивается заранее (наведение / касание), чтобы после раскрытия не ждать сеть -->
 <script type="speculationrules">
 {"prefetch":[{"urls":["manikur/","obuchenie/"],"eagerness":"moderate"}]}
@@ -93,7 +90,7 @@
     else { r.classList.add('js-type'); w.__typeSafety = setTimeout(function () { r.classList.remove('js-type'); }, 2500); }
   })(document, window);
 </script>
-<script src="https://cdn.jsdelivr.net/npm/motion@12.43.0/dist/motion.js" defer></script>
+<script src="shared/js/motion-13.4.3.js" defer></script>
 <style>
 :root{
   --bone:#F2EFEA; --greige:#D9D3CB; --milk:#FBFAF7; --graphite:#1E1C1A; --cherry:#6B1E2A;
@@ -354,9 +351,9 @@ html.js-type .word .ch{visibility:hidden}
         <div class="hero-media">
           <!-- ≤760 px страница «Маникюр» открывается её видео (красный квадрат с кольцом): половина показывает тот же кадр-постер, чтобы стык был без подмены -->
           <picture>
-            <source media="(max-width:760px)" srcset="shared/img/hero-cherry-poster.webp" width="720" height="1280">
+            <source media="(max-width:760px)" srcset="shared/img/hero-pearl-poster.webp" width="1080" height="1920">
             <img src="shared/img/w09-macro-french.webp"
-                 srcset="shared/img/w09-macro-french-sm.webp 640w, shared/img/w09-macro-french.webp 1280w"
+                 srcset="shared/img/w09-macro-french-sm.webp 640w, shared/img/w09-macro-french.webp 1280w, shared/img/w09-macro-french-2x.webp 2200w"
                  sizes="(max-width:1100px) 100vw, min(1100px, 76vw)"
                  width="1280" height="1040" fetchpriority="high" decoding="async"
                  alt="Квадратные ногти с глянцевым покрытием крупным планом">

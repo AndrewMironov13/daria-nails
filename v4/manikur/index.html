@@ -48,11 +48,12 @@
   "description": "Маникюр «всё включено» и обучение маникюру в Ивантеевке",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Фабричный проезд, 1к1",
+    "streetAddress": "Фабричный проезд, 1к1, кабинет 106",
     "addressLocality": "Ивантеевка",
     "addressRegion": "Московская область",
     "addressCountry": "RU"
   },
+  "telephone": "+79200647630",
   "areaServed": ["Ивантеевка", "Пушкино", "Щёлково"],
   "priceRange": "от 3 700 ₽",
   "geo": { "@type": "GeoCoordinates", "latitude": 55.974776, "longitude": 37.917089 },
@@ -73,7 +74,7 @@
     r.classList.add('js');
     var reduce = !!mm && mm('(prefers-reduced-motion: reduce)').matches;
     if (!reduce) r.classList.add('js-type');
-    /* «Какие проблемы я решаю» — стопка карточек в закреплённом кадре. Только с движением и в окне, где кадр помещается:
+    /* «Какие проблемы я могу решить?» — стопка карточек в закреплённом кадре. Только с движением и в окне, где кадр помещается:
        от 680 px по высоте, на 761–1100 px — от 700, на телефоне — от 640 (iPhone в Safari — 664). Ниже — вкладки.
        Решаю до первой отрисовки: высота страницы не прыгает. Стопку ведёт основной скрипт, библиотека с CDN ей не нужна */
     var vw = r.clientWidth, vhh = r.clientHeight;
@@ -113,13 +114,10 @@ ul,ol{padding:0;list-style:none}
 button{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--cherry);outline-offset:3px;border-radius:2px}
 .dark :focus-visible{outline-color:var(--milk)}
-.nw{white-space:nowrap}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 .wrap{max-width:1440px;margin:0 auto;padding:0 var(--pad)}
 .eyebrow{font:400 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
 .h2{font:300 clamp(40px,4.3vw,64px)/1.04 var(--serif);letter-spacing:-.01em}
-.ph{font-family:var(--mono);font-size:.86em;letter-spacing:.02em;color:var(--ink-2);border-bottom:1px dashed currentColor;white-space:nowrap}
-.dark .ph{color:inherit;opacity:.72}
 /* строка заголовка выезжает из маски */
 .ml{display:block;overflow:clip;padding:.06em 0 .16em;margin:-.06em 0 -.16em}
 .ml>span{display:block}
@@ -242,35 +240,28 @@ html.js-type .word-mani .ch{visibility:hidden}
 .bl{white-space:nowrap}
 .bar.is-hidden{transform:translateY(110%)}
 
-/* заглушка ссылок, пока Дария не прислала Dikidi / Telegram / WhatsApp */
-.toast{position:fixed;left:50%;bottom:calc(var(--bar) + 16px);z-index:60;width:max-content;max-width:min(560px,calc(100% - 32px));padding:14px 20px;border-radius:16px;
-  background:var(--graphite);color:var(--milk);font:400 15px/1.45 var(--sans);box-shadow:0 12px 40px rgba(30,28,26,.25);
-  opacity:0;transform:translate(-50%,12px);transition:opacity .35s var(--e-out),transform .35s var(--e-out);pointer-events:none}
-.toast.on{opacity:1;transform:translate(-50%,0)}
-.toast .ph{color:var(--ink-3);margin-left:6px}
-
 /* ================= ПАНЕЛИ: следующий блок наезжает на предыдущий, верх скруглён ================= */
 .panel{position:relative;border-radius:var(--panel) var(--panel) 0 0;margin-top:calc(var(--panel) * -1);box-shadow:0 -12px 40px rgba(30,28,26,.08)}
 
-/* ================= КАКИЕ ПРОБЛЕМЫ Я РЕШАЮ ================= */
-/* Вкладки — основа и режим без движения: слева четыре проблемы, справа карточка выбранной.
+/* ================= КАКИЕ ПРОБЛЕМЫ Я МОГУ РЕШИТЬ ================= */
+/* Вкладки — основа и режим без движения: слева четыре заголовка, справа карточка выбранной.
    html.p-stack — стопка: кадр закреплён, карточки наезжают одна на другую от прокрутки, номер крутится, указатель едет */
 .prob{background:var(--milk);z-index:2}
 .prob-frame{position:relative}
-.prob-in{position:relative;max-width:1440px;margin:0 auto;padding:104px var(--pad);display:grid;grid-template-columns:minmax(300px,480px) minmax(0,800px);justify-content:space-between;column-gap:56px;align-items:start;transform-origin:50% 40%}
+.prob-in{position:relative;max-width:1440px;margin:0 auto;padding:104px var(--pad);display:grid;grid-template-columns:minmax(300px,min(29vw,420px)) minmax(0,900px);justify-content:space-between;column-gap:56px;align-items:start;transform-origin:50% 40%}
 .prob-left{display:flex;flex-direction:column;align-self:stretch;min-width:0}
-.ptabs{position:relative;margin-top:36px;border-top:1px solid var(--line)}
-.ptab{appearance:none;-webkit-appearance:none;display:flex;align-items:baseline;gap:18px;width:100%;min-height:56px;padding:13px 0 12px;background:none;border:0;border-bottom:1px solid var(--line);
-  text-align:left;cursor:pointer;color:var(--graphite);opacity:.45;transition:opacity .5s var(--e-out)}
+.ptabs{position:relative;margin-top:32px;border-top:1px solid var(--line)}
+.ptab{appearance:none;-webkit-appearance:none;display:flex;align-items:baseline;gap:18px;width:100%;min-height:52px;padding:13px 0 12px;background:none;border:0;border-bottom:1px solid var(--line);
+  text-align:left;cursor:pointer;color:var(--graphite);opacity:.62;transition:opacity .5s var(--e-out)}   /* неактивная строка — 4,6:1 на молоке: в строках теперь её фразы, их читают */
 .ptab .n{flex:none;font:400 12px/1 var(--mono);letter-spacing:.14em;transition:color .5s var(--e-out)}
-.ptab .t{font:300 26px/1.1 var(--serif)}
-.ptab:hover{opacity:.8}
+.ptab .t{font:300 22px/1.14 var(--serif);text-wrap:balance}
+.ptab:hover{opacity:.82}
 .ptab.cur{opacity:1}
 .ptab.cur .n{color:var(--cherry)}
-/* указатель — линия под активной строкой */
-.pptr{position:absolute;left:0;right:0;top:0;height:56px;border-bottom:1px solid var(--graphite);pointer-events:none;transition:transform .9s var(--e-out)}
-/* номер-слой: «0» стоит, вторая цифра — колонка 1–4 */
-.pnum{display:flex;margin:auto 0 -.16em;padding-top:24px;overflow:clip;font:300 clamp(160px,20vw,300px)/1 var(--serif);letter-spacing:-.04em;color:var(--layer);
+/* указатель — линия под активной строкой; строки разной высоты, место линии считает скрипт */
+.pptr{position:absolute;left:0;right:0;top:-1px;height:0;border-bottom:1px solid var(--graphite);pointer-events:none;transition:transform .9s var(--e-out)}
+/* номер-слой: «0» стоит, вторая цифра — колонка 1–4. В низком окне номер меньше: над ним четыре строки заголовков */
+.pnum{display:flex;margin:auto 0 -.16em;padding-top:20px;overflow:clip;font:300 clamp(96px,min(20vw,calc(100svh - 640px)),300px)/1 var(--serif);letter-spacing:-.04em;color:var(--layer);
   font-variant-numeric:lining-nums tabular-nums;pointer-events:none;-webkit-user-select:none;user-select:none}
 .pnum-in{display:flex}
 .pd{display:block;height:1em;overflow:clip}
@@ -278,51 +269,32 @@ html.js-type .word-mani .ch{visibility:hidden}
 .pd-c b{display:block;height:1em;font-weight:inherit}
 
 .pstage{display:grid;min-width:0;width:100%}
-/* карточка — бумага на молочном поле */
-.pp{grid-area:1/1;position:relative;min-width:0;display:flex;flex-direction:column;padding:32px;background:var(--bone);border:1px solid rgba(30,28,26,.1);border-radius:6px;box-shadow:var(--paper);
-  --cap:23px;--cardH:min(600px,calc(100svh - 230px));--h:max(300px,calc(var(--cardH) - 146px));min-height:var(--cardH);
+/* карточка — бумага на молочном поле: её коллаж целиком (ничего не обрезано, её подписи — в самой картинке) и её слова.
+   --ar — пропорция картинки, --h — сколько высоты ей можно занять. Широкий экран: коллаж слева, заголовок и текст рядом;
+   в стопке --h каждой карточке ставит скрипт — по высоте окна и по тому, сколько строк занял текст */
+.pp{grid-area:1/1;position:relative;min-width:0;display:grid;grid-template-columns:min(calc(var(--h) * var(--ar)),60%,calc(100% - 292px)) minmax(0,1fr);gap:20px 32px;align-items:center;align-content:center;
+  padding:32px;background:var(--bone);border:1px solid rgba(30,28,26,.1);border-radius:6px;box-shadow:var(--paper);
+  --hc:clamp(300px,calc(100svh - 294px),536px);--h:var(--hc);
   opacity:0;visibility:hidden;transition:opacity .4s var(--e-out),visibility 0s linear .4s}
 .pp.on{opacity:1;visibility:visible;transition:opacity .5s var(--e-out) .06s,visibility 0s}
 html:not(.js) .pstage{gap:24px}
 html:not(.js) .pp{grid-area:auto;opacity:1;visibility:visible}
 .veil{position:absolute;inset:-1px;z-index:4;border-radius:inherit;background:var(--graphite);opacity:0;pointer-events:none}
-.pp-t{font:300 28px/1.1 var(--serif);margin-bottom:14px}
-.pp-media{display:grid;gap:10px 12px;margin-inline:auto}   /* фото — у верхнего поля карточки и по центру, строка решения — сразу под подписями */
-.pf{display:flex;flex-direction:column;min-width:0;margin:0}
-.pf .im{position:relative;display:block;flex:none;overflow:hidden;background:#E4DED6;aspect-ratio:var(--ar)}
-.pf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .35s var(--e-out)}
-.pf figcaption{flex:none;padding-top:8px;font:400 11px/15px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
-@media (hover:hover) and (min-width:1101px){
-  .pf .im:hover img{transform:scale(1.04);transition-duration:.6s}
-}
-/* 1: высокое фото «не моё» слева, справа колонкой две «мои» 602:498 — их и открывает шторка */
-.pp-1 .pp-media{grid-template-columns:1.12fr 1fr;column-gap:12px;width:min(100%,calc((var(--h) - 10px - 2 * var(--cap)) * 1.2814 + 12px))}
-.pp-1 .pf-tall .im{flex:1 1 0;min-height:0;aspect-ratio:auto}
-.pcol{display:grid;gap:10px;align-content:start}
-/* 2: «до» и «снято» в ряд, «после» во всю ширину; все 960:424. «После» не шире 600 css — иначе на ретине мыло */
-.pp-2 .pp-media{grid-template-columns:1fr 1fr;width:min(100%,600px,calc((var(--h) - 2 * var(--cap) - 7.35px) * 1.5094))}
-.pp-2 .pf-wide{grid-column:1/3}
-/* 3: «до» 360×333 и «после» 222×420, стоят на одной линии подписей. «До» — 600 px исходника: шире 360 css на ретине мыло */
-.pp-3 .pp-media{grid-template-columns:360fr 222fr;align-items:end;width:min(100%,594px,calc((var(--h) - var(--cap)) * 1.3905 + 12px))}
-/* 4: кадры «до» и «после» совмещены — одно сравнение со шторкой */
-.pp-4 .pp-media{display:block;width:min(100%,calc(var(--h) * 2.006))}
-.pp-txt{padding-top:20px;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 28px}
-.pp-line{max-width:25em;text-wrap:pretty;font:italic 300 24px/1.28 var(--serif)}
-.pp-acc{font:italic 400 20px/1.3 var(--serif);color:var(--cherry);white-space:nowrap}
-
-/* шторка «после» идёт справа налево: открыто то, что правее линии. Не от прокрутки, а по времени — один ход 1 100 мс,
-   когда карточка легла: «работа не моя → моя» читается отдельным ударом. Карточка улетела обратно — шторка закрыта */
-.cur-t{position:relative}
-html.p-stack .cur-t{clip-path:inset(0 0 0 100%)}
-html.p-stack .cur-t.open{clip-path:inset(0 0 0 0%);transition:clip-path 1.1s cubic-bezier(.65,0,.35,1)}
-html.p-stack .cur-t::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;transform:translateX(100%);opacity:0;
-  background:linear-gradient(90deg,rgba(30,28,26,.22) 0 1px,var(--milk) 1px 2px,transparent 2px)}
-html.p-stack .cur-t.open::after{animation:cur-line 1.1s cubic-bezier(.65,0,.35,1) both}
-@keyframes cur-line{0%{transform:translateX(100%);opacity:1}90%{opacity:1}100%{transform:translateX(0%);opacity:0}}
+.pp-media{width:100%;margin:0}
+.pp-media>img{width:100%;height:auto;aspect-ratio:var(--ar);object-fit:contain}
+.pp-txt{min-width:0}
+.pp-t{font:300 clamp(24px,1.95vw,28px)/1.1 var(--serif);letter-spacing:-.005em;text-wrap:balance}
+.pp-line{margin-top:16px;font:400 16px/1.55 var(--sans);text-wrap:pretty}
+.pp-acc{display:block;margin-top:8px;font:italic 400 22px/1.25 var(--serif);color:var(--cherry)}
+/* 4: «до» и «после» совмещены в одно сравнение со шторкой — кадр широкий, поэтому он сверху, а заголовок и текст под ним в две колонки */
+.pp-4{--ar:1280/638;--h:calc(var(--hc) - 150px);grid-template-columns:minmax(0,1fr);justify-items:center}
+.pp-4 .pp-media{width:min(100%,calc(var(--h) * var(--ar)))}
+.pp-4 .pp-txt{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);column-gap:32px;align-items:start;width:100%}
+.pp-4 .pp-line{margin-top:2px}
 
 /* сравнение «до / после» на одном кадре: линия идёт за курсором, на телефоне её тянут пальцем */
 /* покой — линия у левого края (14%, но не уже 52 px — помещается плашка «до»): «после» видно целиком, «до» открывают сами */
-.cmp{position:relative;margin:0;overflow:hidden;aspect-ratio:1280/638;background:#2A2725;--x:max(14%,52px);touch-action:pan-y;-webkit-user-select:none;user-select:none}
+.cmp{position:relative;margin:0;overflow:hidden;aspect-ratio:var(--ar);background:#2A2725;--x:max(14%,52px);touch-action:pan-y;-webkit-user-select:none;user-select:none}
 .cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-user-drag:none}
 .cmp-b{position:absolute;inset:0;clip-path:inset(0 0 0 var(--x))}
 .cmp-ln{position:absolute;inset:0;transform:translateX(var(--x));pointer-events:none}
@@ -355,10 +327,9 @@ html.p-stack .ptab,html.p-stack .pd-c,html.p-stack .pptr{transition:none}
 /* панель прайса наезжает на стоящий кадр и закрывает его целиком — кадр не уезжает бледным «призраком» */
 html.p-stack .prob + .price{margin-top:-100svh;box-shadow:0 -28px 60px rgba(30,28,26,.16)}
 @media (min-width:1101px) and (max-height:820px){
-  .pnum{font-size:min(20vw,25vh)}
-  .ptab{min-height:50px;padding:11px 0 10px}
-  .pptr{height:50px}
-  .ptabs{margin-top:28px}
+  .ptab{min-height:46px;padding:10px 0 9px}
+  .ptab .t{font-size:20px}
+  .ptabs{margin-top:24px}
 }
 
 /* ================= ПРАЙС ================= */
@@ -422,39 +393,36 @@ html.p-stack .prob + .price{margin-top:-100svh;box-shadow:0 -28px 60px rgba(30,2
   .ig:hover::after{animation:uline .7s var(--e-out)}
 }
 @keyframes uline{0%{transform:scaleX(1);transform-origin:100% 50%}45%{transform:scaleX(0);transform-origin:100% 50%}46%{transform:scaleX(0);transform-origin:0 50%}100%{transform:scaleX(1);transform-origin:0 50%}}
-/* отзывы — письма стопкой */
+/* отзывы — оригинальные скриншоты стопкой: лист = скриншот целиком на молочной бумаге */
 .voices{margin-top:64px;scroll-margin-top:40px;transform-origin:50% 0}
 .voices-k{text-align:center;color:var(--ink-3)}
-/* цитата — слой под стопкой писем: крупная, стопка заходит на её вторую строку */
+/* цитата — слой под стопкой: крупная, стопка заходит на её вторую строку */
 .voices-q{--q:clamp(40px,5.7vw,84px);margin:16px auto 0;padding:0 var(--pad);text-align:center;font:italic 300 var(--q)/1.12 var(--serif);letter-spacing:-.005em;color:var(--milk);white-space:nowrap}
-.letters-w{position:relative;z-index:1;width:min(560px,calc(100% - 2 * var(--pad) - 20px));margin:36px auto 0}
+/* скриншот не шире 500 css — это исходник ÷ 1,5 у самого узкого (762 px); выше 440 css не растёт */
+.letters-w{position:relative;z-index:1;width:min(528px,calc(100% - 2 * var(--pad) - 20px));margin:36px auto 0}
 /* наслоение — только когда стопку ведёт прокрутка (html.m-on ставит скрипт вместе с привязками): без движения цитата читается целиком */
 @media (min-width:761px){ html.m-on .letters-w{margin-top:calc(clamp(40px,5.7vw,84px) * -.42)} }
-.letters{position:relative;display:grid;touch-action:pan-y;outline-offset:8px;--tilt:0deg;--tilt2:0deg}
-.ltr{grid-area:1/1;display:flex;min-width:0;transform-origin:50% 85%;transition:transform .5s var(--e-out),opacity .5s var(--e-out)}
+/* листы разной высоты лежат в одной ячейке по центру: место под стопку держит самый высокий, при смене листа ничего не прыгает.
+   Размер листа задан пропорцией скриншота (--ar), а не самим файлом: место занято до загрузки картинок */
+.letters{position:relative;display:grid;place-items:center;touch-action:pan-y;outline-offset:8px;-webkit-user-select:none;user-select:none;--tilt:0deg;--tilt2:0deg;--mh:440px;--lp:14px}
+.ltr{grid-area:1/1;width:min(100%,calc(var(--mh) * var(--ar) + 2 * var(--lp)));margin:0;transform-origin:50% 85%;transition:transform .5s var(--e-out),opacity .5s var(--e-out)}
 html:not(.js) .letters{gap:20px}
 html:not(.js) .ltr{grid-area:auto}
-.ltr-in{flex:1;display:flex;flex-direction:column;background:var(--milk);color:var(--graphite);border-radius:4px;padding:44px 44px 12px;
+.ltr-in{position:relative;display:block;padding:var(--lp);background:var(--milk);border-radius:4px;
   box-shadow:0 1px 0 rgba(0,0,0,.25),0 26px 50px -18px rgba(0,0,0,.6)}
-.ltr-in{transform:rotate(var(--tilt2))}            /* нижние письма от прокрутки поворачиваются в противоход верхнему */
-.letters.swap .ltr-in{transition:transform .5s var(--e-out)}   /* смена письма: наклон переходит плавно, а не скачком */
+.ltr-in{transform:rotate(var(--tilt2))}            /* нижние листы от прокрутки поворачиваются в противоход верхнему */
+.letters.swap .ltr-in{transition:transform .5s var(--e-out)}   /* смена листа: наклон переходит плавно, а не скачком */
 .ltr.is-top .ltr-in{transform:rotate(var(--tilt))}
-.ltr-body{display:grid;margin:auto 0}
-.ltr .ex{grid-area:1/1;align-self:center;font:italic 300 clamp(24px,2.1vw,30px)/1.22 var(--serif);letter-spacing:-.003em;transition:opacity .35s var(--e-out),visibility 0s linear .35s}
-.ltr .ex .hl{font-style:inherit;color:var(--cherry)}
-.ltr .full{grid-area:1/1;align-self:center;font-size:16px;line-height:1.6;opacity:0;visibility:hidden;transition:opacity .35s var(--e-out),visibility 0s linear .35s}
-.ltr .full mark{background:none;color:inherit;text-decoration:underline;text-decoration-color:var(--cherry);text-decoration-thickness:1.5px;text-underline-offset:5px}
-.ltr.open .ex{opacity:0;visibility:hidden}
-.ltr.open .full{opacity:1;visibility:visible;transition:opacity .5s var(--e-out) .08s,visibility 0s}
-.l-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:0 16px;min-height:52px;margin-top:22px;border-top:1px solid var(--line);padding-top:4px}
-.who{display:flex;align-items:center;gap:12px;min-height:44px}
-.stars{color:var(--cherry);letter-spacing:.18em;font-size:14px}
-.more{appearance:none;-webkit-appearance:none;background:none;border:0;min-height:44px;padding:0;margin-left:auto;white-space:nowrap;cursor:pointer;font:500 15px/1.2 var(--sans);color:var(--graphite);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
-.more:hover{text-decoration-thickness:2px}
+.ltr img{width:100%;height:auto;aspect-ratio:var(--ar);object-fit:contain;border-radius:2px;-webkit-user-drag:none}
+/* листы под верхним закрыты тёмной бумагой: читается один отзыв, чужой текст из-под короткого листа не выглядывает.
+   Лист лёг сверху — бумага растворяется, скриншот проявляется */
+.ltr-in::after{content:"";position:absolute;inset:0;border-radius:inherit;background:#4B4641;pointer-events:none;transition:opacity .5s var(--e-out)}
+.ltr.is-top .ltr-in::after{opacity:0}
+html:not(.js) .ltr-in::after{content:none}
 .revs-ctrl{display:flex;align-items:center;justify-content:center;gap:22px;margin-top:34px}
-.round{width:48px;height:48px;border-radius:50%;border:1px solid rgba(251,250,247,.4);background:transparent;cursor:pointer;font:400 18px/1 var(--sans);display:grid;place-items:center;color:var(--milk);
+.round{width:48px;height:48px;border-radius:50%;border:1px solid rgba(251,250,247,.4);background:transparent;cursor:pointer;font:400 18px/1 var(--sans);display:grid;place-items:center;color:var(--milk);-webkit-tap-highlight-color:transparent;
   transition:background-color .35s var(--e-out),color .35s var(--e-out),border-color .35s var(--e-out),transform .12s var(--e-out)}
-.round:hover{background:var(--milk);color:var(--graphite);border-color:var(--milk)}
+@media (hover:hover){ .round:hover{background:var(--milk);color:var(--graphite);border-color:var(--milk)} }   /* на телефоне заливка не залипает после тапа */
 .round:active{transform:scale(.94)}
 .count{display:flex;align-items:baseline;gap:8px;min-width:3.4em;justify-content:center;font-variant-numeric:lining-nums}
 .count .cn{display:inline-block;height:1em;overflow:hidden;font:300 44px/1 var(--serif);font-variant-numeric:lining-nums}
@@ -478,8 +446,6 @@ html:not(.js) .ltr{grid-area:auto}
 .ct-list dt{font:400 12px/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(251,250,247,.66)}
 .ct-list dd{margin:6px 0 0;font:300 24px/1.2 var(--serif);font-variant-numeric:lining-nums}
 .ct-list dd a{text-decoration:none;border-bottom:1px solid rgba(251,250,247,.45)}
-.ct-list dd .ph{font-size:15px;letter-spacing:.04em}
-.ct-list .near{display:block;margin-top:6px;font:400 12px/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:rgba(251,250,247,.66)}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .tags span{font:400 11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;border:1px solid rgba(251,250,247,.36);border-radius:999px;white-space:nowrap}
 /* карта — снимки Яндекс Карт (Static API): живой виджет вешал рекламу в карту на любой ширине. Тёмная, своя метка-печать,
@@ -530,26 +496,31 @@ html:not(.js) .ltr{grid-area:auto}
   .prob-left{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;column-gap:16px}
   .prob-left .h2{grid-column:1;grid-row:1}
   .pnum{grid-column:2;grid-row:1;margin:0 -.04em -.17em 0;padding:0;font-size:clamp(96px,30vw,190px)}
-  /* вкладки — чипсы в горизонтальной прокрутке */
-  .ptabs{grid-column:1/-1;grid-row:2;display:flex;gap:8px;margin:22px calc(var(--pad) * -1) 0;padding:6px var(--pad);border:0;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none}
-  .ptabs::-webkit-scrollbar{display:none}
+  /* вкладки — кружки с номерами: её заголовки длинные, целиком стоят в самой карточке (в кружке заголовок остаётся для скринридера) */
+  .ptabs{grid-column:1/-1;grid-row:2;display:flex;gap:8px;margin:22px 0 0;border:0}
   .pptr{display:none}
-  .ptab{flex:none;width:auto;min-height:44px;align-items:center;padding:0 17px;border:1px solid rgba(30,28,26,.32);border-radius:999px;white-space:nowrap;opacity:1}
-  .ptab .n{display:none}
-  .ptab .t{font:500 14px/1 var(--sans)}
+  .ptab{position:relative;flex:none;align-items:center;justify-content:center;width:auto;min-width:56px;min-height:44px;padding:0 16px;border:1px solid rgba(30,28,26,.32);border-radius:999px;opacity:1}
+  .ptab .n{font-size:13px;letter-spacing:.1em}
+  .ptab .t{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
   .ptab.cur{background:var(--graphite);border-color:var(--graphite);color:var(--milk)}
+  .ptab.cur .n{color:inherit}
   .pstage{width:min(100%,520px);justify-self:center}
-  .pp{padding:16px;--h:9999px;min-height:0}
-  .pp-txt{flex-direction:column;align-items:flex-start;flex-wrap:nowrap;gap:4px;padding-top:14px}
-  .pp-line{font-size:19px;line-height:1.3}
-  .pp-acc{font-size:17px}
+  /* одна колонка: коллаж во всю ширину карточки, заголовок и текст под ним. Высота у каждой карточки своя — по её картинке
+     и тексту: под коротким текстом не остаётся пустой бумаги. В стопке низ карточки, что длиннее лёгшей сверху, прячет скрипт */
+  .pp,.pp-4{grid-template-columns:minmax(0,1fr);gap:14px;justify-items:center;align-self:start;align-content:start;padding:16px;--h:9999px}
+  .pp-media{width:min(100%,calc(var(--h) * var(--ar)))}
+  .pp-txt,.pp-4 .pp-txt{display:block;width:100%}
+  .pp-t{font-size:26px}
+  .pp-line,.pp-4 .pp-line{margin-top:10px}
+  .pp-acc{font-size:20px;margin-top:6px}
   html.p-stack .prob{--pin:80svh}
   /* между заголовком и карточкой — место под края двух нижних карточек стопки (−18 и −32 px, с поворотом ещё ±5) */
   html.p-stack .prob-in{grid-template-rows:auto minmax(0,1fr);row-gap:40px;padding:28px var(--pad) calc(var(--bar) + 16px)}
-  html.p-stack .pstage{align-self:start}   /* карточка — сразу под заголовком; запас высоты снизу, там выглядывает следующая */
+  html.p-stack .pstage{align-self:start}   /* карточка — сразу под заголовком */
   html.p-stack .ptabs{display:none}
-  /* в закреплённом кадре карточка обязана поместиться между заголовком и нижней панелью: фото ужимаются под высоту окна */
-  html.p-stack .pp{--h:max(200px,calc(100svh - 455px))}
+  /* в закреплённом кадре карточка обязана поместиться между заголовком и нижней панелью: картинка ужимается под высоту окна.
+     Точное число каждой карточке ставит скрипт; это — запас до его первого замера */
+  html.p-stack .pp{--h:max(140px,calc(100svh - 560px))}
 
   .price-grid{grid-template-columns:minmax(0,1fr);row-gap:56px;justify-items:center;padding-left:0}
   .receipt-wrap{max-width:470px}
@@ -559,9 +530,7 @@ html:not(.js) .ltr{grid-area:auto}
   .map{grid-column:1/-1}
 }
 @media (min-width:1101px){
-  .pstage{width:min(100%,800px);justify-self:end}
-  .pp-line{flex:1 1 0;min-width:0}   /* строка решения уступает место курсиву-акценту справа, а не сбрасывает его на третью строку */
-  .pp-t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;margin:0}
+  .pstage{justify-self:end}
 }
 /* тач-цели ≥ 44 px на планшетах и любых сенсорных экранах */
 @media (hover:none),(max-width:1100px){
@@ -580,9 +549,14 @@ html:not(.js) .ltr{grid-area:auto}
   .brand .seal{width:36px;height:36px}
   .top-cta{display:none}
   .switch a{height:36px;padding:0 13px;font-size:11px;letter-spacing:.08em}
-  /* на телефоне первый экран — её видео: красный квадрат с кольцом. Блик по ногтям рисовался под макро-фото и здесь выключен */
-  .hero-media{height:clamp(300px,calc(100svh - var(--head) - 250px),640px);--pos:50% 58%;background:#9498A0}
+  /* на телефоне первый экран — её видео: рука с жемчужным кольцом. Блик по ногтям рисовался под макро-фото и здесь выключен.
+     Ролик 9:16 во всю ширину (высота 177,78vw) и прижат низом к низу рамки: пальцы с ногтями и кольцо стоят над словом.
+     На низком экране рамка короче — тогда кадр встаёт так, чтобы верхний ноготь (36% высоты ролика = 64vw) был на 52 px
+     ниже края рамки, под плашкой. Низ кадра уходит в цвет фона: тёмные складки ткани не спорят с графитовым словом */
+  .hero-media{--f:clamp(300px,calc(100svh - var(--head) - 250px),640px);height:var(--f);
+    --pos:50% min(0px,max(calc(var(--f) - 177.78vw),calc(52px - 64vw)));background:#7C6D5E}
   .hero-video{display:block;position:absolute;inset:0}
+  .hero-media::after{content:"";position:absolute;inset:auto 0 0;height:30%;pointer-events:none;background:linear-gradient(to top,var(--bone) 4%,rgba(242,239,234,.82) 26%,rgba(242,239,234,0))}
   .gloss{display:none}
   .hero-title{font-size:22.5vw;margin-top:-.52em}
   .word-mani{font-weight:400;letter-spacing:-.02em}
@@ -604,13 +578,14 @@ html:not(.js) .ltr{grid-area:auto}
 
   .h2{font-size:clamp(32px,9.4vw,40px)}
   .prob-in{padding:60px var(--pad) 64px;row-gap:18px}
-  .pp{--cap:21px}
-  html.p-stack .prob-in{row-gap:36px}
-  html.p-stack .pp{--h:max(190px,calc(100svh - 450px))}
-  .pp-t{font-size:26px;margin-bottom:12px}
-  .pp-media{gap:8px 10px}
-  .pf figcaption{padding-top:6px;font-size:10.5px;letter-spacing:.08em}
-  .pp-line{font-size:18px}
+  /* закреплённый кадр на низком экране (Safari с панелями — около 660 px): номер, верхнее поле и заголовок карточки
+     ужимаются от высоты окна (svh — режим не скачет, когда панели прячутся), всё освободившееся место — картинке */
+  html.p-stack .prob-in{row-gap:32px;padding-top:clamp(12px,calc(100svh * .15 - 88px),24px);padding-bottom:calc(var(--bar) + 12px)}
+  html.p-stack .pnum{font-size:clamp(76px,calc(100svh - 580px),30vw)}
+  html.p-stack .pp-t{font-size:clamp(21px,calc(100svh * .13 - 65px),24px)}
+  .pp,.pp-4{gap:12px;padding:14px}
+  .pp-t{font-size:24px}
+  .pp-line,.pp-4 .pp-line{margin-top:8px;font-size:15px;line-height:1.5}
 
   .price-in{padding:64px var(--pad) 72px}
   .price-word{font-size:22vw;letter-spacing:.04em}
@@ -633,13 +608,8 @@ html:not(.js) .ltr{grid-area:auto}
   .ig{align-self:flex-start}
   .voices{margin-top:56px}
   .voices-q{font-size:clamp(24px,6.9vw,28px);white-space:normal}
-  .letters-w{width:min(342px,calc(100% - 2 * var(--pad) - 16px));margin-top:36px}
-  .ltr-in{padding:30px 22px 6px}
-  .ltr .ex{font-size:clamp(22px,6.4vw,25px)}
-  .ltr .full{font-size:15px;line-height:1.55}
-  .who{gap:8px}
-  .stars{font-size:12px;letter-spacing:.08em}
-  .l-foot{column-gap:10px;margin-top:16px}
+  .letters-w{width:min(420px,calc(100% - 2 * var(--pad)));margin-top:36px}   /* скриншот — на ширину листа */
+  .letters{--mh:9999px;--lp:8px}
   .revs-ctrl{gap:16px;margin-top:28px}
   .count .cn{font-size:40px}
 
@@ -658,9 +628,8 @@ html:not(.js) .ltr{grid-area:auto}
 /* телефон: сравнение в четвёртой карточке — кадр 4:3 вместо 2:1. Крупнее сам ноготь и меньше пустой бумаги под ним;
    исходник 1280×638 при высоте до 275 css — увеличение не больше 1,3 на тройной плотности */
 @media (max-width:480px){
-  .cmp{aspect-ratio:4/3}
+  .pp-4{--ar:4/3}
   .cmp img{object-position:40% 50%}
-  .pp-4 .pp-media{width:min(100%,calc(var(--h) * 1.333))}
 }
 /* узкие телефоны: слова знака в две строки, чтобы влез переключатель */
 @media (max-width:380px){
@@ -669,14 +638,15 @@ html:not(.js) .ltr{grid-area:auto}
 }
 @media (max-width:360px){
   .switch a{padding:0 11px}
-  .seal--hero{width:60px;height:60px;top:64px}
+  .seal--hero{width:52px;height:52px;top:52px}   /* под плашкой и выше кольца на видео */
   .bar .bl{display:none}
   .bar .m b{font-size:24px}
   /* заголовок проблем остаётся в две строки рядом с номером */
   .prob-left .h2{font-size:28px}
   .pnum{font-size:25vw}
-  .pp-1 .pp-media{column-gap:8px}
-  .ltr-in{padding:26px 18px 6px}
+  html.p-stack .pnum{font-size:clamp(64px,calc(100svh - 580px),25vw)}
+  .pp,.pp-4{padding:12px}
+  .pp-t{font-size:22px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -704,29 +674,29 @@ html:not(.js) .ltr{grid-area:auto}
   <nav class="switch" aria-label="Направление">
     <a href="../manikur/" aria-current="page">Маникюр</a><a href="../obuchenie/">Обучение</a>
   </nav>
-  <a class="top-cta" href="#zapis" data-act="book">Записаться</a>
+  <a class="top-cta" href="https://dikidi.app/1451962" target="_blank" rel="noopener">Записаться</a>
 </header>
 
 <main>
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
-  <!-- ≤760 px: поверх постера играет её видео (красный квадрат с кольцом); шире — макро-фото: вертикальное видео 720 px там было бы мылом.
+  <!-- ≤760 px: поверх постера играет её видео (рука с жемчужным кольцом на бежевой ткани); шире — макро-фото: вертикальное видео там было бы мылом.
        Источник видео выбирается по media: на широком экране и при reduced-motion файл не грузится, остаётся постер.
-       Ролик обрезан: первые 4,5 с исходника не в фокусе (камера ещё ловит резкость). Постер — первый кадр обрезанного файла;
+       Ролик 12,8 с закольцован «туда-обратно» в самом файле и играет с нуля. Постер — его первый кадр;
        его же видят без автоплея — iPhone в энергосбережении.
        Фото для ноутбука: исходник 1280 px (сжат Телеграмом), на ретине он растянут в 1,7 раза. Третий кандидат 2200w — тот же кадр,
        увеличенный заранее (Lanczos + лёгкая резкость): чётче, чем тянет браузер. Когда будет оригинал файлом — заменить его -->
   <figure class="hero-media">
     <picture>
-      <source media="(max-width:760px)" srcset="../../shared/img/hero-cherry-poster.webp" width="720" height="1280">
+      <source media="(max-width:760px)" srcset="../../shared/img/hero-pearl-poster.webp" width="1080" height="1920">
       <img class="hero-img" src="../../shared/img/w09-macro-french.webp"
            srcset="../../shared/img/w09-macro-french-sm.webp 640w, ../../shared/img/w09-macro-french.webp 1280w, ../../shared/img/w09-macro-french-2x.webp 2200w"
            sizes="(max-width:1100px) 100vw, min(1100px, 76vw)"
            width="1280" height="1040" fetchpriority="high" decoding="async"
            alt="Квадратные ногти с глянцевым покрытием крупным планом">
     </picture>
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="../../shared/img/hero-cherry-poster.webp" width="720" height="1280" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback>
-      <source src="../../shared/video/hero-cherry-trim.mp4" type="video/mp4" media="(max-width:760px) and (prefers-reduced-motion:no-preference)">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="../../shared/img/hero-pearl-poster.webp" width="1080" height="1920" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback>
+      <source src="../../shared/video/hero-pearl.mp4" type="video/mp4" media="(max-width:760px) and (prefers-reduced-motion:no-preference)">
     </video>
     <div class="gloss" aria-hidden="true">
       <div class="gloss-sheen"></div>
@@ -742,7 +712,7 @@ html:not(.js) .ltr{grid-area:auto}
         <span class="price-num">3&nbsp;700&nbsp;₽</span>
         <p class="price-meta"><span class="inc">всё включено</span><span class="fr">френч + 500&nbsp;₽</span></p>
       </div>
-      <a class="btn btn-dark" href="#zapis" id="hero-cta" data-act="book"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Записаться онлайн <span class="arr" aria-hidden="true">→</span></span></span></a>
+      <a class="btn btn-dark" href="https://dikidi.app/1451962" target="_blank" rel="noopener" id="hero-cta"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Записаться онлайн <span class="arr" aria-hidden="true">→</span></span></span></a>
     </div>
     <h1 class="hero-title">
       <span class="word-mani gl" id="word-mani"><span class="ch">М</span><span class="ch">а</span><span class="ch">н</span><span class="ch">и</span><span class="ch">к</span><span class="ch">ю</span><span class="ch">р</span><span class="caret" aria-hidden="true"></span></span>
@@ -863,61 +833,54 @@ html:not(.js) .ltr{grid-area:auto}
 })();
 </script>
 
-<!-- ================= КАКИЕ ПРОБЛЕМЫ Я РЕШАЮ ================= -->
-<!-- Без движения — вкладки (список и одна карточка). С движением — стопка: кадр закреплён на 0,8 экрана, карточки наезжают одна на другую -->
+<!-- ================= КАКИЕ ПРОБЛЕМЫ Я МОГУ РЕШИТЬ ================= -->
+<!-- Заголовки и тексты карточек — слова Дарии, дословно. Коллажи 01–03 — её картинки целиком, подписи на них её.
+     Без движения — вкладки (список и одна карточка). С движением — стопка: кадр закреплён, карточки наезжают одна на другую -->
 <section class="prob panel" id="problemy" aria-labelledby="prob-h">
   <div class="prob-frame">
     <div class="prob-in">
       <div class="prob-left">
-        <h2 class="h2" id="prob-h"><span class="ml"><span>Какие проблемы</span></span><span class="ml"><span>я&nbsp;решаю</span></span></h2>
+        <h2 class="h2" id="prob-h"><span class="ml"><span>Какие проблемы</span></span><span class="ml"><span>я&nbsp;могу решить?</span></span></h2>
         <div class="ptabs" id="ptabs" role="tablist" aria-labelledby="prob-h" aria-orientation="vertical">
           <span class="pptr" id="pptr" aria-hidden="true"></span>
-          <button class="ptab cur" type="button" role="tab" id="pt1" aria-controls="pp1" aria-selected="true"><span class="n" aria-hidden="true">01</span><span class="t">Расклешённый квадрат</span></button>
-          <button class="ptab" type="button" role="tab" id="pt2" aria-controls="pp2" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">02</span><span class="t">Отслойки от&nbsp;торца</span></button>
-          <button class="ptab" type="button" role="tab" id="pt3" aria-controls="pp3" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">03</span><span class="t">Отслойки у&nbsp;кутикулы</span></button>
-          <button class="ptab" type="button" role="tab" id="pt4" aria-controls="pp4" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">04</span><span class="t">Клюющие ногти</span></button>
+          <button class="ptab cur" type="button" role="tab" id="pt1" aria-controls="pp1" aria-selected="true"><span class="n" aria-hidden="true">01</span><span class="t">Форма квадрат не&nbsp;будет расклешённой</span></button>
+          <button class="ptab" type="button" role="tab" id="pt2" aria-controls="pp2" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">02</span><span class="t">Покрытие будет носиться без&nbsp;отслоек от&nbsp;торца</span></button>
+          <button class="ptab" type="button" role="tab" id="pt3" aria-controls="pp3" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">03</span><span class="t">Покрытие будет носиться без&nbsp;отслоек у&nbsp;кутикулы</span></button>
+          <button class="ptab" type="button" role="tab" id="pt4" aria-controls="pp4" aria-selected="false" tabindex="-1"><span class="n" aria-hidden="true">04</span><span class="t">Поднятие клюющих ногтей</span></button>
         </div>
         <p class="pnum" aria-hidden="true"><span class="pnum-in"><span class="pd">0</span><span class="pd"><span class="pd-c" id="pd-c"><b>1</b><b>2</b><b>3</b><b>4</b></span></span></span></p>
       </div>
 
       <div class="pstage" id="pstage">
-        <div class="pp pp-1 on" id="pp1" role="tabpanel" aria-labelledby="pt1">
+        <div class="pp on" id="pp1" role="tabpanel" aria-labelledby="pt1" style="--ar:1206/1201">
           <i class="veil" aria-hidden="true"></i>
-          <h3 class="pp-t">Расклешённый квадрат</h3>
-          <div class="pp-media">
-            <figure class="pf pf-tall"><span class="im"><img src="../../shared/img/pr1-other.webp" width="601" height="946" loading="lazy" decoding="async" alt="Чужая работа: квадрат расходится к свободному краю"></span><figcaption>работа не&nbsp;моя</figcaption></figure>
-            <div class="pcol cur-t">
-              <figure class="pf"><span class="im" style="--ar:602/498"><img src="../../shared/img/pr1-before.webp" width="602" height="510" loading="lazy" decoding="async" alt="Моя работа сразу после процедуры: ровные боковые параллели"></span><figcaption>моя работа&nbsp;— сразу</figcaption></figure>
-              <figure class="pf"><span class="im" style="--ar:602/498"><img src="../../shared/img/pr1-after.webp" width="602" height="486" loading="lazy" decoding="async" alt="Та же работа после носки: ноготь отрос, параллели остались ровными"></span><figcaption>моя работа&nbsp;— после носки</figcaption></figure>
-            </div>
+          <figure class="pp-media"><img src="../../shared/img/pc1.webp" width="1206" height="1201" loading="lazy" decoding="async" alt="Коллаж. Слева чужая работа, подпись «работа не моя»: квадрат расходится к свободному краю. Справа две мои работы, «до» и «после»: боковые параллели ровные"></figure>
+          <div class="pp-txt">
+            <h3 class="pp-t">Форма квадрат не&nbsp;будет расклешённой</h3>
+            <p class="pp-line">Ваша форма квадрат будет с&nbsp;идеально ровными боковыми параллелями, которые не&nbsp;будут уходить в&nbsp;трапецию и&nbsp;выглядеть расклешёнными</p>
           </div>
-          <div class="pp-txt"><p class="pp-line">Боковые параллели идеально ровные&nbsp;— квадрат не&nbsp;уходит в&nbsp;трапецию и&nbsp;не&nbsp;выглядит расклешённым</p></div>
         </div>
 
-        <div class="pp pp-2" id="pp2" role="tabpanel" aria-labelledby="pt2" aria-hidden="true" inert>
+        <div class="pp" id="pp2" role="tabpanel" aria-labelledby="pt2" aria-hidden="true" inert style="--ar:960/1280">
           <i class="veil" aria-hidden="true"></i>
-          <h3 class="pp-t">Отслойки от&nbsp;торца</h3>
-          <div class="pp-media">
-            <figure class="pf"><span class="im" style="--ar:960/424"><img src="../../shared/img/pr2-before.webp" width="960" height="424" loading="lazy" decoding="async" alt="Ногти со старым покрытием"></span><figcaption>до</figcaption></figure>
-            <figure class="pf"><span class="im" style="--ar:960/424"><img src="../../shared/img/pr2-mid.webp" width="960" height="423" loading="lazy" decoding="async" alt="Покрытие снято, натуральные ногти"></span><figcaption>снято</figcaption></figure>
-            <figure class="pf pf-wide cur-t"><span class="im" style="--ar:960/424"><img src="../../shared/img/pr2-after.webp" width="960" height="425" loading="lazy" decoding="async" alt="Новое покрытие: ровный квадрат с чистым торцом"></span><figcaption>после</figcaption></figure>
+          <figure class="pp-media"><img src="../../shared/img/pc2.webp" width="960" height="1280" loading="lazy" decoding="async" alt="Коллаж из трёх кадров одной руки: старое покрытие, покрытие снято, новое покрытие с ровным торцом"></figure>
+          <div class="pp-txt">
+            <h3 class="pp-t">Покрытие будет носиться без&nbsp;отслоек от&nbsp;торца</h3>
+            <p class="pp-line">Работа с&nbsp;гелем позволяет выпилить кончик натурального ногтя изнутри, именно поэтому не&nbsp;будет бесконечных отслоек от&nbsp;торца. <em class="pp-acc">Нет ногтя&nbsp;— нет проблем!</em></p>
           </div>
-          <div class="pp-txt"><p class="pp-line">Выпиливаю кончик натурального ногтя изнутри&nbsp;— покрытию не&nbsp;от&nbsp;чего отслаиваться</p><p class="pp-acc">Нет ногтя&nbsp;— нет проблем!</p></div>
         </div>
 
-        <div class="pp pp-3" id="pp3" role="tabpanel" aria-labelledby="pt3" aria-hidden="true" inert>
+        <div class="pp" id="pp3" role="tabpanel" aria-labelledby="pt3" aria-hidden="true" inert style="--ar:1206/1200">
           <i class="veil" aria-hidden="true"></i>
-          <h3 class="pp-t">Отслойки у&nbsp;кутикулы</h3>
-          <div class="pp-media">
-            <figure class="pf"><span class="im" style="--ar:601/555"><img src="../../shared/img/pr3-before.webp" width="601" height="555" loading="lazy" decoding="async" alt="Чужая работа: отслойка покрытия у кутикулы"></span><figcaption>«до»&nbsp;— работа не&nbsp;моя</figcaption></figure>
-            <figure class="pf cur-t"><span class="im" style="--ar:602/1135"><img src="../../shared/img/pr3-after.webp" width="602" height="1135" loading="lazy" decoding="async" alt="Красное покрытие вплотную к кутикуле, без ступеньки"></span><figcaption>после</figcaption></figure>
+          <figure class="pp-media"><img src="../../shared/img/pc3.webp" width="1206" height="1200" loading="lazy" decoding="async" alt="Коллаж. Слева вверху чужая работа, подпись «до, работа не моя»: отслойка покрытия у кутикулы обведена. Остальные кадры — «после»: красное покрытие вплотную к кутикуле, без ступеньки"></figure>
+          <div class="pp-txt">
+            <h3 class="pp-t">Покрытие будет носиться без&nbsp;отслоек у&nbsp;кутикулы</h3>
+            <p class="pp-line">Благодаря знаниям, правильным техникам и&nbsp;материалам я&nbsp;знаю, как избежать отслоек от&nbsp;кутикулы. А&nbsp;самое главное&nbsp;— отрастание вашего покрытия будет плавным, без&nbsp;ступеньки</p>
           </div>
-          <div class="pp-txt"><p class="pp-line">Покрытие отрастает плавно, без&nbsp;ступеньки</p></div>
         </div>
 
         <div class="pp pp-4" id="pp4" role="tabpanel" aria-labelledby="pt4" aria-hidden="true" inert>
           <i class="veil" aria-hidden="true"></i>
-          <h3 class="pp-t">Клюющие ногти</h3>
           <div class="pp-media">
             <figure class="cmp" id="cmp">
               <img src="../../shared/img/pr4-before.webp" width="1280" height="638" loading="lazy" decoding="async" draggable="false" alt="До: ноготь сбоку растёт вниз, клюёт">
@@ -925,7 +888,10 @@ html:not(.js) .ltr{grid-area:auto}
               <figcaption class="cmp-ln"><i class="l">до</i><span class="grip" aria-hidden="true">↔</span><i class="r">после</i></figcaption>
             </figure>
           </div>
-          <div class="pp-txt"><p class="pp-line">Поднимаю ноготь, который растёт вниз,&nbsp;— покрытие его не&nbsp;перетягивает, нет трещин и&nbsp;отслоек</p></div>
+          <div class="pp-txt">
+            <h3 class="pp-t">Поднятие клюющих ногтей</h3>
+            <p class="pp-line">Прямые и&nbsp;ровные ногти&nbsp;— это не&nbsp;только про&nbsp;красоту и&nbsp;эстетику, но&nbsp;и&nbsp;гарантия качественной носки. Ведь если поднять вниз растущий ноготь, покрытие не&nbsp;будет перетягивать вниз, тем самым не&nbsp;будет трещин в&nbsp;точках вроста и&nbsp;отслоек у&nbsp;кутикулы</p>
+          </div>
         </div>
       </div>
     </div>
@@ -953,7 +919,7 @@ html:not(.js) .ltr{grid-area:auto}
           </ul>
           <p class="r-total"><span class="eyebrow">Итог</span><span class="r-sum" id="r-sum">3&nbsp;700&nbsp;₽</span></p>
           <p class="r-fr">френч + 500&nbsp;₽</p>
-          <a class="btn btn-dark" href="#zapis" data-act="book"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Записаться <span class="arr" aria-hidden="true">→</span></span></span></a>
+          <a class="btn btn-dark" href="https://dikidi.app/1451962" target="_blank" rel="noopener"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Записаться <span class="arr" aria-hidden="true">→</span></span></span></a>
         </div>
       </div>
       <div class="french">
@@ -997,68 +963,13 @@ html:not(.js) .ltr{grid-area:auto}
     <h3 class="voices-q"><span class="ml"><span>«Будто искусственный интеллект,</span></span><span class="ml"><span>а&nbsp;не&nbsp;реально мои&nbsp;руки»</span></span></h3>
     <div class="letters-w" id="letters-w">
       <div class="letters" id="letters" tabindex="0" role="region" aria-roledescription="стопка" aria-label="Отзывы клиенток по одному. Следующий — стрелкой или свайпом">
-        <article class="ltr" aria-label="Отзыв 1 из 7">
-          <div class="ltr-in">
-            <div class="ltr-body">
-              <p class="ex">…покрытие очень <em class="hl">тонкое</em> и&nbsp;<em class="hl">прочное</em>, маникюр выполнен чисто и&nbsp;аккуратно…</p>
-              <p class="full" id="rf1">Дария&nbsp;— профессионал своего дела и&nbsp;приятная в&nbsp;общении девушка. Результат просто идеальный, <mark>покрытие очень тонкое и&nbsp;прочное, маникюр выполнен чисто и&nbsp;аккуратно</mark>. Студия уютная, чистая, стильная, удобная зона ожидания и&nbsp;прекрасный сервис. Большое спасибо</p>
-            </div>
-            <p class="l-foot"><span class="who"><span class="eyebrow">Эльвира</span><span class="stars" role="img" aria-label="5 из 5">★★★★★</span></span><button class="more" type="button" aria-expanded="false" aria-controls="rf1">читать целиком</button></p>
-          </div>
-        </article>
-        <article class="ltr" aria-label="Отзыв 2 из 7">
-          <div class="ltr-in">
-            <div class="ltr-body">
-              <p class="ex">Ручки никогда не&nbsp;были такими красивыми…</p>
-              <p class="full" id="rf2">Уже неделю хожу и&nbsp;не&nbsp;могу налюбоваться. <mark>Ручки никогда не&nbsp;были такими красивыми</mark>. Уже думаю, что будем делать в&nbsp;следующий раз. Опять френч или молочный?</p>
-            </div>
-            <p class="l-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf2">читать целиком</button></p>
-          </div>
-        </article>
-        <article class="ltr" aria-label="Отзыв 3 из 7">
-          <div class="ltr-in">
-            <div class="ltr-body">
-              <p class="ex">…таких ноготков у&nbsp;меня ещё не&nbsp;было…</p>
-              <p class="full" id="rf3">Это восторг, слов подобрать не&nbsp;могу, <mark>таких ноготков у&nbsp;меня ещё не&nbsp;было</mark>. Прошло уже двое суток, а&nbsp;кутикулы как будто только что от&nbsp;тебя вышла. Обычно у&nbsp;меня на&nbsp;следующий день всё плохо становится, а&nbsp;тут просто идеально. Спасибо большое</p>
-            </div>
-            <p class="l-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf3">читать целиком</button></p>
-          </div>
-        </article>
-        <article class="ltr" aria-label="Отзыв 4 из 7">
-          <div class="ltr-in">
-            <div class="ltr-body">
-              <p class="ex">Просто невозможно красиво!…</p>
-              <p class="full" id="rf4"><mark>Просто невозможно красиво!</mark> Будто искусственный интеллект, а&nbsp;не&nbsp;реально мои руки</p>
-            </div>
-            <p class="l-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf4">читать целиком</button></p>
-          </div>
-        </article>
-        <article class="ltr" aria-label="Отзыв 5 из 7">
-          <div class="ltr-in">
-            <div class="ltr-body">
-              <p class="ex">…сколько взглядов и&nbsp;восторженных отзывов я&nbsp;услышала…</p>
-              <p class="full" id="rf5">Подписываюсь под каждым словом! Мои тоже безупречные. А&nbsp;<mark>сколько взглядов и&nbsp;восторженных отзывов я&nbsp;услышала</mark>. Уже боюсь давать рекомендацию, а&nbsp;то потом не&nbsp;запишешься</p>
-            </div>
-            <p class="l-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf5">читать целиком</button></p>
-          </div>
-        </article>
-        <article class="ltr" aria-label="Отзыв 6 из 7">
-          <div class="ltr-in">
-            <div class="ltr-body">
-              <p class="ex">Я&nbsp;в&nbsp;полном восторге, не&nbsp;могу налюбоваться целый день. Ещё раз благодарю</p>
-            </div>
-            <p class="l-foot"><span class="who"></span></p>
-          </div>
-        </article>
-        <article class="ltr" aria-label="Отзыв 7 из 7">
-          <div class="ltr-in">
-            <div class="ltr-body">
-              <p class="ex">…«Вау! У&nbsp;тебя классный маникюр! Сейчас редко такой встретишь…»</p>
-              <p class="full" id="rf7">Я&nbsp;в&nbsp;субботу была на&nbsp;встрече, вышла представляться на&nbsp;аудиторию из&nbsp;30 человек, и&nbsp;одна из&nbsp;девочек: «<mark>Вау! У&nbsp;тебя классный маникюр! Сейчас редко такой встретишь</mark>, я&nbsp;всегда увижу хороший!» Она, как оказалось, мастер с&nbsp;<span class="nw">10&#8209;летним</span> стажем, сейчас у&nbsp;неё уже своя школа. Подошла, ещё рассмотрела, ещё раз похвалила. Мне прям очень приятно было</p>
-            </div>
-            <p class="l-foot"><span class="who"></span><button class="more" type="button" aria-expanded="false" aria-controls="rf7">читать целиком</button></p>
-          </div>
-        </article>
+        <figure class="ltr" style="--ar:1206/1239" aria-label="Отзыв 1 из 7"><span class="ltr-in"><img src="../../shared/img/rv-m3.webp" width="1206" height="1239" loading="lazy" decoding="async" draggable="false" alt="Скриншот отзыва: Эльвира, Авито, пять звёзд. Дария профессионал своего дела и приятная в общении девушка…"></span></figure>
+        <figure class="ltr" style="--ar:1206/845" aria-label="Отзыв 2 из 7"><span class="ltr-in"><img src="../../shared/img/rv-m4.webp" width="1206" height="845" loading="lazy" decoding="async" draggable="false" alt="Скриншот отзыва: Добрый день, уже неделю хожу и не могу налюбоваться. Ручки никогда не были такими красивыми…"></span></figure>
+        <figure class="ltr" style="--ar:762/162" aria-label="Отзыв 3 из 7"><span class="ltr-in"><img src="../../shared/img/rv-m1.webp" width="762" height="162" loading="lazy" decoding="async" draggable="false" alt="Скриншот отзыва: Просто невозможно красиво! Будто искусственный интеллект, а не реально мои руки"></span></figure>
+        <figure class="ltr" style="--ar:774/588" aria-label="Отзыв 4 из 7"><span class="ltr-in"><img src="../../shared/img/rv-m7.webp" width="774" height="588" loading="lazy" decoding="async" draggable="false" alt="Скриншот отзыва: Это восторг, слов подобрать не могу, таких ноготков у меня ещё не было…"></span></figure>
+        <figure class="ltr" style="--ar:1193/718" aria-label="Отзыв 5 из 7"><span class="ltr-in"><img src="../../shared/img/rv-m5.webp" width="1193" height="718" loading="lazy" decoding="async" draggable="false" alt="Скриншот отзыва: Подписываюсь под каждым словом! Мои тоже безупречные…"></span></figure>
+        <figure class="ltr" style="--ar:846/331" aria-label="Отзыв 6 из 7"><span class="ltr-in"><img src="../../shared/img/rv-m6.webp" width="846" height="331" loading="lazy" decoding="async" draggable="false" alt="Скриншот отзыва: Даш, добрый день, я в полном восторге, не могу налюбоваться целый день…"></span></figure>
+        <figure class="ltr" style="--ar:940/799" aria-label="Отзыв 7 из 7"><span class="ltr-in"><img src="../../shared/img/rv-m2.webp" width="940" height="799" loading="lazy" decoding="async" draggable="false" alt="Скриншот отзыва: Я в субботу была на встрече, вышла представляться на аудиторию из 30 человек…"></span></figure>
       </div>
       <div class="revs-ctrl">
         <button class="round" type="button" id="rev-prev" aria-label="Предыдущий отзыв"><span aria-hidden="true">←</span></button>
@@ -1076,9 +987,9 @@ html:not(.js) .ltr{grid-area:auto}
     <div class="book-head" id="zapis">
       <h2 class="book-h" id="book-h"><span class="ml"><span>Запишитесь</span></span><span class="ml"><span>на&nbsp;удобное время</span></span></h2>
       <div class="book-btns">
-        <a class="btn btn-milk" href="#zapis" data-act="book" data-stub><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Записаться онлайн <span class="arr" aria-hidden="true">→</span></span></span></a>
-        <a class="btn btn-line" href="#zapis" data-act="tg" data-text="Здравствуйте! Хочу записаться на маникюр «всё включено»"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Telegram</span></span></a>
-        <a class="btn btn-line" href="#zapis" data-act="wa" data-text="Здравствуйте! Хочу записаться на маникюр «всё включено»"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">WhatsApp</span></span></a>
+        <a class="btn btn-milk" href="https://dikidi.app/1451962" target="_blank" rel="noopener"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Записаться онлайн <span class="arr" aria-hidden="true">→</span></span></span></a>
+        <a class="btn btn-line" href="https://t.me/daariaamir" target="_blank" rel="noopener" data-tg="Здравствуйте! Хочу записаться на маникюр «всё включено»"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Telegram</span></span></a>
+        <a class="btn btn-line" href="https://ig.me/m/nails_dariamir" target="_blank" rel="noopener"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Instagram*</span></span></a>
       </div>
     </div>
     <div class="ct-grid">
@@ -1086,13 +997,13 @@ html:not(.js) .ltr{grid-area:auto}
         <img src="../../shared/img/s03-studio.webp" srcset="../../shared/img/s03-studio-sm.webp 480w, ../../shared/img/s03-studio.webp 960w" sizes="(max-width:760px) 100vw, 300px" width="960" height="1280" loading="lazy" decoding="async" alt="Светлый зал студии с окнами и цветами">
       </figure>
       <dl class="ct-list" id="ct-list">
-        <div><dt>Адрес</dt><dd>Ивантеевка, Фабричный проезд, 1к1<span class="near">рядом Пушкино и&nbsp;Щёлково</span><span class="tags"><span>Зона ожидания</span><span>Кофе</span></span></dd></div>
-        <div><dt>Часы</dt><dd><span class="ph">[часы работы]</span></dd></div>
-        <div><dt>Телефон</dt><dd><span class="ph">[+7 XXX XXX-XX-XX]</span></dd></div>
+        <div><dt>Адрес</dt><dd>Ивантеевка, Фабричный проезд, 1к1, кабинет&nbsp;106<span class="tags"><span>Зона ожидания</span><span>Кофе</span></span></dd></div>
+        <div><dt>Часы</dt><dd>по&nbsp;предварительной записи</dd></div>
+        <div><dt>Телефон</dt><dd><a href="tel:+79200647630">+7&nbsp;920&nbsp;064-76-30</a></dd></div>
         <div><dt>Instagram</dt><dd><a href="https://instagram.com/nails_dariamir" target="_blank" rel="noopener">@nails_dariamir*</a></dd></div>
       </dl>
       <div class="map">
-        <span class="fallback">Ивантеевка, Фабричный проезд, 1к1</span>
+        <span class="fallback">Ивантеевка, Фабричный проезд, 1к1, кабинет&nbsp;106</span>
         <span class="map-tiles" aria-hidden="true">
           <img src="https://static-maps.yandex.ru/1.x/?ll=37.915265,55.975483&amp;z=16&amp;size=650,450&amp;l=map&amp;lang=ru_RU&amp;scale=2" width="650" height="450" loading="lazy" decoding="async" alt="" onerror="var p=this.parentNode;p&amp;&amp;p.remove()">
           <img src="https://static-maps.yandex.ru/1.x/?ll=37.918913,55.975483&amp;z=16&amp;size=650,450&amp;l=map&amp;lang=ru_RU&amp;scale=2" width="650" height="450" loading="lazy" decoding="async" alt="" onerror="var p=this.parentNode;p&amp;&amp;p.remove()">
@@ -1113,56 +1024,27 @@ html:not(.js) .ltr{grid-area:auto}
 </section>
 </main>
 
-<a class="bar" id="bar" href="#zapis" data-act="book">
+<a class="bar" id="bar" href="https://dikidi.app/1451962" target="_blank" rel="noopener">
   <span class="d">Маникюр «всё включено»&nbsp;— 3&nbsp;700&nbsp;₽</span><span class="d" aria-hidden="true">·</span>
   <span class="m"><b>3&nbsp;700&nbsp;₽</b><span class="bl">· всё включено</span></span>
   <span class="go">Записаться <span class="arr" aria-hidden="true">→</span></span>
 </a>
-
-<p class="toast" id="toast" role="status" aria-live="polite"></p>
 
 <script>
 /* Основная логика — обычный скрипт в конце body: не ждёт Motion и не ждёт DOMContentLoaded.
    Главную сцену — стопку проблем — он ведёт сам. Motion лежит рядом с сайтом (shared/js) и подключается ниже как улучшение (async):
    остальное, что от прокрутки, и ритуалы при входе блоков */
 (function () {
-  /* ---------- ссылки: Дария пришлёт — вписать сюда, и все кнопки поведут куда надо ---------- */
-  var TG_NICK = '[ник]';   /* ник Telegram без @ */
-  var BOOK_URL = '';       /* онлайн-запись Dikidi, полный адрес */
-  var WA_NUM = '';         /* номер WhatsApp цифрами, 79XXXXXXXXX */
-
   var root = document.documentElement;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
   var mqNarrow = matchMedia('(max-width:1100px)');
   var mqPhone = matchMedia('(max-width:760px)');
   function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
 
-  var tgReady = TG_NICK.charAt(0) !== '[';
-  function tg(text) { return 'https://t.me/' + encodeURIComponent(TG_NICK) + '?text=' + encodeURIComponent(text); }
-  function waUrl(text) { return 'https://wa.me/' + WA_NUM + '?text=' + encodeURIComponent(text); }
-  function external(a, url) { a.href = url; a.target = '_blank'; a.rel = 'noopener'; }
-
-  var toastEl = document.getElementById('toast'), toastT = 0;
-  function toast(text, ph) {
-    toastEl.textContent = text;
-    if (ph) { var s = document.createElement('span'); s.className = 'ph'; s.textContent = ph; toastEl.appendChild(s); }
-    toastEl.classList.add('on');
-    clearTimeout(toastT);
-    toastT = setTimeout(function () { toastEl.classList.remove('on'); }, 4200);
-  }
-
-  [].forEach.call(document.querySelectorAll('[data-act]'), function (a) {
-    var act = a.getAttribute('data-act'), text = a.getAttribute('data-text') || '';
-    if (act === 'book') {
-      if (BOOK_URL) external(a, BOOK_URL);
-      else if (a.hasAttribute('data-stub')) a.addEventListener('click', function (e) { e.preventDefault(); toast('Здесь откроется онлайн-запись со свободными окнами', '[ссылка Dikidi]'); });
-    } else if (act === 'tg') {
-      external(a, tg(text));
-      if (!tgReady) a.addEventListener('click', function (e) { e.preventDefault(); toast('Откроется Telegram с сообщением «' + text + '»', '[ник Telegram]'); });
-    } else if (act === 'wa') {
-      if (WA_NUM) external(a, waUrl(text));
-      else a.addEventListener('click', function (e) { e.preventDefault(); toast('Откроется WhatsApp с сообщением «' + text + '»', '[номер WhatsApp]'); });
-    }
+  /* ---------- Telegram: ник один на страницу, текст сообщения — в data-tg у кнопки ---------- */
+  var TG_NICK = 'daariaamir';
+  [].forEach.call(document.querySelectorAll('[data-tg]'), function (a) {
+    a.href = 'https://t.me/' + TG_NICK + '?text=' + encodeURIComponent(a.getAttribute('data-tg'));
   });
 
   /* ---------- кнопки «точка → заливка»: вторая подпись поверх первой — цвет меняется прозрачностью, а не анимацией color ---------- */
@@ -1191,14 +1073,15 @@ html:not(.js) .ltr{grid-area:auto}
   mqNarrow.addEventListener && mqNarrow.addEventListener('change', updBar);
   updBar();
 
-  /* ================= «Какие проблемы я решаю» ================= */
+  /* ================= «Какие проблемы я могу решить?» ================= */
   var prob = document.getElementById('problemy');
   var frame = prob.querySelector('.prob-frame'), probIn = prob.querySelector('.prob-in'), pstage = document.getElementById('pstage');
   var tablist = document.getElementById('ptabs');
   var tabs = [].slice.call(tablist.querySelectorAll('.ptab'));
   var panels = [].slice.call(pstage.querySelectorAll('.pp'));
   var veils = panels.map(function (p) { return p.querySelector('.veil'); });
-  var curts = panels.map(function (p) { return p.querySelector('.cur-t'); });
+  var medias = panels.map(function (p) { return p.querySelector('.pp-media'); });
+  var txts = panels.map(function (p) { return p.querySelector('.pp-txt'); });
   var pdc = document.getElementById('pd-c'), pptr = document.getElementById('pptr');
   var cmp = document.getElementById('cmp');
   /* Высоту окна беру «малую» (100svh — панели браузера показаны): от неё построен закреплённый кадр, и она не меняется,
@@ -1229,11 +1112,9 @@ html:not(.js) .ltr{grid-area:auto}
       else { panels[k].setAttribute('inert', ''); panels[k].setAttribute('aria-hidden', 'true'); }
     }
     pdc.style.transform = 'translateY(' + (-i) + 'em)';
-    pptr.style.transform = 'translateY(' + (i * tabs[0].offsetHeight) + 'px)';
+    pptr.style.transform = 'translateY(' + (tabs[i].offsetTop + tabs[i].offsetHeight) + 'px)';
     cmp.classList.toggle('live', i === 3);
     if (focus) tabs[i].focus({ preventScroll: true });
-    /* чипсы: выбранный подъезжает к середине ленты (один вызов, прокручивается только сама лента) */
-    if (mqNarrow.matches) tablist.scrollTo({ left: tabs[i].offsetLeft - (tablist.clientWidth - tabs[i].offsetWidth) / 2, behavior: reduce ? 'auto' : 'smooth' });
   }
   tabs.forEach(function (t, i) {
     t.addEventListener('click', function () {
@@ -1265,23 +1146,49 @@ html:not(.js) .ltr{grid-area:auto}
   var T = [.03, .25, .345, .565, .66, .88];        /* окна смен в доле сцены */
   var STOP = [0, .3, .61, .94];                     /* куда ведёт клик по строке списка: карточка легла, следующая смена ещё не началась */
   var ROT = [-1.2, .9, -1.2, 0];                    /* угол карточки, на которую легла следующая: стопка бумаги, а не панель */
-  var S = { q: 0, e: 1, tail: 0, vh: 0, top: 0, row: 56, span: 1, cover: 1, peek: 0, off: 0 };
+  var S = { q: 0, e: 1, tail: 0, vh: 0, top: 0, span: 1, cover: 1, off: 0, vary: false };
+  var HT = [0, 0, 0, 0];                             /* высота каждой карточки: в одну колонку она у каждой своя */
+  var PEEK = [0, 0, 0, 0];                           /* где карточка ждёт своей смены: выглядывает над нижней плашкой или стоит под кадром */
+  var ROW = [0, 0, 0, 0];                            /* низ каждой строки списка: строки разной высоты, указатель едет между ними */
   var last = {};                                     /* последние записанные значения — не трогаю стиль, если кадр не изменился */
   function put(el, prop, v, key) { if (last[key] !== v) { last[key] = v; el.style[prop] = v; } }
-  var curOpen = [false, false, false, false];        /* шторки «после»: открываются по времени, когда карточка легла */
+  var cmpOpen = false;                               /* шторка «после» в четвёртой карточке: открывается по времени, когда карточка легла */
   var cmpUser = false, cmpT = 0, cmpHinted = false;
   var ARR = [0, 0, 0, 0];                            /* ход четырёх карточек в текущем кадре; массив один на все кадры */
+  /* сколько высоты достаётся картинке каждой карточки: всё, что осталось в кадре после полей и её текста.
+     Текст не режется и не мельчает — ужимается картинка. Широкий экран: текст стоит рядом с коллажем и высоту не отнимает */
+  function fitCards() {
+    var pi = getComputedStyle(probIn), pc = getComputedStyle(panels[0]);
+    var room = probIn.clientHeight - parseFloat(pi.paddingTop) - parseFloat(pi.paddingBottom);
+    if (mqNarrow.matches) room -= pstage.offsetTop - parseFloat(pi.paddingTop);     /* заголовок с номером и зазор под ним */
+    else room = Math.min(room, 600);
+    var padY = parseFloat(pc.paddingTop) + parseFloat(pc.paddingBottom) + 2, gap = parseFloat(pc.rowGap) || 0;
+    for (var i = 0; i < panels.length; i++) {
+      var under = txts[i].offsetLeft < medias[i].offsetLeft + medias[i].offsetWidth;   /* текст под картинкой, а не рядом */
+      panels[i].style.setProperty('--h', Math.max(120, Math.floor(room - padY - (under ? gap + txts[i].offsetHeight : 0))) + 'px');
+    }
+  }
   function measureStack() {
+    fitCards();
     S.vh = frame.clientHeight;
     S.top = probIn.offsetTop + pstage.offsetTop;
-    S.row = tabs[0].offsetHeight || 56;
+    for (var r = 0; r < 4; r++) ROW[r] = tabs[r].offsetTop + tabs[r].offsetHeight;
     S.cover = S.vh;                                    /* последний экран закрепления: по стоящему кадру проходит панель прайса */
     S.span = Math.max(1, prob.offsetHeight - S.vh - S.cover);   /* путь самой сцены */
     /* в паузе следующая карточка выглядывает на 44 px над нижней плашкой — «дальше есть ещё», и лететь ей втрое, а не впятеро
        быстрее пальца. Если под лежащей карточкой места нет, следующая ждёт целиком под кадром */
-    var barH = bar.offsetHeight, peekTop = Math.max(S.vh - barH - 44, S.top + panels[0].offsetHeight + 10);
+    var barH = bar.offsetHeight;
     S.off = S.vh - S.top + 40;
-    S.peek = peekTop <= S.vh - barH - 16 ? peekTop - S.top : S.off;
+    S.vary = false;
+    for (var i = 0; i < 4; i++) {
+      HT[i] = panels[i].offsetHeight;
+      if (HT[i] !== HT[0]) S.vary = true;
+      if (i) {
+        var peekTop = Math.max(S.vh - barH - 44, S.top + HT[i - 1] + 10);
+        PEEK[i] = peekTop <= S.vh - barH - 16 ? peekTop - S.top : S.off;
+      }
+    }
+    if (!S.vary) for (var c = 0; c < 4; c++) panels[c].style.clipPath = '';
     last = {};
   }
   /* q — доля сцены, e — вход первой карточки (верх секции от 70% высоты окна до его верха), tail — доля последнего экрана.
@@ -1312,13 +1219,14 @@ html:not(.js) .ltr{grid-area:auto}
     var arr = ARR;
     arr[0] = S.e; arr[1] = t1; arr[2] = t2; arr[3] = t3;
     var k = t1 + t2 + t3;                            /* сколько карточек уже легло сверху первой */
-    for (var i = 0; i < 4; i++) {
+    var floor = 1e6;                                 /* низ самой короткой из карточек, что лежат или летят поверх текущей */
+    for (var i = 3; i >= 0; i--) {                   /* сверху вниз по стопке: нижним нужен край верхних */
       var a = arr[i], d = 0;
       for (var j = i + 1; j < 4; j++) d += arr[j];  /* глубина: сколько карточек легло поверх этой */
       var y, rot;
       if (i === 0) { y = 60 * (1 - a); rot = 1.5 * (1 - a); }
       /* пока летит предыдущая, эта поднимается из-под кадра и выглядывает над нижней плашкой; в свою смену — летит на стопку */
-      else { y = (1 - a) * (S.peek + (S.off - S.peek) * (1 - arr[i - 1])); rot = 2 * (1 - a); }
+      else { y = (1 - a) * (PEEK[i] + (S.off - PEEK[i]) * (1 - arr[i - 1])); rot = 2 * (1 - a); }
       rot += ROT[i] * Math.min(d, 1);
       var dy = d <= 1 ? -18 * d : d <= 2 ? -18 - 14 * (d - 1) : -32;
       var sc = d <= 1 ? 1 - .045 * d : d <= 2 ? .955 - .045 * (d - 1) : .91;
@@ -1326,17 +1234,22 @@ html:not(.js) .ltr{grid-area:auto}
       put(panels[i], 'transform', 'translate3d(0,' + (y + dy).toFixed(1) + 'px,0) rotate(' + rot.toFixed(2) + 'deg) scale(' + sc.toFixed(4) + ')', 't' + i);
       put(panels[i], 'opacity', op.toFixed(3), 'o' + i);
       put(veils[i], 'opacity', (.1 * Math.min(d, 1) + .04 * clamp01(d - 1)).toFixed(3), 'v' + i);
-      /* шторка «после»: карточка легла на 90% — открывается; улетела обратно — закрыта и откроется снова */
-      var open = curOpen[i] ? a > .05 : a >= .9;
-      if (open !== curOpen[i]) {
-        curOpen[i] = open;
-        if (i < 3) curts[i].classList.toggle('open', open); else cmpStage(open);
+      /* карточки разной высоты (одна колонка): низ той, что длиннее лёгшей сверху, прячется под её краем — из-под короткой
+         карточки не торчит чужой текст. Обрезка идёт за нижним краем верхней, на 10 px выше него; сверху и с боков — с запасом под тень */
+      if (S.vary) {
+        var cut = HT[i] - (floor - 10 - y - dy) / sc;
+        put(panels[i], 'clipPath', cut > 0 ? 'inset(-80px -80px ' + cut.toFixed(1) + 'px -80px)' : '', 'c' + i);
+        if (y + dy + sc * HT[i] < floor) floor = y + dy + sc * HT[i];
       }
     }
+    /* шторка «после»: четвёртая карточка легла на 90% — открывается; улетела обратно — закрыта и откроется снова */
+    var open = cmpOpen ? t3 > .05 : t3 >= .9;
+    if (open !== cmpOpen) { cmpOpen = open; cmpStage(open); }
     /* номер и указатель стоят в паузах и движутся только в смену */
     put(pdc, 'transform', 'translateY(' + (-k).toFixed(4) + 'em)', 'num');
-    put(pptr, 'transform', 'translateY(' + (k * S.row).toFixed(1) + 'px)', 'ptr');
-    for (var r = 0; r < 4; r++) put(tabs[r], 'opacity', (1 - .55 * Math.min(1, Math.abs(k - r))).toFixed(3), 'r' + r);
+    var r0 = k >= 3 ? 2 : k | 0;
+    put(pptr, 'transform', 'translateY(' + (ROW[r0] + (ROW[r0 + 1] - ROW[r0]) * (k - r0)).toFixed(1) + 'px)', 'ptr');
+    for (var r = 0; r < 4; r++) put(tabs[r], 'opacity', (1 - .38 * Math.min(1, Math.abs(k - r))).toFixed(3), 'r' + r);
     var cur = Math.round(k);
     if (cur !== pCur) { pCur = cur; markRow(cur); }
     /* хвост: по стоящему кадру проходит панель прайса, кадр чуть уходит в глубину. Только масштаб: прозрачность
@@ -1384,8 +1297,8 @@ html:not(.js) .ltr{grid-area:auto}
       measureStack(); readStack();
     } else {
       /* снимаю всё, что написала стопка, — вкладки начинают с чистого листа */
-      panels.forEach(function (p, i) { p.style.transform = ''; p.style.opacity = ''; veils[i].style.opacity = ''; if (curts[i]) curts[i].classList.remove('open'); });
-      curOpen = [false, false, false, false];
+      panels.forEach(function (p, i) { p.style.transform = ''; p.style.opacity = ''; p.style.clipPath = ''; p.style.removeProperty('--h'); veils[i].style.opacity = ''; });
+      cmpOpen = false;
       clearTimeout(cmpT); cmpUser = false; cmpMode('');
       cmp.style.removeProperty('--x');
       tabs.forEach(function (t) { t.style.opacity = ''; t.setAttribute('role', 'tab'); });
@@ -1462,10 +1375,10 @@ html:not(.js) .ltr{grid-area:auto}
   stripProgress();
   draggable(strip);
 
-  /* ================= отзывы — письма стопкой ================= */
+  /* ================= отзывы — скриншоты стопкой ================= */
   var letters = document.getElementById('letters');
   var L = [].slice.call(letters.querySelectorAll('.ltr'));
-  var order = L.map(function (_, i) { return i; });          /* order[0] — верхнее письмо */
+  var order = L.map(function (_, i) { return i; });          /* order[0] — верхний лист */
   var revN = document.getElementById('rev-n');
   var DEPTH = [[0, 0, 0], [8, 10, 3], [-10, 14, -4]];
   function tf(d) { var s = DEPTH[Math.min(d, 2)]; return 'translate3d(' + s[0] + 'px,' + s[1] + 'px,0) rotate(' + s[2] + 'deg)'; }
@@ -1481,17 +1394,6 @@ html:not(.js) .ltr{grid-area:auto}
       else { el.setAttribute('inert', ''); el.setAttribute('aria-hidden', 'true'); }
     });
   }
-  function fold(el, open) {
-    var btn = el.querySelector('.more');
-    if (!btn) return;
-    el.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.textContent = open ? 'свернуть' : 'читать целиком';
-  }
-  L.forEach(function (el) {
-    var btn = el.querySelector('.more');
-    if (btn) btn.addEventListener('click', function () { fold(el, !el.classList.contains('open')); });
-  });
   function count(dir) {
     revN.textContent = String(order[0] + 1);
     if (reduce || !revN.animate) return;
@@ -1499,13 +1401,12 @@ html:not(.js) .ltr{grid-area:auto}
   }
   var busy = false, swapT = 0;
   function swapOn() { letters.classList.add('swap'); clearTimeout(swapT); swapT = setTimeout(function () { letters.classList.remove('swap'); }, 520); }
-  /* верхнее письмо улетает (по стрелке — вправо, свайпом — куда тянули), остальные поднимаются на уровень,
-     улетевшее возвращается вниз стопки */
+  /* верхний лист улетает (по стрелке — вправо, свайпом — куда тянули), остальные поднимаются на уровень,
+     улетевший возвращается вниз стопки */
   function nextRev(dir, fromDrag) {
     if (busy) return;
     busy = !reduce;
     var top = L[order[0]];
-    fold(top, false);
     dir = dir || 1;
     swapOn();
     top.style.transition = 'transform ' + (fromDrag ? .4 : .65) + 's cubic-bezier(.16,1,.3,1), opacity ' + (fromDrag ? .4 : .65) + 's cubic-bezier(.16,1,.3,1)';
@@ -1527,14 +1428,13 @@ html:not(.js) .ltr{grid-area:auto}
       busy = false;
     }, reduce ? 0 : (fromDrag ? 400 : 650));
   }
-  /* назад: нижнее письмо прилетает слева и ложится сверху */
+  /* назад: нижний лист прилетает слева и ложится сверху */
   function prevRev() {
     if (busy) return;
     busy = !reduce;
     var li = order.pop(); order.unshift(li);
     var el = L[li];
     swapOn();
-    fold(L[order[1]], false);
     noAnim(el, function () { el.style.transform = 'translate3d(-115%,-6%,0) rotate(-12deg)'; el.style.opacity = '0'; el.style.zIndex = String(L.length + 1); });
     placeAll();
     count(-1);
@@ -1546,7 +1446,7 @@ html:not(.js) .ltr{grid-area:auto}
     if (e.key === 'ArrowRight') { e.preventDefault(); nextRev(1); }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); prevRev(); }
   });
-  /* свайп: письмо идёт за пальцем, порог — 60 px или 0,4 px/мс; иначе возвращается */
+  /* свайп: лист идёт за пальцем, порог — 60 px или 0,4 px/мс; иначе возвращается */
   var sw = null;
   letters.addEventListener('pointerdown', function (e) {
     if (busy || (e.pointerType === 'mouse' && e.button !== 0) || e.target.closest('button, a')) return;
@@ -1570,7 +1470,7 @@ html:not(.js) .ltr{grid-area:auto}
     var top = L[order[0]];
     top.style.transition = '';
     var v = Math.abs(s.dx) / Math.max(1, performance.now() - s.t);
-    /* влево — следующее письмо, вправо — предыдущее: жест совпадает со стрелками под стопкой */
+    /* влево — следующий лист, вправо — предыдущий: жест совпадает со стрелками под стопкой */
     if (Math.abs(s.dx) > 60 || v > .4) { if (s.dx < 0) nextRev(-1, true); else prevRev(); }
     else { top.style.transition = 'transform .35s cubic-bezier(.16,1,.3,1)'; top.style.transform = tf(0); setTimeout(function () { top.style.transition = ''; }, 360); }
   }
@@ -1672,15 +1572,14 @@ html:not(.js) .ltr{grid-area:auto}
         heroKill.push(scrub([$('.hero-copy'), $('.hero-title')], { opacity: [1, 1, .55], transform: ['scale(1)', 'scale(1)', 'scale(.97)'] }, hero, heroOff, [0, .5, 1]));
       } else if (mqPhone.matches) {
         /* телефон: рамка стоит, видео внутри неё отстаёт на 0,2 прокрутки. Слой выше рамки на путь отставания и едет вниз;
-           масштаб не меняется (ролик и так выше рамки), кадр на старте тот же — --pos пересчитан под новую высоту слоя */
-        var slack = w * 1280 / 720 - f;                                   /* на сколько ролик 720×1280 выше рамки */
-        var py = parseFloat(getComputedStyle(heroFig).getPropertyValue('--pos').trim().split(/\s+/)[1]) / 100;
-        var over = slack * py;                                            /* сколько кадра спрятано над рамкой */
+           масштаб не меняется (ролик и так выше рамки), кадр на старте тот же — --pos пересчитан под новый верх слоя */
+        var slack = w * 1920 / 1080 - f;                                  /* на сколько ролик 1080×1920 выше рамки */
+        var y0 = parseFloat(getComputedStyle(heroLayers[1]).objectPosition.split(/\s+/)[1]);   /* верх ролика относительно рамки, px (≤ 0) */
+        var over = Math.min(slack, Math.max(0, -y0 || 0));                /* сколько кадра спрятано над рамкой */
         var travel = heroFig.offsetTop + f;                               /* столько прокрутки рамка ещё на экране */
         var lag = Math.floor(Math.min(.2 * travel, over));
         if (lag >= 8) {
-          var rest = slack - lag;
-          heroFig.style.setProperty('--pos', '50% ' + (rest > 1 ? (over - lag) / rest * 100 : 0).toFixed(3) + '%');
+          heroFig.style.setProperty('--pos', '50% ' + (lag - over).toFixed(1) + 'px');
           heroLayers.forEach(function (l) {
             l.style.position = 'absolute'; l.style.left = '0'; l.style.width = '100%';
             l.style.top = -lag + 'px'; l.style.height = 'calc(100% + ' + lag + 'px)';
@@ -1824,7 +1723,7 @@ html:not(.js) .ltr{grid-area:auto}
       /* веер идёт, когда лента уже поднялась над нижней плашкой: самая выразительная фаза — в кадре, а не у кромки */
       scroll(renderDeck, { target: strip, offset: phone ? ['start 78%', 'start 22%'] : ['start 60%', 'start 8%'] });
     }
-    /* отзывы: цитата строками, письма падают на стол, стопка чуть поднимается и наклоняется от прокрутки */
+    /* отзывы: цитата строками, листы падают на стол, стопка чуть поднимается и наклоняется от прокрутки */
     lines($('.voices-q'), .4);
     var lw = $('#letters-w'), topL = L.slice(0, 3);
     if (below(lw)) {
@@ -1836,7 +1735,7 @@ html:not(.js) .ltr{grid-area:auto}
         });
       }, { amount: .35 });
     }
-    /* стопка идёт против прокрутки на 120 px и заходит на цитату; верхнее письмо поворачивается +3° → −4°, нижние — навстречу */
+    /* стопка идёт против прокрутки на 120 px и заходит на цитату; верхний лист поворачивается +3° → −4°, нижние — навстречу */
     scrub(letters, { transform: ['translateY(60px)', 'translateY(-60px)'] }, lw, ['start end', 'end start']);
     var tiltV = '';
     scroll(function (p) {
