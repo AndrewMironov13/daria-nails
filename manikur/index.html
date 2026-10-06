@@ -156,6 +156,7 @@ button{font:inherit;color:inherit}
   }
 }
 @keyframes sheen{0%{background-position:100% 0}36%{background-position:0% 0}100%{background-position:0% 0}}
+html.hero-off .gl{animation-play-state:paused}   /* первый экран ушёл из окна — блик в буквах не перерисовывается впустую */
 
 /* ---------- печать ---------- */
 .seal{display:block;color:var(--graphite)}
@@ -202,12 +203,13 @@ button{font:inherit;color:inherit}
 .gloss-streak{position:absolute;top:-20%;left:0;height:140%;width:11%;will-change:transform;
   background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.28) 28%,rgba(255,255,255,.82) 50%,rgba(255,255,255,.28) 72%,rgba(255,255,255,0))}
 .gloss-streak.s2{width:4%;opacity:.55}
-.seal--hero{position:absolute;right:40px;bottom:calc(var(--bar) + 36px);width:128px;height:128px;z-index:2;will-change:transform}
+.seal--hero{position:absolute;right:40px;bottom:calc(var(--bar) + 36px);width:128px;height:128px;z-index:2}
 
 .hero-inner{position:relative;z-index:2;max-width:1560px;margin:0 auto;min-height:inherit;display:flex;flex-direction:column;padding:124px var(--pad) calc(var(--bar) + 30px)}
 .hero-copy{width:clamp(220px,calc(100vw - var(--heroW) - var(--pad) - 36px),300px);display:flex;flex-direction:column;transform-origin:0 100%}
-/* цена и слово уходят в глубину от прокрутки: слои заведены заранее, а не создаются посреди прокрутки */
-@media (min-width:1101px) and (prefers-reduced-motion:no-preference){ html.js .hero-copy,html.js .hero-title{will-change:opacity,transform} }
+/* цена и слово уходят в глубину от прокрутки: слои заведены заранее, а не создаются посреди прокрутки, —
+   но только пока первый экран в окне (html.hero-off ставит скрипт, когда он ушёл) */
+@media (min-width:1101px) and (prefers-reduced-motion:no-preference){ html.js:not(.hero-off) .hero-copy,html.js:not(.hero-off) .hero-title{will-change:opacity,transform} }
 .kicker{margin-bottom:22px}
 .hero-price{margin-top:30px}
 .price-num{display:block;font:300 64px/1 var(--serif);letter-spacing:.01em;font-variant-numeric:lining-nums;white-space:nowrap}
@@ -248,7 +250,7 @@ html.js-type .word-mani .ch{visibility:hidden}
    html.p-stack — стопка: кадр закреплён, карточки наезжают одна на другую от прокрутки, номер крутится, указатель едет */
 .prob{background:var(--milk);z-index:2}
 .prob-frame{position:relative}
-.prob-in{position:relative;max-width:1440px;margin:0 auto;padding:104px var(--pad);display:grid;grid-template-columns:minmax(300px,min(29vw,420px)) minmax(0,900px);justify-content:space-between;column-gap:56px;align-items:start;transform-origin:50% 40%}
+.prob-in{position:relative;max-width:1440px;margin:0 auto;padding:104px var(--pad);display:grid;grid-template-columns:minmax(300px,min(29vw,420px)) minmax(0,900px);justify-content:space-between;column-gap:56px;align-items:start}
 .prob-left{display:flex;flex-direction:column;align-self:stretch;min-width:0}
 .ptabs{position:relative;margin-top:32px;border-top:1px solid var(--line)}
 .ptab{appearance:none;-webkit-appearance:none;display:flex;align-items:baseline;gap:18px;width:100%;min-height:52px;padding:13px 0 12px;background:none;border:0;border-bottom:1px solid var(--line);
@@ -316,8 +318,11 @@ html:not(.js) .pp{grid-area:auto;opacity:1;visibility:visible}
 
 /* ---- стопка в закреплённом кадре ----
    Высота секции = кадр + сцена (--pin) + ещё один экран: на нём кадр стоит, а панель прайса проходит по нему целиком.
-   Сама сцена — 1 экран: три смены по 0,22 экрана, между ними паузы */
-html.p-stack .prob{--pin:100svh;height:calc(200svh + var(--pin))}
+   Сцена — четыре паузы и три смены между ними. Шаг на карточку (--step) = пауза + смена; смена — 30% шага (MOVE в скрипте),
+   остальное карточка стоит и читается. Сцена = три шага + пауза четвёртой карточки = шаг × 3,7.
+   Шаг — почти экран: один свайп листает одну карточку, а не две. Нижняя граница в px — для низких окон,
+   где свайп пальцем длиннее самого окна (Safari с панелями) */
+html.p-stack .prob{--step:max(75svh,600px);--pin:calc(var(--step) * 3.7);height:calc(200svh + var(--pin))}
 html.p-stack .prob-frame{position:sticky;top:0;height:100svh;overflow:clip}
 html.p-stack .prob-in{height:100%;padding-top:clamp(48px,11svh,104px);padding-bottom:calc(var(--bar) + 30px);align-items:center}
 html.p-stack .pp{opacity:1;visibility:visible;transition:none;transform-origin:50% 0;box-shadow:0 1px 0 rgba(30,28,26,.06),0 30px 60px -20px rgba(30,28,26,.26)}
@@ -365,7 +370,10 @@ html.p-stack .prob + .price{margin-top:-100svh;box-shadow:0 -28px 60px rgba(30,2
 .fr-line{margin-top:24px;font:italic 300 clamp(26px,2.4vw,34px)/1.15 var(--serif)}
 
 /* ================= РАБОТЫ И ОТЗЫВЫ (графит) ================= */
-.works{z-index:4;overflow:clip;background:var(--graphite);color:var(--milk);padding:64px 0 96px}
+.works{z-index:4;background:var(--graphite);color:var(--milk);padding:64px 0 96px}
+/* по горизонтали режут сами блоки, а не секция: у закреплённого блока «Работ» (.deck-pin, position:sticky) не должно быть предка
+   с overflow:clip — в Safari под таким предком закреплённое подрагивает на пару пикселей (WebKit 247130 и его родня) */
+.deck-pin,.voices{overflow-x:clip}
 .works-word{font:300 clamp(86px,17vw,245px)/.86 var(--serif);letter-spacing:-.015em;color:#D9D3CB;margin-left:-.05em;white-space:nowrap;pointer-events:none}
 .strip-w{position:relative;margin-top:calc(clamp(86px,17vw,245px) * -.3)}
 /* колода: верхняя — первая работа; поля сверху и снизу — место для наклона и тени, пока карточки лежат стопкой */
@@ -373,6 +381,9 @@ html.p-stack .prob + .price{margin-top:-100svh;box-shadow:0 -28px 60px rgba(30,2
   scroll-padding-inline:max(var(--pad),calc((100% - 1360px)/2));scroll-snap-type:x proximity;overscroll-behavior-x:contain;scrollbar-width:none;cursor:grab;-webkit-user-select:none;user-select:none;outline-offset:-3px}
 .strip::-webkit-scrollbar{display:none}
 .strip.is-drag{cursor:grabbing;scroll-snap-type:none}
+/* пока колода не разложена, привязки нет и вбок ленту не увести: карточки сдвинуты transform'ом, а привязка считает
+   место карточки вместе со сдвигом — лента сама уезжала вбок, и первые фото пролетали */
+.strip.is-deck{scroll-snap-type:none;touch-action:pan-y}
 /* мышь: без привязки — иначе после перетаскивания лента прыгала к ближайшей карточке за один кадр. Палец и тачпад на телефоне привязку сохраняют */
 @media (hover:hover) and (pointer:fine){ .strip{scroll-snap-type:none} }
 .shot{position:relative;flex:none;margin:0;scroll-snap-align:start;z-index:var(--z,1);--sh:0}
@@ -385,6 +396,15 @@ html.p-stack .prob + .price{margin-top:-100svh;box-shadow:0 -28px 60px rgba(30,2
   .strip:not(.is-drag) .shot:hover img{transform:scale(1.04);transition-duration:.6s}
 }
 .works-foot{display:flex;align-items:center;justify-content:space-between;gap:32px;margin-top:28px}
+/* колода раскладывается на месте. html.d-pin (с движением, окно не ниже блока) ставит скрипт: блок «Работы» встаёт по центру
+   окна над нижней плашкой и стоит, пока идёт дорожка --run. Раскладка — отрезок прокрутки длиной с мерку .deck-run:
+   начинается за --lead до остановки, когда фото колоды уже целиком в окне, и кончается чуть раньше, чем блок отпустит.
+   Без d-pin блок не стоит: раскладка идёт, пока он едет от 68% до 12% высоты окна */
+.deck{position:relative;--run:50svh;--lead:18svh;--stick:max(8px,calc((100svh - var(--bar) - var(--dh,600px)) / 2))}
+.deck-run{position:absolute;left:0;top:-68vh;top:-68svh;width:1px;height:56vh;height:56svh;visibility:hidden;pointer-events:none}
+html.d-pin .deck::after{content:"";display:block;height:var(--run)}   /* дорожка — содержимым, не полем: в поле родителя sticky не заходит */
+html.d-pin .deck-pin{position:sticky;top:var(--stick)}
+html.d-pin .deck-run{top:calc(-1 * (var(--stick) + var(--lead)));height:calc(var(--lead) + var(--run) - 5svh)}
 .progress{flex:1;max-width:420px;height:2px;background:rgba(251,250,247,.16);position:relative;overflow:hidden}
 .progress span{position:absolute;inset:0;background:var(--milk);transform-origin:0 50%;transform:scaleX(.3)}
 .ig{position:relative;display:inline-flex;align-items:center;min-height:44px;font:500 15px/1.2 var(--sans);text-decoration:none}
@@ -513,7 +533,7 @@ html:not(.js) .ltr-in::after{content:none}
   .pp-t{font-size:26px}
   .pp-line,.pp-4 .pp-line{margin-top:10px}
   .pp-acc{font-size:20px;margin-top:6px}
-  html.p-stack .prob{--pin:80svh}
+  html.p-stack .prob{--step:max(90svh,680px)}
   /* между заголовком и карточкой — место под края двух нижних карточек стопки (−18 и −32 px, с поворотом ещё ±5) */
   html.p-stack .prob-in{grid-template-rows:auto minmax(0,1fr);row-gap:40px;padding:28px var(--pad) calc(var(--bar) + 16px)}
   html.p-stack .pstage{align-self:start}   /* карточка — сразу под заголовком */
@@ -599,6 +619,7 @@ html:not(.js) .ltr-in::after{content:none}
   .fr-line{margin-top:18px;font-size:26px}
 
   .works{padding:56px 0 80px}
+  .deck{--run:78svh;--lead:26svh}   /* раскладка — почти экран прокрутки (26 + 78 − 5): один свайп её не пролетает */
   .works-word{font-size:22vw}
   .strip-w{margin-top:-6.6vw}
   .strip{gap:12px}
@@ -824,8 +845,15 @@ html:not(.js) .ltr-in::after{content:none}
   /* на телефоне вместо фото видео, блик по ногтям скрыт — цикл не крутится впустую */
   function live() { return visible && !document.hidden && !phone.matches; }
   function run() { if (!raf && live()) raf = requestAnimationFrame(tick); }
+  /* первый экран ушёл из окна — всё, что на нём движется, встаёт: блик в буквах, слои под «глубину» и видео.
+     Пока листают сцены ниже, телефон не декодирует ролик и не перерисовывает то, чего не видно */
+  function heroAway(off) {
+    root.classList.toggle('hero-off', off);
+    if (!video || !phone.matches) return;
+    try { if (off) video.pause(); else { var pl = video.play(); if (pl && pl.catch) pl.catch(function () {}); } } catch (_) {}
+  }
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(function (en) { visible = en[0].isIntersecting; run(); }).observe(fig);
+    new IntersectionObserver(function (en) { visible = en[0].isIntersecting; heroAway(!visible); run(); }).observe(fig);
   }
   document.addEventListener('visibilitychange', run);
   phone.addEventListener && phone.addEventListener('change', function () { measure(); apply(); run(); });
@@ -937,6 +965,10 @@ html:not(.js) .ltr-in::after{content:none}
 
 <!-- ================= РАБОТЫ И ОТЗЫВЫ ================= -->
 <section class="works panel dark" id="raboty" aria-labelledby="works-h">
+  <!-- дорожка колоды: слово, лента и линия стоят по центру окна (position:sticky), пока колода раскладывается в ленту.
+       deck-run — невидимая мерка отрезка прокрутки, на котором идёт раскладка -->
+  <div class="deck" id="deck">
+  <div class="deck-pin" id="deck-pin">
   <div class="wrap">
     <h2 class="works-word" id="works-h"><span class="ml"><span>Работы</span></span></h2>
   </div>
@@ -956,6 +988,9 @@ html:not(.js) .ltr-in::after{content:none}
   <div class="wrap works-foot">
     <div class="progress" aria-hidden="true"><span id="strip-bar"></span></div>
     <a class="ig" href="https://instagram.com/nails_dariamir" target="_blank" rel="noopener">Больше работ в&nbsp;Instagram*</a>
+  </div>
+  </div>
+  <i class="deck-run" id="deck-run" aria-hidden="true"></i>
   </div>
 
   <div class="voices" id="otzyvy">
@@ -1141,12 +1176,15 @@ html:not(.js) .ltr-in::after{content:none}
     if (Math.abs(dx) > 48 && Math.abs(dx) > Math.abs(dy) * 1.6) selectTab(pCur + (dx < 0 ? 1 : -1));
   }, { passive: true });
 
-  /* --- стопка: положение карточек — чистая функция от прокрутки. Три смены, между ними паузы.
-     Сцена — 1 экран: смена 0,22 экрана (≈ 200 px на 900), пауза 0,095 (≈ 85 px), в конце 0,12 на последнюю карточку --- */
-  var T = [.03, .25, .345, .565, .66, .88];        /* окна смен в доле сцены */
-  var STOP = [0, .3, .61, .94];                     /* куда ведёт клик по строке списка: карточка легла, следующая смена ещё не началась */
+  /* --- стопка: положение карточек — чистая функция от прокрутки. Четыре паузы, между ними три смены.
+     Шаг на карточку = пауза + смена: смена — MOVE шага, остальное карточка стоит. Сцена = три шага + пауза четвёртой;
+     её длину в px задаёт CSS (--step × 3,7 при MOVE = 0,3), здесь — только доли --- */
+  var MOVE = .3;
+  var STEP = 1 / (4 - MOVE), REST = (1 - MOVE) * STEP;                         /* шаг и пауза в доле сцены */
+  var T = [REST, STEP, STEP + REST, 2 * STEP, 2 * STEP + REST, 3 * STEP];      /* окна смен */
+  var STOP = [0, STEP + .12 * REST, 2 * STEP + .12 * REST, 3 * STEP + .12 * REST];   /* клик по строке списка: карточка легла, её пауза только началась */
   var ROT = [-1.2, .9, -1.2, 0];                    /* угол карточки, на которую легла следующая: стопка бумаги, а не панель */
-  var S = { q: 0, e: 1, tail: 0, vh: 0, top: 0, span: 1, cover: 1, off: 0, vary: false };
+  var S = { q: 0, e: 1, vh: 0, top: 0, span: 1, off: 0, vary: false };
   var HT = [0, 0, 0, 0];                             /* высота каждой карточки: в одну колонку она у каждой своя */
   var PEEK = [0, 0, 0, 0];                           /* где карточка ждёт своей смены: выглядывает над нижней плашкой или стоит под кадром */
   var ROW = [0, 0, 0, 0];                            /* низ каждой строки списка: строки разной высоты, указатель едет между ними */
@@ -1173,8 +1211,7 @@ html:not(.js) .ltr-in::after{content:none}
     S.vh = frame.clientHeight;
     S.top = probIn.offsetTop + pstage.offsetTop;
     for (var r = 0; r < 4; r++) ROW[r] = tabs[r].offsetTop + tabs[r].offsetHeight;
-    S.cover = S.vh;                                    /* последний экран закрепления: по стоящему кадру проходит панель прайса */
-    S.span = Math.max(1, prob.offsetHeight - S.vh - S.cover);   /* путь самой сцены */
+    S.span = Math.max(1, prob.offsetHeight - 2 * S.vh);   /* путь самой сцены: секция без кадра и без последнего экрана, где по стоящему кадру проходит панель прайса */
     /* в паузе следующая карточка выглядывает на 44 px над нижней плашкой — «дальше есть ещё», и лететь ей втрое, а не впятеро
        быстрее пальца. Если под лежащей карточкой места нет, следующая ждёт целиком под кадром */
     var barH = bar.offsetHeight;
@@ -1191,8 +1228,9 @@ html:not(.js) .ltr-in::after{content:none}
     if (!S.vary) for (var c = 0; c < 4; c++) panels[c].style.clipPath = '';
     last = {};
   }
-  /* q — доля сцены, e — вход первой карточки (верх секции от 70% высоты окна до его верха), tail — доля последнего экрана.
-     Один пассивный слушатель и один кадр на прокрутку; в кадре — одно чтение геометрии, дальше только transform и opacity */
+  /* q — доля сцены, e — вход первой карточки (верх секции от 70% высоты окна до его верха).
+     Один пассивный слушатель и один кадр на прокрутку; в кадре — одно чтение геометрии, дальше только transform и opacity.
+     Сам кадр стоит за счёт position:sticky — скрипт двигает только карточки внутри него */
   var stackRaf = 0;
   function readStack() {
     stackRaf = 0;
@@ -1200,7 +1238,6 @@ html:not(.js) .ltr-in::after{content:none}
     var top = prob.getBoundingClientRect().top;
     S.q = clamp01(-top / S.span);
     S.e = clamp01(1 - top / (S.vh * .7));
-    S.tail = clamp01((-top - S.span) / S.cover);
     renderStack();
   }
   /* пока сцена дальше 0,6 экрана от окна, кадр не пересчитывается и карточки не держат отдельные слои */
@@ -1252,10 +1289,8 @@ html:not(.js) .ltr-in::after{content:none}
     for (var r = 0; r < 4; r++) put(tabs[r], 'opacity', (1 - .38 * Math.min(1, Math.abs(k - r))).toFixed(3), 'r' + r);
     var cur = Math.round(k);
     if (cur !== pCur) { pCur = cur; markRow(cur); }
-    /* хвост: по стоящему кадру проходит панель прайса, кадр чуть уходит в глубину. Только масштаб: прозрачность
-       на светлом поле читается как «выключено» */
-    var tt = S.tail;
-    put(probIn, 'transform', tt ? 'scale(' + (1 - .03 * tt).toFixed(4) + ')' : '', 'tail');
+    /* хвост — последний экран секции: кадр стоит как есть, панель прайса проходит по нему. Масштаба у кадра нет:
+       заголовок и текст четвёртой карточки ещё читают, а от масштаба строки сползали и дрожали */
   }
   /* сравнение в четвёртой карточке. Режимы — классы с разной длительностью перехода: ease — за курсором, back — возврат,
      run — шторка открывает «после», hint — показ жеста */
@@ -1302,7 +1337,6 @@ html:not(.js) .ltr-in::after{content:none}
       clearTimeout(cmpT); cmpUser = false; cmpMode('');
       cmp.style.removeProperty('--x');
       tabs.forEach(function (t) { t.style.opacity = ''; t.setAttribute('role', 'tab'); });
-      probIn.style.transform = '';
       tablist.setAttribute('role', 'tablist'); tablist.setAttribute('aria-labelledby', 'prob-h');
       panels.forEach(function (p) { p.setAttribute('role', 'tabpanel'); });
       last = {};
@@ -1343,7 +1377,7 @@ html:not(.js) .ltr-in::after{content:none}
   function draggable(el) {
     var drag = null, moved = 0;
     el.addEventListener('pointerdown', function (e) {
-      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      if (e.pointerType !== 'mouse' || e.button !== 0 || el.classList.contains('is-deck')) return;
       drag = { x: e.clientX, left: el.scrollLeft, id: e.pointerId }; moved = 0;
     });
     el.addEventListener('pointermove', function (e) {
@@ -1374,6 +1408,18 @@ html:not(.js) .ltr-in::after{content:none}
   window.addEventListener('resize', stripProgress);
   stripProgress();
   draggable(strip);
+  /* блок «Работы» (слово, лента, линия) стоит по центру окна, пока колода раскладывается: только с движением и только
+     если он помещается над нижней плашкой. Высоту блока знает вёрстка — отсюда она уходит в CSS (--dh) */
+  var deck = document.getElementById('deck'), deckPin = document.getElementById('deck-pin');
+  function setDeckPin() {
+    var dh = deckPin.offsetHeight;
+    deck.style.setProperty('--dh', dh + 'px');
+    root.classList.toggle('d-pin', !reduce && svhProbe.offsetHeight - bar.offsetHeight - dh >= 16);
+  }
+  setDeckPin();
+  window.addEventListener('resize', setDeckPin);
+  window.addEventListener('load', setDeckPin);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setDeckPin);
 
   /* ================= отзывы — скриншоты стопкой ================= */
   var letters = document.getElementById('letters');
@@ -1479,12 +1525,28 @@ html:not(.js) .ltr-in::after{content:none}
   placeAll();
 
   /* фото проблем и первые работы ленты подгружаю заранее: иначе карточка прилетит пустой. Старт — когда загрузилось фото
-     первого экрана (оно важнее), но не позже 2,5 с. Событие load не жду: зависший чужой запрос (снимки карты) задержал бы его */
+     первого экрана (оно важнее), но не позже 2,5 с. Событие load не жду: зависший чужой запрос (снимки карты) задержал бы его.
+     И сразу раскодирую: иначе картинка раскодируется в тот кадр, когда карточка впервые въезжает в окно, — и кадр выпадает */
+  function warm(sel) {
+    [].forEach.call(document.querySelectorAll(sel), function (im) {
+      im.loading = 'eager';
+      if (im.decode) im.decode().catch(function () {});
+    });
+  }
   var eagerDone = false;
   function eagerPhotos() {
     if (eagerDone) return;
     eagerDone = true;
-    [].forEach.call(document.querySelectorAll('#pstage img, .shot:nth-child(-n+4) img'), function (im) { im.loading = 'eager'; });
+    warm('#pstage img, .shot:nth-child(-n+4) img');
+  }
+  /* колода показывает все девять работ разом: остальные пять беру, когда до прайса остался экран */
+  if ('IntersectionObserver' in window) {
+    var deckIO = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      deckIO.disconnect();
+      warm('.shot img');
+    }, { rootMargin: '100% 0px' });
+    deckIO.observe(document.getElementById('cena'));
   }
   var heroImg = document.querySelector('.hero-img');
   if (heroImg && !heroImg.complete) heroImg.addEventListener('load', function () { setTimeout(eagerPhotos, 300); }, { once: true });
@@ -1514,7 +1576,6 @@ html:not(.js) .ltr-in::after{content:none}
     var animate = M.animate, scroll = M.scroll, inView = M.inView;
     var OUT = [.16, 1, .3, 1], CURTAIN = [.65, 0, .35, 1], SLAP = [.3, 1.45, .55, 1];
     var vh = window.innerHeight;
-    var phone = mqPhone.matches;
     function $(sel, ctx) { return (ctx || document).querySelector(sel); }
     function $$(sel, ctx) { return [].slice.call((ctx || document).querySelectorAll(sel)); }
     function below(el) { return el.getBoundingClientRect().top >= vh * .92; }
@@ -1597,7 +1658,8 @@ html:not(.js) .ltr-in::after{content:none}
     var pnumIn = $('.pnum-in');
     if (below(pnumIn)) {
       pnumIn.style.transform = 'translateY(100%)';
-      inView(prob, function () { animate(pnumIn, { transform: 'translateY(0%)' }, { duration: 1, delay: .15, ease: OUT }); }, { amount: .2 });
+      /* слежу за кадром, а не за секцией: секция выше окна в пять раз, пятая её часть на экран не помещается */
+      inView(frame, function () { animate(pnumIn, { transform: 'translateY(0%)' }, { duration: 1, delay: .15, ease: OUT }); }, { amount: .2 });
     }
     /* строки списка поднимаются внутренними подписями: прозрачность самих строк ведёт стопка */
     rise(tabs.map(function (t) { return t.querySelector('.t'); }), tablist, .2, .06, .3);
@@ -1607,9 +1669,6 @@ html:not(.js) .ltr-in::after{content:none}
     var price = $('#cena'), rWrap = $('#receipt'), seal = $('.seal--r', rWrap);
     lines($('#price-h'), .3);
     scrub($('.price-word'), { transform: ['translateX(4vw)', 'translateX(-2vw)'] }, price, ['start end', 'end start']);
-    /* уход в глубину под панель «Работ» — только масштаб и только когда панель уже закрыла полэкрана:
-       с прозрачностью кнопка «Записаться» выглядела неактивной */
-    scrub($('.price-grid'), { transform: ['scale(1)', 'scale(.97)'] }, price, ['end 55%', 'end 5%']);
     if (below(rWrap)) {
       var sum = $('#r-sum'), txt = sum.textContent, cols = [];
       /* одометр: каждая цифра делает круг и доезжает до своей */
@@ -1690,38 +1749,44 @@ html:not(.js) .ltr-in::after{content:none}
     var works = $('#raboty');
     lines($('#works-h'), .3);
     scrub($('.works-word'), { transform: ['translateX(5vw)', 'translateX(-1vw)'] }, works, ['start end', 'end start']);
-    var D = { offs: [], w: 0, cw: 0, last: [] };
+    /* u — доля отрезка раскладки (мерка .deck-run проходит верх окна). Карточки сдвинуты к центру окна и расходятся по местам.
+       Пока колода не разложена (класс is-deck), у ленты нет привязки и вбок её не увести: место привязки
+       браузер считает вместе с transform карточки — с привязкой лента сама уезжала вбок. Прокрутку ленты (sl) приносит
+       её событие scroll, а не чтение геометрии в кадре: если ленту уже листали и вернулись выше, колода собирается в окне */
+    var D = { offs: [], w: 0, cw: 0, sl: strip.scrollLeft, u: 0, on: false, vis: 8, end: 1, last: [] };
     function measureDeck() {
       D.w = strip.clientWidth;
       D.cw = shots[0].offsetWidth;
       D.offs = shots.map(function (s) { return s.offsetLeft; });
       D.last = [];
+      deckWindow();
+    }
+    /* карточки выходят из колоды одна за другой (шаг 0,05) и едут до места 0,6 — в долях общего хода. Раскладка кончается, когда
+       легла последняя карточка, что видна в окне (vis): на телефоне это вторая. Тем, что уезжают за правый край, смотреть
+       не на что — они выходят в свою очередь и доезжают к тому же моменту. Иначе лента давно выглядит готовой, а вбок её
+       ещё не увести: за краем окна доезжают невидимые карточки */
+    function deckWindow() {
+      var i = shots.length - 1;
+      while (i > 0 && D.offs[i] - D.sl >= D.w) i--;
+      D.vis = i;
+      D.end = .05 * i + .6;
     }
     function renderDeck(u) {
-      var sl = strip.scrollLeft, n = shots.length, cx = D.w / 2 - D.cw / 2;
+      D.u = u;
+      var n = shots.length, cx = D.w / 2 - D.cw / 2 + D.sl, t = u * D.end;
+      if (u < 1 !== D.on) { D.on = u < 1; strip.classList.toggle('is-deck', D.on); }
       for (var i = 0; i < n; i++) {
-        var a = clamp01((u - .05 * i) / .6), k = 1 - a;
-        var v = k ? 'translate3d(' + ((cx - (D.offs[i] - sl)) * k).toFixed(1) + 'px,' + (40 * k).toFixed(1) + 'px,0) rotate(' + ((i - 4) * 2.5 * k).toFixed(2) + 'deg)' : 'none';
+        var a = u >= 1 ? 1 : clamp01((t - .05 * i) / (i > D.vis ? .6 - .05 * (i - D.vis) : .6)), k = 1 - a;
+        var v = k ? 'translate3d(' + ((cx - D.offs[i]) * k).toFixed(1) + 'px,' + (40 * k).toFixed(1) + 'px,0) rotate(' + ((i - 4) * 2.5 * k).toFixed(2) + 'deg)' : 'none';
         if (D.last[i] !== v) { D.last[i] = v; shots[i].style.transform = v; shots[i].style.setProperty('--sh', (.35 * k).toFixed(3)); }
       }
     }
-    /* на широком экране лента после раскладки медленно дрейфует влево; обёртка шире экрана на путь дрейфа */
-    var stripW = $('#strip-w'), driftKill = null;
-    function driftFx() {
-      var on = !mqNarrow.matches;
-      if (on === !!driftKill) return;
-      if (on) {
-        stripW.style.width = 'calc(100% + 6vw)';
-        driftKill = scrub(stripW, { transform: ['translateX(0vw)', 'translateX(-6vw)'] }, strip, ['start 35%', 'end start']);
-      } else { driftKill(); driftKill = null; stripW.style.width = ''; }
-    }
-    driftFx();
-    mqNarrow.addEventListener && mqNarrow.addEventListener('change', driftFx);
+    var stripW = $('#strip-w');
     if (below(strip)) {
       measureDeck(); renderDeck(0);
-      window.addEventListener('resize', measureDeck);
-      /* веер идёт, когда лента уже поднялась над нижней плашкой: самая выразительная фаза — в кадре, а не у кромки */
-      scroll(renderDeck, { target: strip, offset: phone ? ['start 78%', 'start 22%'] : ['start 60%', 'start 8%'] });
+      window.addEventListener('resize', function () { measureDeck(); renderDeck(D.u); });
+      strip.addEventListener('scroll', function () { D.sl = strip.scrollLeft; deckWindow(); if (D.on) renderDeck(D.u); }, { passive: true });
+      scroll(renderDeck, { target: $('#deck-run'), offset: ['start start', 'end start'] });
     }
     /* отзывы: цитата строками, листы падают на стол, стопка чуть поднимается и наклоняется от прокрутки */
     lines($('.voices-q'), .4);
@@ -1739,13 +1804,30 @@ html:not(.js) .ltr-in::after{content:none}
     scrub(letters, { transform: ['translateY(60px)', 'translateY(-60px)'] }, lw, ['start end', 'end start']);
     var tiltV = '';
     scroll(function (p) {
-      var v = (3 - 7 * p).toFixed(1);
+      /* шаг 0,02°: с шагом 0,1° угол листа менялся ступеньками — края скриншота вздрагивали на медленной прокрутке */
+      var v = (3 - 7 * p).toFixed(2);
       if (v === tiltV) return;
       tiltV = v;
-      letters.style.setProperty('--tilt', v + 'deg'); letters.style.setProperty('--tilt2', (-2 + 4 * p).toFixed(1) + 'deg');
+      letters.style.setProperty('--tilt', v + 'deg'); letters.style.setProperty('--tilt2', (-2 + 4 * p).toFixed(2) + 'deg');
     }, { target: lw, offset: ['start end', 'end start'] });
-    /* уходящий графит «Работ» под аркой — в глубину */
-    scrub($('.voices'), { opacity: [1, .6], transform: ['scale(1)', 'scale(.97)'] }, works, ['end 45%', 'end 0%']);
+    /* «в глубину»: то, на что наезжает следующая панель, чуть уменьшается. Только на широком экране: на телефоне и планшете
+       это текст, который в этот момент ещё читают, — от масштаба строки сползали и дрожали. Там остаётся одно затемнение
+       графита под аркой. На широком же лента после раскладки медленно дрейфует влево; обёртка шире экрана на путь дрейфа */
+    var depthKill = [];
+    function depthFx() {
+      var wide = !mqNarrow.matches;
+      while (depthKill.length) depthKill.pop()();
+      stripW.style.width = wide ? 'calc(100% + 6vw)' : '';
+      if (wide) {
+        /* прайс уходит под панель «Работ» — только масштаб и только когда панель уже закрыла полэкрана:
+           с прозрачностью кнопка «Записаться» выглядела неактивной */
+        depthKill.push(scrub($('.price-grid'), { transform: ['scale(1)', 'scale(.97)'] }, price, ['end 55%', 'end 5%']));
+        depthKill.push(scrub(stripW, { transform: ['translateX(0vw)', 'translateX(-6vw)'] }, strip, ['start 35%', 'end start']));
+      }
+      depthKill.push(scrub($('.voices'), wide ? { opacity: [1, .6], transform: ['scale(1)', 'scale(.97)'] } : { opacity: [1, .6] }, works, ['end 45%', 'end 0%']));
+    }
+    depthFx();
+    mqNarrow.addEventListener && mqNarrow.addEventListener('change', depthFx);
 
     /* ---------- запись: вишнёвая арка раскрывается до прямоугольника ---------- */
     var ct = $('#kontakty'), arch = $('#arch');
