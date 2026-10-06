@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Студия маникюра Дарии Мироновой в Ивантеевке — маникюр и обучение</title>
 <meta name="description" content="Маникюр «всё включено» за 3 700 ₽: укрепление гелем, ремонт трещин и углы у квадрата в одной цене. Обучение мастеров чёткому гелевому квадрату — 350+ учениц. Ивантеевка, Фабричный проезд, 1к1">
@@ -10,12 +9,18 @@
 <meta property="og:description" content="Маникюр «всё включено» за 3 700 ₽: укрепление гелем, ремонт трещин и углы у квадрата в одной цене. Обучение мастеров чёткому гелевому квадрату — 350+ учениц. Ивантеевка, Фабричный проезд, 1к1">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
-<!-- Когда будет домен: og:image и og:url — абсолютными адресами, плюс canonical:
-     <meta property="og:url" content="https://andrewmironov13.github.io/daria-nails/">  <link rel="canonical" href="https://[домен]/"> -->
+<meta name="robots" content="noindex">
+<meta property="og:url" content="https://andrewmironov13.github.io/daria-nails/">
+<meta property="og:site_name" content="DARIA MIRONOVA">
 <meta property="og:image" content="https://andrewmironov13.github.io/daria-nails/shared/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="view-transition" content="same-origin">
 <meta name="theme-color" content="#1E1C1A">
-<link rel="icon" href="data:,">
+<link rel="icon" type="image/svg+xml" href="shared/img/favicon.svg">
+<link rel="icon" type="image/png" sizes="120x120" href="shared/img/favicon-120.png">
+<link rel="apple-touch-icon" href="shared/img/apple-touch-icon.png">
 <!-- те же файлы шрифтов, что у страниц: слово на последнем кадре развилки и на первом экране страницы — одними глифами -->
 <link rel="preload" href="shared/fonts/cormorant-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="shared/fonts/cormorant-i-cyr.woff2" as="font" type="font/woff2" crossorigin>
@@ -43,24 +48,96 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "NailSalon",
-  "name": "Студия маникюра DARIA MIRONOVA",
-  "description": "Маникюр «всё включено» и обучение маникюру в Ивантеевке",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Фабричный проезд, 1к1",
-    "addressLocality": "Ивантеевка",
-    "addressRegion": "Московская область",
-    "addressCountry": "RU"
-  },
-  "areaServed": ["Ивантеевка", "Пушкино", "Щёлково"],
-  "priceRange": "от 3 700 ₽",
-  "makesOffer": [{
-    "@type": "Offer",
-    "price": "3700",
-    "priceCurrency": "RUB",
-    "itemOffered": { "@type": "Service", "name": "Маникюр «всё включено»" }
-  }]
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://andrewmironov13.github.io/daria-nails/#website",
+      "url": "https://andrewmironov13.github.io/daria-nails/",
+      "name": "DARIA MIRONOVA",
+      "alternateName": "Студия маникюра Дарии Мироновой",
+      "inLanguage": "ru",
+      "publisher": {
+        "@id": "https://andrewmironov13.github.io/daria-nails/#studio"
+      }
+    },
+    {
+      "@type": "NailSalon",
+      "@id": "https://andrewmironov13.github.io/daria-nails/#studio",
+      "name": "Студия маникюра DARIA MIRONOVA",
+      "alternateName": "Студия маникюра Дарии Мироновой",
+      "description": "Маникюр «всё включено» и обучение маникюру в Ивантеевке",
+      "url": "https://andrewmironov13.github.io/daria-nails/",
+      "image": "https://andrewmironov13.github.io/daria-nails/shared/img/og.jpg",
+      "logo": "https://andrewmironov13.github.io/daria-nails/shared/img/favicon-512.png",
+      "telephone": "+79200647630",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Фабричный проезд, 1к1, кабинет 106",
+        "addressLocality": "Ивантеевка",
+        "addressRegion": "Московская область",
+        "addressCountry": "RU"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 55.974776,
+        "longitude": 37.917089
+      },
+      "hasMap": "https://yandex.ru/maps/?pt=37.917089,55.974776&z=17&l=map",
+      "areaServed": {
+        "@type": "City",
+        "name": "Ивантеевка"
+      },
+      "priceRange": "от 3 700 ₽",
+      "currenciesAccepted": "RUB",
+      "founder": {
+        "@id": "https://andrewmironov13.github.io/daria-nails/#daria"
+      },
+      "sameAs": [
+        "https://instagram.com/nails_dariamir",
+        "https://t.me/daariaamir",
+        "https://dikidi.app/1451962"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "price": "3700",
+          "priceCurrency": "RUB",
+          "url": "https://andrewmironov13.github.io/daria-nails/manikur/",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Маникюр «всё включено»"
+          }
+        },
+        {
+          "@type": "Offer",
+          "price": "20000",
+          "priceCurrency": "RUB",
+          "url": "https://andrewmironov13.github.io/daria-nails/obuchenie/",
+          "itemOffered": {
+            "@type": "Course",
+            "name": "Курс повышения квалификации «Маникюр + гелевый квадрат»",
+            "description": "Индивидуальный офлайн-курс для мастеров маникюра, 1 день",
+            "provider": {
+              "@id": "https://andrewmironov13.github.io/daria-nails/#studio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://andrewmironov13.github.io/daria-nails/#daria",
+      "name": "Дария Миронова",
+      "alternateName": "DARIA MIRONOVA",
+      "jobTitle": "мастер маникюра и преподаватель",
+      "worksFor": {
+        "@id": "https://andrewmironov13.github.io/daria-nails/#studio"
+      },
+      "sameAs": [
+        "https://instagram.com/nails_dariamir"
+      ]
+    }
+  ]
 }
 </script>
 <script>
@@ -343,7 +420,7 @@ html.js-type .word .ch{visibility:hidden}
 </svg>
 
 <main class="fork" id="fork">
-  <h1 class="sr-only">Студия маникюра Дарии Мироновой</h1>
+  <h1 class="sr-only">Студия маникюра Дарии Мироновой в Ивантеевке</h1>
   <p class="fork-brand">DARIA MIRONOVA</p>
 
   <!-- ================= «Маникюр»: кость, макро ногтя ================= -->

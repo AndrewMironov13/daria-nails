@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Маникюр в Ивантеевке «всё включено» за 3 700 ₽ — студия Дарии Мироновой</title>
 <meta name="description" content="Маникюр с укреплением гелем, ремонтом трещин и донаращиванием углов в одной цене — 3 700 ₽. Френч +500 ₽. Студия в Ивантеевке, Фабричный проезд, 1к1. Онлайн-запись и обучение маникюру">
@@ -10,13 +9,18 @@
 <meta property="og:description" content="Маникюр с укреплением гелем, ремонтом трещин и донаращиванием углов в одной цене — 3 700 ₽. Френч +500 ₽. Студия в Ивантеевке, Фабричный проезд, 1к1. Онлайн-запись и обучение маникюру">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
-<!-- Когда будет домен: og:image и og:url — абсолютными адресами, плюс canonical. Мессенджеры относительный путь не открывают:
-     <meta property="og:image" content="https://[домен]/shared/img/w03-pink-french-glove.webp">
-     <meta property="og:url" content="https://[домен]/manikur/">  <link rel="canonical" href="https://[домен]/manikur/"> -->
-<meta property="og:image" content="../../shared/img/w03-pink-french-glove.webp">
+<meta name="robots" content="noindex">
+<meta property="og:url" content="https://andrewmironov13.github.io/daria-nails/v4/manikur/">
+<meta property="og:site_name" content="DARIA MIRONOVA">
+<meta property="og:image" content="https://andrewmironov13.github.io/daria-nails/shared/img/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="view-transition" content="same-origin">
 <meta name="theme-color" content="#F2EFEA">
-<link rel="icon" href="data:,">
+<link rel="icon" type="image/svg+xml" href="../../shared/img/favicon.svg">
+<link rel="icon" type="image/png" sizes="120x120" href="../../shared/img/favicon-120.png">
+<link rel="apple-touch-icon" href="../../shared/img/apple-touch-icon.png">
 <!-- Антиква и гротеск лежат рядом с сайтом: первый экран не ждёт чужой CDN и не печатается запасным шрифтом -->
 <link rel="preload" href="../../shared/fonts/cormorant-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="../../shared/fonts/cormorant-lat.woff2" as="font" type="font/woff2" crossorigin>
@@ -43,27 +47,115 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "NailSalon",
-  "name": "Студия маникюра DARIA MIRONOVA",
-  "description": "Маникюр «всё включено» и обучение маникюру в Ивантеевке",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Фабричный проезд, 1к1, кабинет 106",
-    "addressLocality": "Ивантеевка",
-    "addressRegion": "Московская область",
-    "addressCountry": "RU"
-  },
-  "telephone": "+79200647630",
-  "areaServed": ["Ивантеевка", "Пушкино", "Щёлково"],
-  "priceRange": "от 3 700 ₽",
-  "geo": { "@type": "GeoCoordinates", "latitude": 55.974776, "longitude": 37.917089 },
-  "employee": { "@type": "Person", "name": "Дария Миронова", "jobTitle": "мастер и преподаватель" },
-  "makesOffer": [{
-    "@type": "Offer",
-    "price": "3700",
-    "priceCurrency": "RUB",
-    "itemOffered": { "@type": "Service", "name": "Маникюр «всё включено»" }
-  }]
+  "@graph": [
+    {
+      "@type": "NailSalon",
+      "@id": "https://andrewmironov13.github.io/daria-nails/v4/#studio",
+      "name": "Студия маникюра DARIA MIRONOVA",
+      "alternateName": "Студия маникюра Дарии Мироновой",
+      "description": "Маникюр «всё включено» и обучение маникюру в Ивантеевке",
+      "url": "https://andrewmironov13.github.io/daria-nails/v4/",
+      "image": "https://andrewmironov13.github.io/daria-nails/shared/img/og.jpg",
+      "logo": "https://andrewmironov13.github.io/daria-nails/shared/img/favicon-512.png",
+      "telephone": "+79200647630",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Фабричный проезд, 1к1, кабинет 106",
+        "addressLocality": "Ивантеевка",
+        "addressRegion": "Московская область",
+        "addressCountry": "RU"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 55.974776,
+        "longitude": 37.917089
+      },
+      "hasMap": "https://yandex.ru/maps/?pt=37.917089,55.974776&z=17&l=map",
+      "areaServed": {
+        "@type": "City",
+        "name": "Ивантеевка"
+      },
+      "priceRange": "от 3 700 ₽",
+      "currenciesAccepted": "RUB",
+      "founder": {
+        "@id": "https://andrewmironov13.github.io/daria-nails/v4/#daria"
+      },
+      "sameAs": [
+        "https://instagram.com/nails_dariamir",
+        "https://t.me/daariaamir",
+        "https://dikidi.app/1451962"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "price": "3700",
+          "priceCurrency": "RUB",
+          "url": "https://andrewmironov13.github.io/daria-nails/v4/manikur/",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Маникюр «всё включено»",
+            "serviceType": "Маникюр",
+            "description": "Снятие, гигиенический маникюр, восстановление формы и укрепление гелем, донаращивание углов у квадрата, ремонт трещин, поднятие клюющих ногтей, покрытие, увлажнение рук",
+            "areaServed": {
+              "@type": "City",
+              "name": "Ивантеевка"
+            }
+          }
+        },
+        {
+          "@type": "Offer",
+          "price": "500",
+          "priceCurrency": "RUB",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Френч — доплата к маникюру «всё включено»"
+          }
+        }
+      ],
+      "potentialAction": {
+        "@type": "ReserveAction",
+        "name": "Записаться онлайн",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://dikidi.app/1451962",
+          "actionPlatform": [
+            "https://schema.org/DesktopWebPlatform",
+            "https://schema.org/MobileWebPlatform"
+          ]
+        }
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://andrewmironov13.github.io/daria-nails/v4/#daria",
+      "name": "Дария Миронова",
+      "alternateName": "DARIA MIRONOVA",
+      "jobTitle": "мастер маникюра и преподаватель",
+      "worksFor": {
+        "@id": "https://andrewmironov13.github.io/daria-nails/v4/#studio"
+      },
+      "sameAs": [
+        "https://instagram.com/nails_dariamir"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Студия маникюра DARIA MIRONOVA",
+          "item": "https://andrewmironov13.github.io/daria-nails/v4/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Маникюр",
+          "item": "https://andrewmironov13.github.io/daria-nails/v4/manikur/"
+        }
+      ]
+    }
+  ]
 }
 </script>
 <script>
@@ -858,7 +950,7 @@ html:not(.js) .ltr-in::after{content:none}
   <div class="prob-frame">
     <div class="prob-in">
       <div class="prob-left">
-        <h2 class="h2" id="prob-h"><span class="ml"><span>Какие проблемы</span></span><span class="ml"><span>я&nbsp;могу решить?</span></span></h2>
+        <h2 class="h2" id="prob-h"><span class="ml"><span>Какие проблемы</span></span> <span class="ml"><span>я&nbsp;могу решить?</span></span></h2>
         <div class="ptabs" id="ptabs" role="tablist" aria-labelledby="prob-h" aria-orientation="vertical">
           <span class="pptr" id="pptr" aria-hidden="true"></span>
           <button class="ptab cur" type="button" role="tab" id="pt1" aria-controls="pp1" aria-selected="true"><span class="n" aria-hidden="true">01</span><span class="t">Форма квадрат не&nbsp;будет расклешённой</span></button>
@@ -919,7 +1011,7 @@ html:not(.js) .ltr-in::after{content:none}
 <!-- ================= ПРАЙС ================= -->
 <section class="price panel" id="cena" aria-labelledby="price-h">
   <div class="price-in">
-    <h2 class="price-word" id="price-h"><span class="ml"><span>Price</span></span></h2>
+    <h2 class="price-word" id="price-h"><span class="ml"><span>Price</span></span><span class="sr"> — цена маникюра</span></h2>
     <div class="price-grid">
       <div class="receipt-wrap" id="receipt">
         <svg class="seal seal--r" aria-hidden="true"><use href="#seal"/></svg>
@@ -947,7 +1039,7 @@ html:not(.js) .ltr-in::after{content:none}
           <span class="ft"><img src="../../shared/img/fr3.webp" width="638" height="639" loading="lazy" decoding="async" alt="Белый френч на персиковой базе"></span>
           <span class="ft"><img src="../../shared/img/fr4.webp" width="639" height="639" loading="lazy" decoding="async" alt="Белый френч на нюдовой базе"></span>
         </div>
-        <p class="fr-line"><span class="ml"><span>Красивый и&nbsp;ровный френч&nbsp;—</span></span><span class="ml"><span>моя отдельная любовь</span></span></p>
+        <p class="fr-line"><span class="ml"><span>Красивый и&nbsp;ровный френч&nbsp;—</span></span> <span class="ml"><span>моя отдельная любовь</span></span></p>
       </div>
     </div>
   </div>
@@ -983,7 +1075,7 @@ html:not(.js) .ltr-in::after{content:none}
 
   <div class="voices" id="otzyvy">
     <p class="eyebrow voices-k">Отзывы</p>
-    <h3 class="voices-q"><span class="ml"><span>«Будто искусственный интеллект,</span></span><span class="ml"><span>а&nbsp;не&nbsp;реально мои&nbsp;руки»</span></span></h3>
+    <h3 class="voices-q"><span class="ml"><span>«Будто искусственный интеллект,</span></span> <span class="ml"><span>а&nbsp;не&nbsp;реально мои&nbsp;руки»</span></span></h3>
     <div class="letters-w" id="letters-w">
       <div class="letters" id="letters" tabindex="0" role="region" aria-roledescription="стопка" aria-label="Отзывы клиенток по одному. Следующий — стрелкой или свайпом">
         <figure class="ltr" style="--ar:1206/1239" aria-label="Отзыв 1 из 7"><span class="ltr-in"><img src="../../shared/img/rv-m3.webp" width="1206" height="1239" loading="lazy" decoding="async" draggable="false" alt="Скриншот отзыва: Эльвира, Авито, пять звёзд. Дария профессионал своего дела и приятная в общении девушка…"></span></figure>
@@ -1008,7 +1100,7 @@ html:not(.js) .ltr-in::after{content:none}
   <div class="arch" id="arch">
   <div class="wrap ct-in">
     <div class="book-head" id="zapis">
-      <h2 class="book-h" id="book-h"><span class="ml"><span>Запишитесь</span></span><span class="ml"><span>на&nbsp;удобное время</span></span></h2>
+      <h2 class="book-h" id="book-h"><span class="ml"><span>Запишитесь</span></span> <span class="ml"><span>на&nbsp;удобное время</span></span></h2>
       <div class="book-btns">
         <a class="btn btn-milk" href="https://dikidi.app/1451962" target="_blank" rel="noopener"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Записаться онлайн <span class="arr" aria-hidden="true">→</span></span></span></a>
         <a class="btn btn-line" href="https://t.me/daariaamir" target="_blank" rel="noopener" data-tg="Здравствуйте! Хочу записаться на маникюр «всё включено»"><span class="lbs"><i class="dot" aria-hidden="true"></i><span class="lb">Telegram</span></span></a>
