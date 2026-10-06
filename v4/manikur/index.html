@@ -318,11 +318,11 @@ html:not(.js) .pp{grid-area:auto;opacity:1;visibility:visible}
 
 /* ---- стопка в закреплённом кадре ----
    Высота секции = кадр + сцена (--pin) + ещё один экран: на нём кадр стоит, а панель прайса проходит по нему целиком.
-   Сцена — четыре паузы и три смены между ними. Шаг на карточку (--step) = пауза + смена; смена — 30% шага (MOVE в скрипте),
-   остальное карточка стоит и читается. Сцена = три шага + пауза четвёртой карточки = шаг × 3,7.
-   Шаг — почти экран: один свайп листает одну карточку, а не две. Нижняя граница в px — для низких окон,
-   где свайп пальцем длиннее самого окна (Safari с панелями) */
-html.p-stack .prob{--step:max(75svh,600px);--pin:calc(var(--step) * 3.7);height:calc(200svh + var(--pin))}
+   Сцена — четыре паузы и три смены между ними. Шаг на карточку (--step) = пауза + смена; смена — 40% шага (MOVE в скрипте),
+   остальное карточка стоит и читается. Сцена = три шага + пауза четвёртой карточки = шаг × 3,6.
+   Шаг — один обычный свайп (около 0,65 экрана): карточка на жест. Длиннее — страница будто зависает: палец ведёт, а кадр стоит;
+   короче — свайп пролистывает две карточки. Нижняя граница в px — для низких окон (Safari с панелями) */
+html.p-stack .prob{--step:max(56svh,460px);--pin:calc(var(--step) * 3.6);height:calc(200svh + var(--pin))}
 html.p-stack .prob-frame{position:sticky;top:0;height:100svh;overflow:clip}
 html.p-stack .prob-in{height:100%;padding-top:clamp(48px,11svh,104px);padding-bottom:calc(var(--bar) + 30px);align-items:center}
 html.p-stack .pp{opacity:1;visibility:visible;transition:none;transform-origin:50% 0;box-shadow:0 1px 0 rgba(30,28,26,.06),0 30px 60px -20px rgba(30,28,26,.26)}
@@ -371,8 +371,7 @@ html.p-stack .prob + .price{margin-top:-100svh;box-shadow:0 -28px 60px rgba(30,2
 
 /* ================= РАБОТЫ И ОТЗЫВЫ (графит) ================= */
 .works{z-index:4;background:var(--graphite);color:var(--milk);padding:64px 0 96px}
-/* по горизонтали режут сами блоки, а не секция: у закреплённого блока «Работ» (.deck-pin, position:sticky) не должно быть предка
-   с overflow:clip — в Safari под таким предком закреплённое подрагивает на пару пикселей (WebKit 247130 и его родня) */
+/* по горизонтали режут сами блоки, а не секция */
 .deck-pin,.voices{overflow-x:clip}
 .works-word{font:300 clamp(86px,17vw,245px)/.86 var(--serif);letter-spacing:-.015em;color:#D9D3CB;margin-left:-.05em;white-space:nowrap;pointer-events:none}
 .strip-w{position:relative;margin-top:calc(clamp(86px,17vw,245px) * -.3)}
@@ -396,15 +395,8 @@ html.p-stack .prob + .price{margin-top:-100svh;box-shadow:0 -28px 60px rgba(30,2
   .strip:not(.is-drag) .shot:hover img{transform:scale(1.04);transition-duration:.6s}
 }
 .works-foot{display:flex;align-items:center;justify-content:space-between;gap:32px;margin-top:28px}
-/* колода раскладывается на месте. html.d-pin (с движением, окно не ниже блока) ставит скрипт: блок «Работы» встаёт по центру
-   окна над нижней плашкой и стоит, пока идёт дорожка --run. Раскладка — отрезок прокрутки длиной с мерку .deck-run:
-   начинается за --lead до остановки, когда фото колоды уже целиком в окне, и кончается чуть раньше, чем блок отпустит.
-   Без d-pin блок не стоит: раскладка идёт, пока он едет от 68% до 12% высоты окна */
-.deck{position:relative;--run:50svh;--lead:18svh;--stick:max(8px,calc((100svh - var(--bar) - var(--dh,600px)) / 2))}
-.deck-run{position:absolute;left:0;top:-68vh;top:-68svh;width:1px;height:56vh;height:56svh;visibility:hidden;pointer-events:none}
-html.d-pin .deck::after{content:"";display:block;height:var(--run)}   /* дорожка — содержимым, не полем: в поле родителя sticky не заходит */
-html.d-pin .deck-pin{position:sticky;top:var(--stick)}
-html.d-pin .deck-run{top:calc(-1 * (var(--stick) + var(--lead)));height:calc(var(--lead) + var(--run) - 5svh)}
+/* колода раскладывается сама, за полторы секунды, когда лента вошла в окно: блок не закрепляется и прокрутку страницы
+   не держит — листать вбок можно сразу после раскладки */
 .progress{flex:1;max-width:420px;height:2px;background:rgba(251,250,247,.16);position:relative;overflow:hidden}
 .progress span{position:absolute;inset:0;background:var(--milk);transform-origin:0 50%;transform:scaleX(.3)}
 .ig{position:relative;display:inline-flex;align-items:center;min-height:44px;font:500 15px/1.2 var(--sans);text-decoration:none}
@@ -533,7 +525,7 @@ html:not(.js) .ltr-in::after{content:none}
   .pp-t{font-size:26px}
   .pp-line,.pp-4 .pp-line{margin-top:10px}
   .pp-acc{font-size:20px;margin-top:6px}
-  html.p-stack .prob{--step:max(90svh,680px)}
+  html.p-stack .prob{--step:clamp(430px,56svh,480px)}   /* длина свайпа — это путь пальца, от высоты экрана она почти не зависит */
   /* между заголовком и карточкой — место под края двух нижних карточек стопки (−18 и −32 px, с поворотом ещё ±5) */
   html.p-stack .prob-in{grid-template-rows:auto minmax(0,1fr);row-gap:40px;padding:28px var(--pad) calc(var(--bar) + 16px)}
   html.p-stack .pstage{align-self:start}   /* карточка — сразу под заголовком */
@@ -619,7 +611,6 @@ html:not(.js) .ltr-in::after{content:none}
   .fr-line{margin-top:18px;font-size:26px}
 
   .works{padding:56px 0 80px}
-  .deck{--run:78svh;--lead:26svh}   /* раскладка — почти экран прокрутки (26 + 78 − 5): один свайп её не пролетает */
   .works-word{font-size:22vw}
   .strip-w{margin-top:-6.6vw}
   .strip{gap:12px}
@@ -965,8 +956,6 @@ html:not(.js) .ltr-in::after{content:none}
 
 <!-- ================= РАБОТЫ И ОТЗЫВЫ ================= -->
 <section class="works panel dark" id="raboty" aria-labelledby="works-h">
-  <!-- дорожка колоды: слово, лента и линия стоят по центру окна (position:sticky), пока колода раскладывается в ленту.
-       deck-run — невидимая мерка отрезка прокрутки, на котором идёт раскладка -->
   <div class="deck" id="deck">
   <div class="deck-pin" id="deck-pin">
   <div class="wrap">
@@ -976,13 +965,14 @@ html:not(.js) .ltr-in::after{content:none}
     <div class="strip" id="strip" tabindex="0" role="region" aria-label="Лента работ, листается вбок">
       <figure class="shot"><span class="fr"><img src="../../shared/img/w03-pink-french-glove.webp" srcset="../../shared/img/w03-pink-french-glove-sm.webp 480w, ../../shared/img/w03-pink-french-glove.webp 960w" sizes="(max-width:760px) 234px, 300px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Розовый френч на квадратных ногтях"></span></figure>
       <figure class="shot"><span class="fr"><img src="../../shared/img/w10-lilac-milky.webp" srcset="../../shared/img/w10-lilac-milky-sm.webp 507w, ../../shared/img/w10-lilac-milky.webp 1014w" sizes="(max-width:760px) 234px, 300px" width="1014" height="1280" loading="lazy" decoding="async" draggable="false" alt="Молочный и сиреневый маникюр"></span></figure>
+      <figure class="shot"><span class="fr"><img src="../../shared/img/w06-black-gloss.webp" srcset="../../shared/img/w06-black-gloss-sm.webp 480w, ../../shared/img/w06-black-gloss.webp 960w" sizes="(max-width:760px) 234px, 300px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Чёрный глянец на коротком квадрате"></span></figure>
       <figure class="shot"><span class="fr"><img src="../../shared/img/w04-red-french-white.webp" srcset="../../shared/img/w04-red-french-white-sm.webp 480w, ../../shared/img/w04-red-french-white.webp 960w" sizes="(max-width:760px) 234px, 300px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Красный френч"></span></figure>
       <figure class="shot"><span class="fr"><img src="../../shared/img/w05-butter-cream.webp" srcset="../../shared/img/w05-butter-cream-sm.webp 480w, ../../shared/img/w05-butter-cream.webp 960w" sizes="(max-width:760px) 234px, 300px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Сливочный цвет"></span></figure>
       <figure class="shot"><span class="fr"><img src="../../shared/img/w11-cherry.webp" srcset="../../shared/img/w11-cherry-sm.webp 480w, ../../shared/img/w11-cherry.webp 960w" sizes="(max-width:760px) 234px, 300px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Вишнёвый цвет на квадратных ногтях"></span></figure>
       <figure class="shot"><span class="fr"><img src="../../shared/img/w08-nude-glove.webp" srcset="../../shared/img/w08-nude-glove-sm.webp 480w, ../../shared/img/w08-nude-glove.webp 960w" sizes="(max-width:760px) 234px, 300px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Нюдовое покрытие"></span></figure>
       <figure class="shot"><span class="fr"><img src="../../shared/img/w07-red-french-knit.webp" srcset="../../shared/img/w07-red-french-knit-sm.webp 480w, ../../shared/img/w07-red-french-knit.webp 960w" sizes="(max-width:760px) 234px, 300px" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Красный френч на фоне трикотажа"></span></figure>
       <figure class="shot"><span class="fr"><img src="../../shared/img/w02-milky-french.webp" srcset="../../shared/img/w02-milky-french-sm.webp 480w, ../../shared/img/w02-milky-french.webp 959w" sizes="(max-width:760px) 234px, 300px" width="959" height="1280" loading="lazy" decoding="async" draggable="false" alt="Молочный френч на ровном квадрате"></span></figure>
-      <figure class="shot"><span class="fr"><img src="../../shared/img/w12-nude-macro.webp" width="960" height="1280" loading="lazy" decoding="async" draggable="false" alt="Нюдовый квадрат крупным планом"></span></figure>
+      <figure class="shot"><span class="fr"><img src="../../shared/img/w09-macro-french.webp" srcset="../../shared/img/w09-macro-french-sm.webp 640w, ../../shared/img/w09-macro-french.webp 1280w" sizes="(max-width:760px) 384px, 492px" width="1280" height="1040" loading="lazy" decoding="async" draggable="false" alt="Бежевое покрытие крупным планом, вид с торца"></span></figure>
     </div>
   </div>
   <div class="wrap works-foot">
@@ -990,7 +980,6 @@ html:not(.js) .ltr-in::after{content:none}
     <a class="ig" href="https://instagram.com/nails_dariamir" target="_blank" rel="noopener">Больше работ в&nbsp;Instagram*</a>
   </div>
   </div>
-  <i class="deck-run" id="deck-run" aria-hidden="true"></i>
   </div>
 
   <div class="voices" id="otzyvy">
@@ -1178,8 +1167,8 @@ html:not(.js) .ltr-in::after{content:none}
 
   /* --- стопка: положение карточек — чистая функция от прокрутки. Четыре паузы, между ними три смены.
      Шаг на карточку = пауза + смена: смена — MOVE шага, остальное карточка стоит. Сцена = три шага + пауза четвёртой;
-     её длину в px задаёт CSS (--step × 3,7 при MOVE = 0,3), здесь — только доли --- */
-  var MOVE = .3;
+     её длину в px задаёт CSS (--step × 3,6 при MOVE = 0,4), здесь — только доли --- */
+  var MOVE = .4;
   var STEP = 1 / (4 - MOVE), REST = (1 - MOVE) * STEP;                         /* шаг и пауза в доле сцены */
   var T = [REST, STEP, STEP + REST, 2 * STEP, 2 * STEP + REST, 3 * STEP];      /* окна смен */
   var STOP = [0, STEP + .12 * REST, 2 * STEP + .12 * REST, 3 * STEP + .12 * REST];   /* клик по строке списка: карточка легла, её пауза только началась */
@@ -1408,19 +1397,6 @@ html:not(.js) .ltr-in::after{content:none}
   window.addEventListener('resize', stripProgress);
   stripProgress();
   draggable(strip);
-  /* блок «Работы» (слово, лента, линия) стоит по центру окна, пока колода раскладывается: только с движением и только
-     если он помещается над нижней плашкой. Высоту блока знает вёрстка — отсюда она уходит в CSS (--dh) */
-  var deck = document.getElementById('deck'), deckPin = document.getElementById('deck-pin');
-  function setDeckPin() {
-    var dh = deckPin.offsetHeight;
-    deck.style.setProperty('--dh', dh + 'px');
-    root.classList.toggle('d-pin', !reduce && svhProbe.offsetHeight - bar.offsetHeight - dh >= 16);
-  }
-  setDeckPin();
-  window.addEventListener('resize', setDeckPin);
-  window.addEventListener('load', setDeckPin);
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setDeckPin);
-
   /* ================= отзывы — скриншоты стопкой ================= */
   var letters = document.getElementById('letters');
   var L = [].slice.call(letters.querySelectorAll('.ltr'));
@@ -1745,14 +1721,13 @@ html:not(.js) .ltr-in::after{content:none}
       if (stacked) inView($('.fr-grid', price), function () { tilesIn(0); }, { amount: .25 });
     }
 
-    /* ---------- работы: колода раскладывается в ленту от прокрутки, слово дрейфует ---------- */
+    /* ---------- работы: колода сама раскладывается в ленту, когда вошла в окно; слово дрейфует ---------- */
     var works = $('#raboty');
     lines($('#works-h'), .3);
     scrub($('.works-word'), { transform: ['translateX(5vw)', 'translateX(-1vw)'] }, works, ['start end', 'end start']);
-    /* u — доля отрезка раскладки (мерка .deck-run проходит верх окна). Карточки сдвинуты к центру окна и расходятся по местам.
-       Пока колода не разложена (класс is-deck), у ленты нет привязки и вбок её не увести: место привязки
-       браузер считает вместе с transform карточки — с привязкой лента сама уезжала вбок. Прокрутку ленты (sl) приносит
-       её событие scroll, а не чтение геометрии в кадре: если ленту уже листали и вернулись выше, колода собирается в окне */
+    /* u — доля раскладки, идёт по времени (DECK_MS), а не от прокрутки: страницу блок не держит. Карточки сдвинуты к центру
+       окна и расходятся по местам. Пока колода не разложена (класс is-deck), у ленты нет привязки и вбок её не увести: место
+       привязки браузер считает вместе с transform карточки — с привязкой лента сама уезжала вбок */
     var D = { offs: [], w: 0, cw: 0, sl: strip.scrollLeft, u: 0, on: false, vis: 8, end: 1, last: [] };
     function measureDeck() {
       D.w = strip.clientWidth;
@@ -1776,8 +1751,8 @@ html:not(.js) .ltr-in::after{content:none}
       var n = shots.length, cx = D.w / 2 - D.cw / 2 + D.sl, t = u * D.end;
       if (u < 1 !== D.on) { D.on = u < 1; strip.classList.toggle('is-deck', D.on); }
       for (var i = 0; i < n; i++) {
-        var a = u >= 1 ? 1 : clamp01((t - .05 * i) / (i > D.vis ? .6 - .05 * (i - D.vis) : .6)), k = 1 - a;
-        var v = k ? 'translate3d(' + ((cx - D.offs[i]) * k).toFixed(1) + 'px,' + (40 * k).toFixed(1) + 'px,0) rotate(' + ((i - 4) * 2.5 * k).toFixed(2) + 'deg)' : 'none';
+        var a = u >= 1 ? 1 : clamp01((t - .05 * i) / (i > D.vis ? .6 - .05 * (i - D.vis) : .6)), k = Math.pow(1 - a, 3);   /* карточка тормозит у своего места */
+        var v = k ? 'translate3d(' + ((cx - D.offs[i]) * k).toFixed(1) + 'px,' + (40 * k).toFixed(1) + 'px,0) rotate(' + ((i - (n - 1) / 2) * 2 * k).toFixed(2) + 'deg)' : 'none';
         if (D.last[i] !== v) { D.last[i] = v; shots[i].style.transform = v; shots[i].style.setProperty('--sh', (.35 * k).toFixed(3)); }
       }
     }
@@ -1786,7 +1761,14 @@ html:not(.js) .ltr-in::after{content:none}
       measureDeck(); renderDeck(0);
       window.addEventListener('resize', function () { measureDeck(); renderDeck(D.u); });
       strip.addEventListener('scroll', function () { D.sl = strip.scrollLeft; deckWindow(); if (D.on) renderDeck(D.u); }, { passive: true });
-      scroll(renderDeck, { target: $('#deck-run'), offset: ['start start', 'end start'] });
+      var DECK_MS = 1500, deckT0 = 0;
+      function deckTick(now) {
+        if (!deckT0) deckT0 = now;
+        var u = Math.min(1, (now - deckT0) / DECK_MS);
+        renderDeck(u);
+        if (u < 1) requestAnimationFrame(deckTick);
+      }
+      inView(stripW, function () { requestAnimationFrame(deckTick); }, { amount: .55 });
     }
     /* отзывы: цитата строками, листы падают на стол, стопка чуть поднимается и наклоняется от прокрутки */
     lines($('.voices-q'), .4);
