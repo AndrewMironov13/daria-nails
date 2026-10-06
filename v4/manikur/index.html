@@ -561,12 +561,11 @@ html:not(.js) .ltr-in::after{content:none}
   .brand .seal{width:36px;height:36px}
   .top-cta{display:none}
   .switch a{height:36px;padding:0 13px;font-size:11px;letter-spacing:.08em}
-  /* на телефоне первый экран — её видео: рука с жемчужным кольцом. Блик по ногтям рисовался под макро-фото и здесь выключен.
-     Ролик 9:16 во всю ширину (высота 177,78vw) и прижат низом к низу рамки: пальцы с ногтями и кольцо стоят над словом.
-     На низком экране рамка короче — тогда кадр встаёт так, чтобы верхний ноготь (36% высоты ролика = 64vw) был на 52 px
-     ниже края рамки, под плашкой. Низ кадра уходит в цвет фона: тёмные складки ткани не спорят с графитовым словом */
+  /* на телефоне первый экран — её видео: оранжевый квадрат на терракотовом фоне. Блик по ногтям рисовался под макро-фото и здесь выключен.
+     Ролик 9:16 во всю ширину (высота 177,78vw). Ногти в кадре — вокруг 51% высоты ролика (90,7vw): эта точка стоит на 46% высоты рамки,
+     чуть выше середины — низ рамки занят переходом в цвет фона и словом. Кадр не выходит за свои края (min/max) */
   .hero-media{--f:clamp(300px,calc(100svh - var(--head) - 250px),640px);height:var(--f);
-    --pos:50% min(0px,max(calc(var(--f) - 177.78vw),calc(52px - 64vw)));background:#7C6D5E}
+    --pos:50% min(0px,max(calc(var(--f) - 177.78vw),calc(var(--f) * .46 - 90.7vw)));background:#A04B31}
   .hero-video{display:block;position:absolute;inset:0}
   .hero-media::after{content:"";position:absolute;inset:auto 0 0;height:30%;pointer-events:none;background:linear-gradient(to top,var(--bone) 4%,rgba(242,239,234,.82) 26%,rgba(242,239,234,0))}
   .gloss{display:none}
@@ -692,23 +691,23 @@ html:not(.js) .ltr-in::after{content:none}
 <main>
 <!-- ================= HERO ================= -->
 <section class="hero" id="top">
-  <!-- ≤760 px: поверх постера играет её видео (рука с жемчужным кольцом на бежевой ткани); шире — макро-фото: вертикальное видео там было бы мылом.
-       Источник видео выбирается по media: на широком экране и при reduced-motion файл не грузится, остаётся постер.
-       Ролик 12,8 с закольцован «туда-обратно» в самом файле и играет с нуля. Постер — его первый кадр;
-       его же видят без автоплея — iPhone в энергосбережении.
+  <!-- ≤760 px: поверх постера играет её видео (оранжевый квадрат, терракотовый фон); шире — макро-фото: вертикальное видео там было бы мылом.
+       Ролик 12 с: первые 6 с исходника вперёд и назад, петля без стыка, движение с первого кадра. Постер — его первый кадр;
+       его же видят без автоплея — iPhone в энергосбережении. Два файла: HEVC (iPhone, вдвое легче) и H.264 для остальных.
        Фото для ноутбука: исходник 1280 px (сжат Телеграмом), на ретине он растянут в 1,7 раза. Третий кандидат 2200w — тот же кадр,
        увеличенный заранее (Lanczos + лёгкая резкость): чётче, чем тянет браузер. Когда будет оригинал файлом — заменить его -->
   <figure class="hero-media">
     <picture>
-      <source media="(max-width:760px)" srcset="../../shared/img/hero-pearl-poster.webp" width="1080" height="1920">
+      <source media="(max-width:760px)" srcset="../../shared/img/hero-orange-poster.webp" width="1080" height="1920">
       <img class="hero-img" src="../../shared/img/w09-macro-french.webp"
            srcset="../../shared/img/w09-macro-french-sm.webp 640w, ../../shared/img/w09-macro-french.webp 1280w, ../../shared/img/w09-macro-french-2x.webp 2200w"
            sizes="(max-width:1100px) 100vw, min(1100px, 76vw)"
            width="1280" height="1040" fetchpriority="high" decoding="async"
            alt="Квадратные ногти с глянцевым покрытием крупным планом">
     </picture>
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="../../shared/img/hero-pearl-poster.webp" width="1080" height="1920" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback>
-      <source src="../../shared/video/hero-pearl.mp4" type="video/mp4" media="(max-width:760px) and (prefers-reduced-motion:no-preference)">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="../../shared/img/hero-orange-poster.webp" width="1080" height="1920" aria-hidden="true" tabindex="-1" disablepictureinpicture disableremoteplayback>
+      <source src="../../shared/video/hero-orange-hevc.mp4" type='video/mp4; codecs="hvc1"' media="(max-width:760px) and (prefers-reduced-motion:no-preference)">
+      <source src="../../shared/video/hero-orange.mp4" type="video/mp4" media="(max-width:760px) and (prefers-reduced-motion:no-preference)">
     </video>
     <div class="gloss" aria-hidden="true">
       <div class="gloss-sheen"></div>

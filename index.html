@@ -292,7 +292,9 @@ html.js-type .word .ch{visibility:hidden}
 /* ================= ТЕЛЕФОН ≤760 ================= */
 @media (max-width:760px){
   :root{--pad:16px;--bar:60px;--head:56px}
-  html.js .half-m .hero-media{height:clamp(300px,calc(100svh - var(--head) - 250px),640px)}
+  /* кадр-постер стоит так же, как видео на странице «Маникюр» (та же формула --pos): стык без сдвига */
+  html.js .half-m .hero-media{--f:clamp(300px,calc(100svh - var(--head) - 250px),640px);height:var(--f);
+    --pos:50% min(0px,max(calc(var(--f) - 177.78vw),calc(var(--f) * .46 - 90.7vw)));background:#A04B31}
   html.js .half-m .ttl{font-size:22.5vw;margin-top:-.52em}
   html.js .half-m .word{font-weight:400;letter-spacing:-.02em}
   html.js .half-m .line{font-size:clamp(24px,7.9vw,34px)}
@@ -349,9 +351,9 @@ html.js-type .word .ch{visibility:hidden}
     <div class="stage">
       <div class="hero">
         <div class="hero-media">
-          <!-- ≤760 px страница «Маникюр» открывается её видео (красный квадрат с кольцом): половина показывает тот же кадр-постер, чтобы стык был без подмены -->
+          <!-- ≤760 px страница «Маникюр» открывается её видео (оранжевый квадрат на терракотовом фоне): половина показывает тот же кадр-постер, чтобы стык был без подмены -->
           <picture>
-            <source media="(max-width:760px)" srcset="shared/img/hero-pearl-poster.webp" width="1080" height="1920">
+            <source media="(max-width:760px)" srcset="shared/img/hero-orange-poster.webp" width="1080" height="1920">
             <img src="shared/img/w09-macro-french.webp"
                  srcset="shared/img/w09-macro-french-sm.webp 640w, shared/img/w09-macro-french.webp 1280w, shared/img/w09-macro-french-2x.webp 2200w"
                  sizes="(max-width:1100px) 100vw, min(1100px, 76vw)"
