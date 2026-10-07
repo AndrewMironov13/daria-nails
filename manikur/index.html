@@ -578,6 +578,7 @@ html:not(.js) .ltr-in::after{content:none}
 @keyframes ping{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.9);opacity:0}}
 .foot{display:grid;grid-template-columns:1fr auto;gap:6px 40px;align-items:center;border-top:1px solid rgba(251,250,247,.18);margin-top:56px;padding:22px 0 28px;font:400 12px/1.6 var(--mono);letter-spacing:.06em;color:rgba(251,250,247,.66)}
 .foot .fn{grid-column:1/-1;font-size:11px}
+.foot .pol{grid-column:1/-1;justify-self:start;color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
 .foot a{position:relative;display:inline-flex;align-items:center;min-height:44px;color:var(--milk);text-decoration:none}
 .foot a:hover{text-decoration:underline;text-underline-offset:5px}
 
@@ -1162,6 +1163,7 @@ html:not(.js) .ltr-in::after{content:none}
     <footer class="foot">
       <span>© 2026 Студия маникюра DARIA MIRONOVA</span>
       <a href="../obuchenie/">Обучение для мастеров →</a>
+      <a class="pol" href="../politika/">Политика конфиденциальности</a>
       <span class="fn">* Instagram принадлежит компании Meta, признанной экстремистской и&nbsp;запрещённой в&nbsp;РФ</span>
     </footer>
   </div>
@@ -1964,5 +1966,41 @@ html:not(.js) .ltr-in::after{content:none}
 })();
 </script>
 <script src="../shared/js/motion-13.4.3.js" async onload="window.__initMotion && window.__initMotion()"></script>
+<!-- уведомление о cookie: только на «Маникюре» и «Обучении», появляется после первой прокрутки (на первом экране оно закрывало бы
+     кнопку записи) и стоит над нижней плашкой; пропадает после «Хорошо» -->
+<style>
+.ck{position:fixed;left:12px;right:12px;bottom:calc(var(--bar,0px) + env(safe-area-inset-bottom,0px) + 12px);z-index:60;display:flex;align-items:center;gap:14px;max-width:400px;
+  padding:4px 4px 4px 18px;background:#FBFAF7;color:#1E1C1A;border:1px solid rgba(30,28,26,.12);border-radius:28px;box-shadow:0 18px 40px -12px rgba(30,28,26,.35);
+  font:400 13px/1.4 "Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:0;text-transform:none;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .5s cubic-bezier(.16,1,.3,1)}
+.ck.on{opacity:1;transform:none}
+.ck[hidden]{display:none}
+.ck p{margin:0;flex:1}
+.ck a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;white-space:nowrap}
+.ck button{flex:none;min-height:44px;padding:0 18px;border:0;border-radius:999px;background:#1E1C1A;color:#FBFAF7;font:500 14px/1 "Manrope",system-ui,sans-serif;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.ck{transition:none}}
+</style>
+<div class="ck" id="ck" role="region" aria-label="Файлы cookie" hidden>
+  <p>Сайт использует cookie и&nbsp;Яндекс Метрику&nbsp;· <a href="../politika/">Подробнее</a></p>
+  <button type="button" id="ck-ok">Хорошо</button>
+</div>
+<script>
+(function () {
+  var el = document.getElementById('ck'), ok = false;
+  try { ok = localStorage.getItem('dm-cookies-ok') === '1'; } catch (_) {}
+  if (!el || ok) return;
+  function show() {
+    el.hidden = false;
+    requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add('on'); }); });
+  }
+  function far() { return window.scrollY > window.innerHeight * .6; }
+  if (far()) show();
+  else window.addEventListener('scroll', function f() { if (far()) { window.removeEventListener('scroll', f); show(); } }, { passive: true });
+  document.getElementById('ck-ok').addEventListener('click', function () {
+    try { localStorage.setItem('dm-cookies-ok', '1'); } catch (_) {}
+    el.classList.remove('on');
+    setTimeout(function () { el.hidden = true; }, 450);
+  });
+})();
+</script>
 </body>
 </html>
