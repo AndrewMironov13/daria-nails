@@ -760,8 +760,38 @@ html:not(.js) .ltr-in::after{content:none}
   ::view-transition-group(*),::view-transition-old(*),::view-transition-new(*){animation:none!important}
 }
 </style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=113538620', 'ym');
+
+    ym(113538620, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+
+    /* цели — по ссылке, на которую нажали: запись в Dikidi, Telegram, Instagram, звонок, маршрут.
+       На «Обучении» нажатие на Telegram или Instagram — ещё и заявка на курс (course_click) */
+    document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+        if (!a) return;
+        var h = a.href || '', g = '';
+        if (h.indexOf('dikidi.app') > -1) g = 'booking_click';
+        else if (h.indexOf('//t.me/') > -1) g = 'tg_click';
+        else if (h.indexOf('ig.me/') > -1 || h.indexOf('instagram.com/') > -1) g = 'ig_click';
+        else if (h.indexOf('tel:') === 0) g = 'phone_click';
+        else if (h.indexOf('yandex.ru/maps') > -1) g = 'route_click';
+        if (!g) return;
+        ym(113538620, 'reachGoal', g);
+        if (location.pathname.indexOf('/obuchenie') === 0 && (g === 'tg_click' || (g === 'ig_click' && h.indexOf('ig.me/') > -1))) ym(113538620, 'reachGoal', 'course_click');
+    }, true);
+</script>
+<!-- /Yandex.Metrika counter -->
 </head>
 <body>
+<noscript><div><img src="https://mc.yandex.ru/watch/113538620" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <symbol id="seal" viewBox="0 0 120 120">
